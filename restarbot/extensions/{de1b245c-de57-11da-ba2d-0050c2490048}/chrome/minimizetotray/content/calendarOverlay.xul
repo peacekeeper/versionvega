@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay [
+<!ENTITY % brandDTD SYSTEM "chrome://minimizetotray/locale/brand.dtd"> %brandDTD;
+<!ENTITY % sunbirdDTD SYSTEM "chrome://calendar/locale/menuOverlay.dtd" > %sunbirdDTD;
+<!ENTITY % commonDTD SYSTEM "chrome://minimizetotray/locale/common.dtd"> %commonDTD;
+]>
+<overlay id="minimizetotrayBrowserOverlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="text/javascript" src="chrome://minimizetotray/content/core.js"/>
+	<script type="text/javascript" src="chrome://minimizetotray/content/calender.js"/>
+	<!--  the key short cut -->
+	<keyset id="tasksKeys">
+		<key id="extensions.mook.minimizetotray.key.menuitem"/>
+	</keyset>
+	<!-- toolbar button -->
+	<toolbarpalette id="calendarToolbarPalette">
+		<toolbarbutton id="extensions-minimizetotray-button-minimize"/>
+	</toolbarpalette>
+	<!-- file menu item  -->
+	<menupopup id="menu_FilePopup">
+		<menuitem insertafter="calendar-print-sep"
+			id="extensions.mook.minimizetotray.menuitem.menuitem"/>
+	</menupopup>
+	<!-- tray popup -->
+	<popupset id="calendar-popupset">
+		<popup id="extensions.mook.minimizetotray.traypopup"
+			onpopupshowing="window.extensions.mook.minimizetotray.loadPopupMenu(); window.extensions.mook.minimizetotray.populateTurboMenu(true);">
+			<menuitem id="extensions.mook.minimizetotray.traypopup.restore"/>
+			<menuitem label="&cmd.newwindow.label;" accesskey="&cmd.newwindow.accesskey;"
+				oncommand="window.extensions.mook.minimizetotray.openNewWindow();"/>
+			<menu id="extensions.mook.minimizetotray.traypopup.restore.menu"/>
+			<menuseparator/>
+			<menuitem id="xtensions.mook.minimizetotray.traypopup.new.event"
+				label="&event.new.event;" accesskey="&event.new.event.accesskey;"
+				oncommand="createEventWithDialog(getSelectedCalendar());"/>
+			<menuitem id="xtensions.mook.minimizetotray.traypopup.new.todo"
+				label="&event.new.todo;" accesskey="&event.new.todo.accesskey;"
+				oncommand="createTodoWithDialog(getSelectedCalendar(),
+                                     null, null, null,
+                                     currentView().selectedDay);"/>
+			<menuseparator id="extensions.mook.minimizetotray.pupup.close.separator"/>
+		</popup>
+	</popupset>
+</overlay>

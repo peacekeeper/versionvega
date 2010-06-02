@@ -1,0 +1,9 @@
+
+#extensions-minimizetotray-button-minimize {
+    list-style-image: url("chrome://minimizetotray/skin/minimize-24.png") !important;
+}
+
+toolbar[iconsize='small'] #extensions-minimizetotray-button-minimize {
+    list-style-image: url("chrome://minimizetotray/skin/minimize-16.png") !important;
+}
+

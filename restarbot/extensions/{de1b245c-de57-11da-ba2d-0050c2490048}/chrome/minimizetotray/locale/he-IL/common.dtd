@@ -1,0 +1,24 @@
+<!--     toolbar button     -->
+<!ENTITY button.totray.label "מזער">
+<!ENTITY button.totray.tooltip "מזער חלון למגש">
+<!--	 menu item			-->
+<!ENTITY cmd.totray.label "Minimize to Tray">
+<!ENTITY cmd.totray.accesskey "מ">
+<!ENTITY cmd.totray.key "ז">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!--     tray popup     -->
+<!ENTITY cmd.restore.label "שחזר &brandShortName;">
+<!ENTITY cmd.restore.window.label "שחזר חלון">
+<!ENTITY cmd.restore.accesskey "ח">
+<!ENTITY cmd.restoreall.label "שחזר הכל">
+<!ENTITY cmd.restoreall.accesskey "כ">
+<!ENTITY cmd.close.label "סגור &brandShortName;">
+<!ENTITY cmd.close.window.label "סגור חלון">
+<!ENTITY cmd.close.accesskey "ס">
+<!ENTITY cmd.quit.label "יציאה מהפעלה מהירה">
+<!ENTITY cmd.quit.accesskey "צ">
+<!ENTITY cmd.newwindow.label "פתח חלון חדש">
+<!ENTITY cmd.newwindow.accesskey "פ">
+<!--     tray sub menu   -->
+<!ENTITY menu.restore.label "שחזר">
+<!ENTITY menu.restore.accesskey "ש">

@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Opzioni di Minimize To Tray">
+<!ENTITY groupbox.general.label "Opzioni di Minimize To Tray">
+<!ENTITY chk.always.label "Riduci sempre a icona nell'area di notifica">
+<!ENTITY chk.always.accesskey "R">
+<!ENTITY chk.twoclickrestore.label "Doppio clic per ripristinare">
+<!ENTITY chk.twoclickrestore.accesskey "D">
+<!ENTITY chk.minimizeonclose.label "Riduci a icona nell'area di notifica alla chiusura">
+<!ENTITY chk.minimizeonclose.accesskey "n">
+<!ENTITY chk.trayalwaysshow.label "Mostra sempre l'icona nell'area di notifica">
+<!ENTITY chk.trayalwaysshow.accesskey "s">
+<!ENTITY chk.restoreonopen.label "Ripristina finestra invece di aprirne una nuova">
+<!ENTITY chk.restoreonopen.accesskey "f">
+<!ENTITY chk.onlyoneicon.label "Mostra sempre una sola icona nell'area di notifica">
+<!ENTITY chk.onlyoneicon.accesskey "i">
+<!ENTITY chk.startwidthwindows.label "Carica applicazione all'avvio del sistema">
+<!ENTITY chk.startwidthwindows.accesskey "c">
+<!ENTITY chk.currentuseronly.label "Solo per l'utente corrente">
+<!ENTITY chk.currentuseronly.accesskey "u">

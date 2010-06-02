@@ -1,0 +1,15 @@
+#include "nsISupports.idl"
+[scriptable, uuid(17b4f420-adc8-4720-bd6c-5fddd1c8db67)]
+interface nsISirius : nsISupports
+{
+	void get(in string xri, in string format, [retval] out string ret);
+	void add(in string xri, in string format, [retval] out string ret);
+	void set(in string xri, in string format, [retval] out string ret);
+	void mod(in string xri, in string format, [retval] out string ret);
+	void del(in string xri, in string format, [retval] out string ret);
+	void getLiterals(in string xri, out PRUint32 retCount, [array, size_is(retCount), retval] out string ret);
+	void getLiteral(in string xri, [retval] out string ret);
+	void getReferences(in string xri, out PRUint32 retCount, [array, size_is(retCount), retval] out string ret);
+	void getReference(in string xri, [retval] out string ret);
+	void execute(in string message, in string format, [retval] out string ret);
+};

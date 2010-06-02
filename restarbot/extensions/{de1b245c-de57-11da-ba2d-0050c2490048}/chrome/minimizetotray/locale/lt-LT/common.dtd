@@ -1,0 +1,24 @@
+<!--     toolbar button     -->
+<!ENTITY button.totray.label "Sumažinti">
+<!ENTITY button.totray.tooltip "Langą perkelti į sistemos dėklą">
+<!--	 menu item			-->
+<!ENTITY cmd.totray.label "Sumažinti į sistemos dėklą">
+<!ENTITY cmd.totray.accesskey "M">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!--     tray popup     -->
+<!ENTITY cmd.restore.label "Grąžinti &brandShortName;">
+<!ENTITY cmd.restore.window.label "Atstatyti langą">
+<!ENTITY cmd.restore.accesskey "R">
+<!ENTITY cmd.restoreall.label "Atstatyti visus">
+<!ENTITY cmd.restoreall.accesskey "A">
+<!ENTITY cmd.close.label "Uždaryti &brandShortName;">
+<!ENTITY cmd.close.window.label "Užverti langą">
+<!ENTITY cmd.close.accesskey "C">
+<!ENTITY cmd.quit.label "Išjungti greitąjį paleidimą">
+<!ENTITY cmd.quit.accesskey "x">
+<!ENTITY cmd.newwindow.label "Atverti naują langas">
+<!ENTITY cmd.newwindow.accesskey "N">
+<!--     tray sub menu   -->
+<!ENTITY menu.restore.label "Atstatyti">
+<!ENTITY menu.restore.accesskey "R">

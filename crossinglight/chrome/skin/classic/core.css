@@ -1,0 +1,196 @@
+@CHARSET "ISO-8859-1";
+
+window {
+	-moz-appearance: none;
+	background-color: #080808;
+	background-image: url('images/grid.jpg');
+	background-attachment: fixed;
+	background-position: top right;
+	background-repeat: no-repeat;
+}
+
+menuitem {
+	font-family: monospace;
+	font-size: 10pt;
+	font-weight: normal;
+}
+
+#solsuccess {
+/*	background-image: url('images/icons2.png');*/
+	background-repeat: no-repeat;
+}
+
+#solerror {
+	color: white;
+	font-family: Courier New, Courier, monospace;
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 20px;
+}
+
+#appcontent {
+	-moz-border-image: url('images/border.png') 3 3 3 3 repeat;
+	padding: 0;
+}
+
+cl-rayicons {
+	-moz-box-orient: vertical;
+	width: 150px;
+	padding: 5px;
+	padding-top: 25px;
+	overflow: hidden;
+}
+
+cl-rayicon {
+	-moz-binding: url('chrome://crossinglight/skin/core.xml#cl-rayicon');
+	-moz-box-orient: horizontal;
+	-moz-box-align: center;
+	background-image: url('images/gray.png');
+	padding: 2px;
+	cursor: pointer;
+	margin: 2px;
+}
+
+cl-rayicon label {
+	font-family: sans-serif;
+	font-size: 8pt;
+	color: white;
+	cursor: pointer;
+}
+
+cl-rayicon image {
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+}
+
+cl-taskicons {
+	padding: 5px;
+	height: 40px;
+}
+
+cl-taskicon {
+	-moz-binding: url('chrome://crossinglight/skin/core.xml#cl-taskicon');
+	margin-right: -5px;
+}
+
+cl-taskqueuedicon {
+	-moz-binding: url('chrome://crossinglight/skin/core.xml#cl-taskqueuedicon');
+	margin-right: -5px;
+}
+
+#pulsesbox {
+	-moz-border-image: url('images/border.png') 3 3 3 3 repeat;
+	margin: 0px 9px 0px 9px;
+	padding: 0;
+	overflow: hidden;
+}
+
+#pulses {
+	width: 50px;
+}
+
+vbox.logomenu {
+	-moz-border-image: url('images/border.png') 3 3 3 3 repeat;
+	background-color: black;
+	margin: 0px 9px 10px 9px;
+	padding: 9px;
+}
+
+#browser-bottombox {
+}
+
+statusbar {
+	-moz-binding: url('chrome://crossinglight/skin/core.xml#statusbar');
+	-moz-appearance: none;
+	background-color: transparent;
+	min-height: 28px;
+	border: none;
+}
+
+statusbarpanel {
+	-moz-appearance: none;
+	margin: 3px 0px 2px 0px;
+	padding: 0px 4px;
+	border: none;
+}
+
+#statusbar-display {
+	-moz-appearance: none;
+	text-align: left;
+	color: white;
+	border: none;
+}
+
+cl-commandbox {
+	-moz-box-orient: horizontal;
+	-moz-border-image: url('images/border.png') 3 3 3 3 repeat;
+	background-repeat: repeat-x;
+	margin: 8px;
+	padding: 0;
+}
+
+cl-input {
+	-moz-binding: url('chrome://crossinglight/skin/core.xml#cl-input');
+	-moz-box-align: center;
+	background-color: black;
+	padding: 10px 10px 10px 10px;
+	font-family: Courier New, Courier, monospace;
+	font-size: 14pt;
+	font-weight: bold;
+	color: white;
+}
+
+#fountain {
+	-moz-appearance: none;
+	padding: 0;
+	margin: 0;
+	min-width: 90px;
+	width: 90px;
+	min-height: 25px;
+	height: 25px;
+	border: none;
+}
+
+cl-tray-connect {
+	-moz-binding: url('chrome://crossinglight/skin/core.xml#cl-tray-connect');
+}
+
+cl-tray-identity {
+	-moz-binding: url('chrome://crossinglight/skin/core.xml#cl-tray-identity');
+}
+
+menupopup.pulsepopup {
+	-moz-appearance: none;
+	-moz-border-image: url('images/border.png') 3 3 3 3 repeat;
+	font-family: monospace;
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 10px 10px 10px 10px;
+	width: 350px;
+	height: 250px;
+	background-color: black;
+}
+
+description.pulsepopupiname {
+	background-image: url('images/arrow.png');
+	background-repeat: no-repeat;
+	background-position: right;
+	color: white;
+	padding-right: 20px;
+}
+
+description.pulsepopupray {
+	color: white;
+}
+
+description.pulsepopupcontent {
+	-moz-border-image: url('images/border2.png') 3 3 3 3 repeat;
+	color: white;
+	padding: 5px;
+}
+
+button.pulsepopupexecute {
+	width: 50px;
+	margin-top: 10px;
+}

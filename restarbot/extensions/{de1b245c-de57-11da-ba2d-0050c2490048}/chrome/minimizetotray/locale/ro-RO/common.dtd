@@ -1,0 +1,24 @@
+<!--     toolbar button     -->
+<!ENTITY button.totray.label "Minimizează">
+<!ENTITY button.totray.tooltip "Minimizează fereastra în zona de notificare">
+<!--	 menu item			-->
+<!ENTITY cmd.totray.label "Minimizează în zona de notificare">
+<!ENTITY cmd.totray.accesskey "M">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!--     tray popup     -->
+<!ENTITY cmd.restore.label "Restaurează &brandShortName;">
+<!ENTITY cmd.restore.window.label "Restaurează fereastra">
+<!ENTITY cmd.restore.accesskey "R">
+<!ENTITY cmd.restoreall.label "Restaurează tot">
+<!ENTITY cmd.restoreall.accesskey "t">
+<!ENTITY cmd.close.label "Închide &brandShortName;">
+<!ENTITY cmd.close.window.label "Închide fereastra">
+<!ENTITY cmd.close.accesskey "c">
+<!ENTITY cmd.quit.label "Închide MinimizeToTray Plus">
+<!ENTITY cmd.quit.accesskey "h">
+<!ENTITY cmd.newwindow.label "Deschide o fereastră nouă">
+<!ENTITY cmd.newwindow.accesskey "n">
+<!--     tray sub menu   -->
+<!ENTITY menu.restore.label "Restaurează">
+<!ENTITY menu.restore.accesskey "R">

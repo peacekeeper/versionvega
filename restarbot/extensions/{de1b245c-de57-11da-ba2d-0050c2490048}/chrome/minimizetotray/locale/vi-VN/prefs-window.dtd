@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Lựa chọn cách thu nhỏ">
+<!ENTITY groupbox.general.label "Lựa chọn lúc khởi động">
+<!ENTITY chk.always.label "Luôn thu nhỏ xuống khay thay vì xuống taskbar">
+<!ENTITY chk.always.accesskey "A">
+<!ENTITY chk.twoclickrestore.label "Cần click đúp để khôi phục từ khay">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "Thu nhỏ xuống khay khi tắt">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "Luôn hiển thị biểu tượng ở khay">
+<!ENTITY chk.trayalwaysshow.accesskey "T">
+<!ENTITY chk.restoreonopen.label "Phục hồi cửa sổ thay vì mở cửa sổ mới">
+<!ENTITY chk.restoreonopen.accesskey "W">
+<!ENTITY chk.onlyoneicon.label "Chỉ hiển thị một biểu tượng ở khay">
+<!ENTITY chk.onlyoneicon.accesskey "I">
+<!ENTITY chk.startwidthwindows.label "Tải &brandShortName; ở chế độ khởi động nhanh khi bật máy">
+<!ENTITY chk.startwidthwindows.accesskey "S">
+<!ENTITY chk.currentuseronly.label "Chỉ áp dụng cho người dùng hiện tại">
+<!ENTITY chk.currentuseronly.accesskey "C">

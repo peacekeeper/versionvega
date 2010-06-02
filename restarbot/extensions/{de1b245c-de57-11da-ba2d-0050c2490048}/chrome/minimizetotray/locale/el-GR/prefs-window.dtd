@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Επιλογές ελαχιστοποίησης στην περιοχή ειδοποιήσεων">
+<!ENTITY groupbox.general.label "Επιλογές εκκίνησης">
+<!ENTITY chk.always.label "Να γίνεται πάντα ελαχιστοποίηση στην περιοχή ειδοποιήσεων αντί για την γραμμή εργασιών">
+<!ENTITY chk.always.accesskey "α">
+<!ENTITY chk.twoclickrestore.label "Να απαιτείται διπλό κλικ για επαναφορά από την περιοχή ειδοποιήσεων">
+<!ENTITY chk.twoclickrestore.accesskey "δ">
+<!ENTITY chk.minimizeonclose.label "Ελαχιστοποίηση στην περιοχή ειδοποιήσεων κατά το κλείσιμο">
+<!ENTITY chk.minimizeonclose.accesskey "κ">
+<!ENTITY chk.trayalwaysshow.label "Πάντα προβολή εικονιδίου στην περιοχή ειδοποιήσεων">
+<!ENTITY chk.trayalwaysshow.accesskey "α">
+<!ENTITY chk.restoreonopen.label "Επαναφορά παραθύρου αντί για άνοιγμα νέου">
+<!ENTITY chk.restoreonopen.accesskey "Ε">
+<!ENTITY chk.onlyoneicon.label "Προβολή μόνο ενός εικονιδίου στην περιοχή ειδοποιήσεων">
+<!ENTITY chk.onlyoneicon.accesskey "ο">
+<!ENTITY chk.startwidthwindows.label "Εκκίνηση της εφαρμογής μαζί με τα windows">
+<!ENTITY chk.startwidthwindows.accesskey "κ">
+<!ENTITY chk.currentuseronly.label "Μόνο για τον τρέχοντα χρήστη">
+<!ENTITY chk.currentuseronly.accesskey "τ">

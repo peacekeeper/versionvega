@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://app/skin/common.css" type="text/css"?>
+<?xml-stylesheet href="ray.css" type="text/css"?>
+
+<window id="@vega*friends" title="@vega*friends" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	onload="onLoad();" onunload="onUnload();"
+	flex="1" style="overflow:auto">
+
+	<script src="ray.js" />
+
+	<hbox id="addBox">
+		<description>Add:</description>
+		<textbox id="addFriendTextbox" value="=yourfriend" />
+		<button label="Add" oncommand="onAddFriend();" />
+		<button label="Refresh" oncommand="onRefresh();" />
+	</hbox>
+
+	<vbox id="content" flex="1">
+
+		<grid class="plain">
+			<columns>
+				<column />
+				<column />
+			</columns>
+			<rows flex="1" class="plain" id="friendsBox">
+			</rows>
+		</grid>
+
+	</vbox>
+
+</window>

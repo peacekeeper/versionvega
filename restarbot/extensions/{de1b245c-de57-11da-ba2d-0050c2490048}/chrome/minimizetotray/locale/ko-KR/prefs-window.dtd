@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Minimize To Tray 선택사항">
+<!ENTITY groupbox.general.label "시작 선택사항">
+<!ENTITY chk.always.label "언제나 작업표시줄 대신 트레이로 최소화">
+<!ENTITY chk.always.accesskey "A">
+<!ENTITY chk.twoclickrestore.label "트레이로 부터 복원시 두번 누르기">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "닫을 경우 트레이로 최소화">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "언제나 트레이 아이콘 표시">
+<!ENTITY chk.trayalwaysshow.accesskey "T">
+<!ENTITY chk.restoreonopen.label "새로 여는 대신 창 복구">
+<!ENTITY chk.restoreonopen.accesskey "W">
+<!ENTITY chk.onlyoneicon.label "오직 한개의 트레이 아이콘만 표시">
+<!ENTITY chk.onlyoneicon.accesskey "I">
+<!ENTITY chk.startwidthwindows.label "윈도우와 함께 시작 응용프로그램 시작">
+<!ENTITY chk.startwidthwindows.accesskey "S">
+<!ENTITY chk.currentuseronly.label "현재 사용자만">
+<!ENTITY chk.currentuseronly.accesskey "C">

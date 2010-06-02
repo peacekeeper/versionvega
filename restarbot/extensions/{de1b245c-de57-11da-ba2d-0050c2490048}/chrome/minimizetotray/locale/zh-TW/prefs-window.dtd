@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Minimize To Tray 選項">
+<!ENTITY groupbox.general.label "啟動選項">
+<!ENTITY chk.always.label "總是縮小到系統列">
+<!ENTITY chk.always.accesskey "A">
+<!ENTITY chk.twoclickrestore.label "點兩下圖示還原視窗">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "關閉時縮小到系統列">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "總是顯示系統列圖示">
+<!ENTITY chk.trayalwaysshow.accesskey "T">
+<!ENTITY chk.restoreonopen.label "不開新視窗,只還原">
+<!ENTITY chk.restoreonopen.accesskey "W">
+<!ENTITY chk.onlyoneicon.label "只顯示一個系統列圖示">
+<!ENTITY chk.onlyoneicon.accesskey "I">
+<!ENTITY chk.startwidthwindows.label "進入 Windows 時啟動應用程式">
+<!ENTITY chk.startwidthwindows.accesskey "S">
+<!ENTITY chk.currentuseronly.label "只套用到目前使用者">
+<!ENTITY chk.currentuseronly.accesskey "C">

@@ -1,0 +1,24 @@
+<!--     toolbar button     -->
+<!ENTITY button.totray.label "최소화">
+<!ENTITY button.totray.tooltip "트레이로 창 최소화">
+<!--	 menu item			-->
+<!ENTITY cmd.totray.label "트레이로 최소화">
+<!ENTITY cmd.totray.accesskey "M">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!--     tray popup     -->
+<!ENTITY cmd.restore.label "&brandShortName;  복원">
+<!ENTITY cmd.restore.window.label "이전 크기로">
+<!ENTITY cmd.restore.accesskey "R">
+<!ENTITY cmd.restoreall.label "모두 복원">
+<!ENTITY cmd.restoreall.accesskey "A">
+<!ENTITY cmd.close.label "&brandShortName; 닫기">
+<!ENTITY cmd.close.window.label "창 닫기">
+<!ENTITY cmd.close.accesskey "C">
+<!ENTITY cmd.quit.label "빠른 실행 종료">
+<!ENTITY cmd.quit.accesskey "x">
+<!ENTITY cmd.newwindow.label "새 창 열기">
+<!ENTITY cmd.newwindow.accesskey "N">
+<!--     tray sub menu   -->
+<!ENTITY menu.restore.label "복원">
+<!ENTITY menu.restore.accesskey "R">

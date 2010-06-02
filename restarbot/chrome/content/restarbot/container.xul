@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://restarbot/skin/core.css" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://restarbot/locale/app.dtd">
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" id="&app.id;" title="&app.title;"
+	windowtype="restarbot:container:window" width="800" height="600" screenX="50"
+	screenY="50" sizemode="normal" hidechrome="false"
+	onload="onWindowLoad();" onunload="onWindowUnload();" onkeypress="onWindowKeyPress(event);"
+	onfocus="onWindowFocus();">
+
+	<!-- SCRIPTS -->
+
+	<script type="application/javascript;version=1.7" src="container.js" />
+
+	<!-- STRING BUNDLE -->
+
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="strings"
+			src="chrome://restarbot/locale/strings.properties" />
+	</stringbundleset>
+
+	<!-- COMMANDS -->
+
+	<commandset id="mainCommandSet">
+		<command id="cmd_js_console" oncommand="cmdDebugConsole();" />
+		<command id="cmd_js_about" oncommand="cmdAbout();" />
+		<command id="cmd_js_extensions" oncommand="cmdExtensions();" />
+		<command id="cmd_js_config" oncommand="cmdConfig();" />
+		<command id="cmd_js_xpcomviewer" oncommand="cmdXPCOMViewer();" />
+		<command id="cmd_js_dominspector" oncommand="cmdDOMInspector();" />
+		<command id="cmd_js_togglefullscreen" oncommand="cmdToggleFullScreen();" />
+	</commandset>
+
+	<keyset id="mainKeyset">
+		<key key="D" modifiers="shift control" command="cmd_js_console" />
+		<key key="A" modifiers="shift control" command="cmd_js_about" />
+		<key key="E" modifiers="shift control" command="cmd_js_extensions" />
+		<key key="C" modifiers="shift control" command="cmd_js_config" />
+		<key key="V" modifiers="shift control" command="cmd_js_xpcomviewer" />
+		<key key="I" modifiers="shift control" command="cmd_js_dominspector" />
+		<key keycode="VK_RETURN" modifiers="alt" command="cmd_js_togglefullscreen" />
+	</keyset>
+
+	<!-- MAIN UI -->
+
+	<vbox flex="1">
+
+		<vbox id="browser-bottombox">
+<!-- 		<findbar browserid="content" id="FindToolbar"/> -->
+			<statusbar class="chromeclass-status" id="status-bar">
+				<statusbarpanel id="statusbar-display" label="..." flex="1" />
+				<statusbarpanel class="statusbarpanel-progress" collapsed="true" id="statusbar-progresspanel">
+					<progressmeter class="progressmeter-statusbar" id="statusbar-icon" mode="normal" value="0"/>
+				</statusbarpanel>
+			</statusbar>
+		</vbox>
+
+		<hbox flex="1">
+			<vbox flex="1">
+				<hbox flex="1">
+					<deck id="appcontent" flex="1" />
+				</hbox>
+			</vbox>
+		</hbox>
+
+		<cl-commandbox id="commandbox">
+			<cl-input id="input" onkeypress="onInputKeyPress(event);" flex="1" />
+		</cl-commandbox>
+
+	</vbox>
+
+</window>

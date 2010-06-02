@@ -1,0 +1,16 @@
+#include "nsISupports.idl"
+#include "nsIThread.idl"
+[scriptable, uuid(5d298610-6ede-4884-958d-de6de3cc3b39)]
+interface nsIVersionVega : nsISupports
+{
+	void provisionThread(
+		in nsIThread thread);
+
+	void invoke(
+		in string object,
+		in string method,
+		in PRUint32 argsCount,
+		[array, size_is(argsCount)] in string args,
+		out PRUint32 retCount,
+		[array, size_is(retCount), retval] out string ret);
+};

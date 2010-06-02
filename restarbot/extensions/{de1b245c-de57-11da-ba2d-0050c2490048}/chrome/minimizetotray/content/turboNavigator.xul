@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE overlay [
+<!ENTITY % brandDTD SYSTEM "chrome://minimizetotray/locale/brand.dtd"> %brandDTD;
+<!ENTITY % downloadsDTD SYSTEM "chrome://communicator/locale/downloads/downloadmanager.dtd"> %downloadsDTD;
+<!ENTITY % abMainWindowDTD SYSTEM "chrome://messenger/locale/addressbook/abMainWindow.dtd"> %abMainWindowDTD;
+<!ENTITY % messengerDTD SYSTEM "chrome://messenger/locale/messenger.dtd"> %messengerDTD;
+<!ENTITY % editorDTD SYSTEM "chrome://editor/locale/editor.dtd"> %editorDTD;
+<!ENTITY % commonDTD SYSTEM "chrome://minimizetotray/locale/common.dtd"> %commonDTD;
+]>
+<window id="MinimizeToTrayWindow"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	hidechrome="true"
+	onclose="window.extensions.mook.minimizetotray.trayTurboClose();"
+	windowtype="minimizetotray::turbo">
+	<script type="text/javascript" src="chrome://minimizetotray/content/core.js"/>
+	<script type="text/javascript" src="chrome://minimizetotray/content/turbo.js"/>
+	<script type="text/javascript" src="chrome://minimizetotray/content/turboBrowser.js"/>
+	<popup
+		onpopupshowing="window.extensions.mook.minimizetotray.populateTurboMenu(false);"
+		id="extensions.mook.minimizetotray.traypopup">
+		<menuitem label="&cmd.newwindow.label;" accesskey="&cmd.newwindow.accesskey;"
+			oncommand="window.extensions.mook.minimizetotray.openNewWindow();"
+			style="font-weight: 700;"/>
+		<menu id="extensions.mook.minimizetotray.traypopup.restore.menu"
+			label="&menu.restore.label;" accesskey="&menu.restore.accesskey;">
+			<menupopup id="extensions.mook.minimizetotray.traypopup.restore.popup"
+				style="max-width:200px;">
+				<menuseparator
+					id="extensions.mook.minimizetotray.traypopup.restore.separator"/>
+				<menuitem label="&cmd.restoreall.label;" accesskey="&cmd.restoreall.accesskey;"
+					oncommand="window.extensions.mook.minimizetotray.restoreAllWindows();"
+					style="font-weight: 700;"/>
+			</menupopup>
+		</menu>
+		<menuseparator/>
+		<menuitem label="&editorWindow.titlemodifier;"
+			oncommand="window.open('chrome://editor/content/editor.xul',
+                    'composer:html', 
+                    'chrome,dialog=no,resizable');"/>
+		<menuitem label="&messengerWindow.title;"
+			oncommand="window.open('chrome://messenger/content/messenger.xul',
+					'mail:3pane',
+                    'chrome,dialog=no,resizable');"/>
+		<menuitem label="&downloadManager.title;"
+			oncommand="window.open('chrome://communicator/content/downloads/downloadmanager.xul',
+                    'Download:Manager', 
+                    'chrome,dialog=no,resizable');"/>
+		<menuitem label="&addressbookWindow.title;"
+				oncommand="window.open('chrome://messenger/content/addressbook/addressbook.xul',
+                     'mail:addressbook', 
+                     'chrome,dialog=no,resizable');"/>
+		<menuseparator/>
+		<menuitem id="extensions.mook.minimizetotray.traypopup.quit"
+			label="&cmd.quit.label;" accesskey="&cmd.quit.accesskey;"
+			oncommand="window.extensions.mook.minimizetotray.trayTurboClose();"/>
+	</popup>
+</window>

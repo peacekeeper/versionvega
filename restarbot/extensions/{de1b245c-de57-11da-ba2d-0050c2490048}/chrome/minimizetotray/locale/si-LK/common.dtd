@@ -1,0 +1,20 @@
+<!ENTITY button.totray.label "මිනිමයිස්">
+<!ENTITY button.totray.tooltip "වින්ඩෝව සිස්ටම් ට්‍රේ වළට මිනිමයිස් කරන්න">
+<!ENTITY cmd.totray.label "සිස්ටම් ට්‍රේ වළට මිනිමයිස් කරන්න">
+<!ENTITY cmd.totray.accesskey "M">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!ENTITY cmd.restore.label "&brandShortName;">
+<!ENTITY cmd.restore.window.label "වින්ඩෝව පෙර තිබූ ආකාරයට පත් කරන්න">
+<!ENTITY cmd.restore.accesskey "R">
+<!ENTITY cmd.restoreall.label "සියලුම වින්ඩෝවන් පෙර තිබූ ආකාරයට පත් කරන්න">
+<!ENTITY cmd.restoreall.accesskey "A">
+<!ENTITY cmd.close.label "&brandShortName;  වසන්න">
+<!ENTITY cmd.close.window.label "වින්ඩෝව වසන්න">
+<!ENTITY cmd.close.accesskey "C">
+<!ENTITY cmd.quit.label "ක්ෂණික විහිදුමෙන් ඉවත් වන්න">
+<!ENTITY cmd.quit.accesskey "X">
+<!ENTITY cmd.newwindow.label "අලුත් වින්ඩෝවක්">
+<!ENTITY cmd.newwindow.accesskey "N">
+<!ENTITY menu.restore.label "පෙර තිබූ ආකාරයට පත් කරන්න">
+<!ENTITY menu.restore.accesskey "R">

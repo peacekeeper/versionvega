@@ -1,0 +1,10 @@
+@CHARSET "ISO-8859-1";
+
+box.edit {
+    background-color: black;
+    padding: 0;
+}
+
+iframe.edit {
+	-moz-appearance: none;
+}

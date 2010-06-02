@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+<Description about="urn:mozilla:install-manifest">
+
+<em:id>{de1b245c-de57-11da-ba2d-0050c2490048}</em:id>
+<em:name>MinimizeToTray Plus</em:name>
+<em:version>1.0.8</em:version>
+<em:description>Minimizes the application to the system tray</em:description>
+<em:creator>Mook - Original Developer</em:creator>
+<em:developer>Michael Buckley - Current Maintainer</em:developer>
+<em:contributor>Nils Maier of MinTrayR - For help with a bug</em:contributor>
+
+<em:iconURL>chrome://minimizetotray/skin/icon.png</em:iconURL>
+<em:homepageURL>http://codefisher.org/minimizetotray/</em:homepageURL>
+<em:optionsURL>chrome://minimizetotray/content/prefs.xul</em:optionsURL>
+    
+    <em:targetApplication>
+      <Description>
+        <em:id>{restarbot@versionvega}</em:id>
+        <em:minVersion>0.1</em:minVersion>
+        <em:maxVersion>1.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+
+
+<em:translator>Catalan [ca-AD] oriolsbd</em:translator>
+<em:translator>Danish [da-DK] 123tp</em:translator>
+<em:translator>Danish [da-DK] Joergen - Thanks for the bug reports too!</em:translator>
+<em:translator>German [de-DE] Fux</em:translator>
+<em:translator>German [de-DE] Team erweiterungen.de</em:translator>
+<em:translator>Greek [el-GR] Sonickydon</em:translator>
+<em:translator>Spanish (Spain) [es-ES] Proyecto Nave (chuzo)</em:translator>
+<em:translator>Estonian (Estonia) [et-EE] Maidur (mdr.ksk)</em:translator>
+<em:translator>French [fr-FR] myahoo</em:translator>
+<em:translator>Frisian [fy-NL] moZes</em:translator>
+<em:translator>Hebrew [he-IL] catcat</em:translator>
+<em:translator>Croatian [hr-HR] Bwah (Sincic)</em:translator>
+<em:translator>Hungarian [hu-HU] MIKES KASZMÁN István (Cashman)</em:translator>
+<em:translator>Icelandic (Iceland) [is-IS] kristjan</em:translator>
+<em:translator>Italian [it-IT] Squall77it - eXtenZilla</em:translator>
+<em:translator>Japanese [ja] drry</em:translator>
+<em:translator>Korean [ko-KR] 용오름(Wtspout)</em:translator>
+<em:translator>Macedonian [mk-MK] renegade06</em:translator>
+<em:translator>Dutch [nl-NL] markh van BabelZilla.org</em:translator>
+<em:translator>Polish [pl-PL] Leszek Życzkowski (teo)</em:translator>
+<em:translator>Portuguese (Brazilian) [pt-BR] Humberto Sartini (humbertosartini)</em:translator>
+<em:translator>Portuguese (Portugal) [pt-PT] Carlos Simão (lloco)</em:translator>
+<em:translator>Romanian [ro-RO] Cătălin ZAMFIRESCU (x10firefox)</em:translator>
+<em:translator>Russian [ru-RU] Alexander Sokolov (Modex)</em:translator>
+<em:translator>Sinhala (Sri Lanka) [si-LK] H.M.D.M.P Handapangoda (hmdmph)</em:translator>
+<em:translator>Slovak [sk-SK] Branislav Rozbora</em:translator>
+<em:translator>Serbian (Serbia) [sr-RS] DakSrbija</em:translator>
+<em:translator>Vietnamese (Vietnam) [vi-VN] Nguyễn Hoàng Long (longnh)</em:translator>
+<em:translator>Chinese (Simplified) [zh-CN] fiag</em:translator>
+<em:translator>Chinese (Traditional) [zh-TW] velociraptor</em:translator>
+
+</Description>
+</RDF>

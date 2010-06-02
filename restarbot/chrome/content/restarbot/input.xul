@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://app/skin/input.css" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://app/locale/app.dtd">
+
+<window
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	title="&app.title;" width="500" height="200" screenX="100" screenY="100"
+	onload="onWindowLoad();">
+
+	<script type="application/javascript;version=1.7"><![CDATA[
+
+		var params;
+
+		function onWindowLoad() {
+		
+			params = window.arguments[0];
+			document.title = params.title ? params.title : "Input";
+			document.getElementById("message").appendChild(document.createTextNode(params.message));
+			document.getElementById("input").value = params.def ? params.def : "";
+			
+			for (i in params.buttons) {
+			
+				var button = document.createElement("button");
+				button.i = i;
+				button.setAttribute("label", params.buttons[i]);
+				button.addEventListener("command", function() {
+				
+					params.out = { };
+					params.out.input = document.getElementById("input").value;
+					params.out.button = this.i;
+					window.close();
+				}, false);
+				
+				document.getElementById("buttons").appendChild(button);
+			}
+
+			document.getElementById("input").focus();
+		}
+
+	]]></script>
+
+	<vbox flex="1" id="container">
+		<description class="plain" flex="1" id="message"/>
+		<textbox id="input" flex="1" />
+	</vbox>
+
+	<hbox id="buttons"><spacer flex="1" /></hbox>
+
+</window>

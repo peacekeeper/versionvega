@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Opcions de l&apos;extensió Minimize To Tray">
+<!ENTITY groupbox.general.label "Opcions de l&apos;extensió Minimize To Tray">
+<!ENTITY chk.always.label "Quan es minimitzi una finestra, fes-ho sempre a la safata del sistema">
+<!ENTITY chk.always.accesskey "m">
+<!ENTITY chk.twoclickrestore.label "Require a double click to restore from the tray">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "Minimize to the tray on close">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "Mostra sempre la icona a la safata del sistema">
+<!ENTITY chk.trayalwaysshow.accesskey "s">
+<!ENTITY chk.restoreonopen.label "Restaura la finestra en comptes d&apos;obrir-ne una de nova">
+<!ENTITY chk.restoreonopen.accesskey "f">
+<!ENTITY chk.onlyoneicon.label "Mostra només una icona a la safata del sistema">
+<!ENTITY chk.onlyoneicon.accesskey "i">
+<!ENTITY chk.startwidthwindows.label "Inicia l&apos;aplicació amb Windows">
+<!ENTITY chk.startwidthwindows.accesskey "W">
+<!ENTITY chk.currentuseronly.label "Només per a l&apos;usuari actual">
+<!ENTITY chk.currentuseronly.accesskey "u">

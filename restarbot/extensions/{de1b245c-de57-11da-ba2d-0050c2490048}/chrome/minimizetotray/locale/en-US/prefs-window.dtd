@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Minimize To Tray Options">
+<!ENTITY groupbox.general.label "Start Up Options">
+<!ENTITY chk.always.label "Always minimize to the tray instead of to the taskbar">
+<!ENTITY chk.always.accesskey "A">
+<!ENTITY chk.twoclickrestore.label "Require a double click to restore from the tray">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "Minimize to the tray on close">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "Always show tray icon">
+<!ENTITY chk.trayalwaysshow.accesskey "T">
+<!ENTITY chk.restoreonopen.label "Restore window instead of opening new">
+<!ENTITY chk.restoreonopen.accesskey "W">
+<!ENTITY chk.onlyoneicon.label "Only ever show one tray icon">
+<!ENTITY chk.onlyoneicon.accesskey "I">
+<!ENTITY chk.startwidthwindows.label "Load &brandShortName; in quick launch mode at system startup">
+<!ENTITY chk.startwidthwindows.accesskey "S">
+<!ENTITY chk.currentuseronly.label "For the current user only">
+<!ENTITY chk.currentuseronly.accesskey "C">

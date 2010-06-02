@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/"?>
+<!DOCTYPE overlay [
+<!ENTITY % brandDTD SYSTEM "chrome://minimizetotray/locale/brand.dtd"> %brandDTD;
+<!ENTITY % prefsDTD SYSTEM "chrome://minimizetotray/locale/prefs-window.dtd"> %prefsDTD;
+]>
+<prefwindow id="minimizetotray1234.prefs"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	title="&dialog.title.label;" autostretch="always" buttons="accept,cancel"
+	onload="DialogInit();" ondialogaccept="DialogAccept();">
+	<script type="application/x-javascript" src="chrome://minimizetotray/content/prefs-window.js"/>
+	<prefpane flex="1">
+		<preferences>
+			<preference id="always" name="extensions.minimizetotray.always"
+				type="bool"/>
+			<preference id="minimize-on-close"
+				name="extensions.minimizetotray.minimize-on-close" type="bool"/>
+			<preference id="two-click-restore"
+				name="extensions.minimizetotray.two-click-restore" type="bool"/>
+			<preference id="restore-on-open" name="extensions.minimizetotray.restore-on-open"
+				type="bool"/>
+			<preference id="tray-always-show"
+				name="extensions.minimizetotray.tray-always-show" type="bool"/>
+			<preference id="only-one-icon" name="extensions.minimizetotray.only-one-icon"
+				type="bool"/>
+		</preferences>
+		<groupbox>
+			<caption label="&dialog.title.label;"/>
+			<checkbox id="chkAlways" label="&chk.always.label;"
+				accesskey="&chk.always.accesskey;" preference="always"/>
+			<checkbox id="chkMinimizeOnClose" label="&chk.minimizeonclose.label;"
+				accesskey="&chk.minimizeonclose.accesskey;" preference="minimize-on-close"/>
+			<checkbox id="chkTwoClickRestore" label="&chk.twoclickrestore.label;"
+				accesskey="&chk.twoclickrestore.accesskey;" preference="two-click-restore"/>
+
+			<checkbox id="chkTrayAlwaysShow" label="&chk.trayalwaysshow.label;"
+				accesskey="&chk.trayalwaysshow.accesskey;" preference="tray-always-show"/>
+			<hbox class="indent">
+				<checkbox id="chkOnlyOneIcon" label="&chk.onlyoneicon.label;"
+					accesskey="&chk.onlyoneicon.accesskey;" preference="only-one-icon"/>
+			</hbox>
+			<checkbox id="chkRestoreOnOpen" label="&chk.restoreonopen.label;"
+				accesskey="&chk.restoreonopen.accesskey;" preference="restore-on-open"/>
+		</groupbox>
+		<groupbox>
+			<caption label="&groupbox.general.label;"/>
+			<checkbox id="chkStartWithWindows" label="&chk.startwidthwindows.label;"
+				accesskey="&chk.startwidthwindows.accesskey;"/>
+			<hbox class="indent">
+				<checkbox id="chkCurrentUserOnly" label="&chk.currentuseronly.label;"
+					accesskey="&chk.currentuseronly.accesskey;"/>
+			</hbox>
+		</groupbox>
+	</prefpane>
+</prefwindow>

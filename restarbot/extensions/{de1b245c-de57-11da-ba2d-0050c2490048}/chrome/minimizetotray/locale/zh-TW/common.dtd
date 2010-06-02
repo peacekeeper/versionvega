@@ -1,0 +1,24 @@
+<!--     toolbar button     -->
+<!ENTITY button.totray.label "縮到最小">
+<!ENTITY button.totray.tooltip "將視窗縮小到系統列">
+<!--	 menu item			-->
+<!ENTITY cmd.totray.label "縮小到系統列">
+<!ENTITY cmd.totray.accesskey "M">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!--     tray popup     -->
+<!ENTITY cmd.restore.label "還原 &brandShortName;">
+<!ENTITY cmd.restore.window.label "還原視窗">
+<!ENTITY cmd.restore.accesskey "R">
+<!ENTITY cmd.restoreall.label "全部還原">
+<!ENTITY cmd.restoreall.accesskey "A">
+<!ENTITY cmd.close.label "關閉 &brandShortName;">
+<!ENTITY cmd.close.window.label "關閉視窗">
+<!ENTITY cmd.close.accesskey "C">
+<!ENTITY cmd.quit.label "關閉快速啟動">
+<!ENTITY cmd.quit.accesskey "x">
+<!ENTITY cmd.newwindow.label "開新視窗">
+<!ENTITY cmd.newwindow.accesskey "N">
+<!--     tray sub menu   -->
+<!ENTITY menu.restore.label "還原">
+<!ENTITY menu.restore.accesskey "R">

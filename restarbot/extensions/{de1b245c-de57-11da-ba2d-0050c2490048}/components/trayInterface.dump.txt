@@ -1,0 +1,46 @@
+Interface.xpt
+Header:
+   Major version:         1
+   Minor version:         2
+   Number of interfaces:  5
+   Annotations:
+      Annotation #0 is empty.
+
+Interface Directory:
+   - ::nsIDOMWindow (00000000-0000-0000-0000-000000000000):
+      [Unresolved]
+   - ::nsISupports (00000000-0000-0000-c000-000000000046):
+      [Unresolved]
+   - ::trayICommandLine (4480b09a-6951-11de-bfc6-001320848ebc):
+      Parent: ::nsISupports
+      Flags:
+         Scriptable: TRUE
+         Function: FALSE
+      Methods:
+         uint32 isTurboMode(out retval boolean);
+      Constants:
+         No Constants
+   - ::trayIWindowIcon (c612278a-6909-11de-a127-001320848ebc):
+      Parent: ::nsISupports
+      Flags:
+         Scriptable: TRUE
+         Function: FALSE
+      Methods:
+         uint32 setup(in nsIDOMWindow, in AString &);
+         uint32 showIcon();
+         uint32 hideIcon();
+      Constants:
+         No Constants
+   - ::trayIWindowHider (e3995b34-bd1c-46cc-8416-e49ae4fd9877):
+      Parent: ::nsISupports
+      Flags:
+         Scriptable: TRUE
+         Function: FALSE
+      Methods:
+   G     uint32 suppressed(out retval boolean);
+    S    uint32 suppressed(in boolean);
+         uint32 watch(in nsIDOMWindow);
+         uint32 minimize(in uint32, in nsIDOMWindow []);
+         uint32 restore();
+      Constants:
+         No Constants

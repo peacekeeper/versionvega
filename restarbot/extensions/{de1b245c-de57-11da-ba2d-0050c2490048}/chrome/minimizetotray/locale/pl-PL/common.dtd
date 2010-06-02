@@ -1,0 +1,24 @@
+<!--      toolbar button      -->
+<!ENTITY button.totray.label "Minimalizuj">
+<!ENTITY button.totray.tooltip "Minimalizuj okno do obszaru powiadamiania">
+<!--	 menu item			-->
+<!ENTITY cmd.totray.label "Minimalizuj do obszaru powiadamiania">
+<!ENTITY cmd.totray.accesskey "n">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!--      tray popup      -->
+<!ENTITY cmd.restore.label "Przywróć program &brandShortName;">
+<!ENTITY cmd.restore.window.label "Przywróć okno">
+<!ENTITY cmd.restore.accesskey "P">
+<!ENTITY cmd.restoreall.label "Przywróć wszystkie okna">
+<!ENTITY cmd.restoreall.accesskey "W">
+<!ENTITY cmd.close.label "Zamknij program &brandShortName;">
+<!ENTITY cmd.close.window.label "Zamknij okno">
+<!ENTITY cmd.close.accesskey "Z">
+<!ENTITY cmd.quit.label "Wyłącz szybki start">
+<!ENTITY cmd.quit.accesskey "W">
+<!ENTITY cmd.newwindow.label "Otwórz nowe okno">
+<!ENTITY cmd.newwindow.accesskey "O">
+<!--     tray sub menu   -->
+<!ENTITY menu.restore.label "Przywróć">
+<!ENTITY menu.restore.accesskey "P">

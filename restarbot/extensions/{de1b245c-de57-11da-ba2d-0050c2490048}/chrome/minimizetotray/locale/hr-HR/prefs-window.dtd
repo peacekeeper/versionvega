@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Minimize To Tray postavke">
+<!ENTITY groupbox.general.label "Postavke pri pokretanju">
+<!ENTITY chk.always.label "Always minimize to the tray instead of to the taskbar">
+<!ENTITY chk.always.accesskey "A">
+<!ENTITY chk.twoclickrestore.label "Zahtijevaj dupli-klik za vraćanje iz tray-a">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "Smanji u tray nakon zatvaranja">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "Uvijek prikaži ikonu u tray-u">
+<!ENTITY chk.trayalwaysshow.accesskey "T">
+<!ENTITY chk.restoreonopen.label "Obnovi prozore umijesto otvaranja novih">
+<!ENTITY chk.restoreonopen.accesskey "W">
+<!ENTITY chk.onlyoneicon.label "Prikaži samo jednu ikonu u tray-u">
+<!ENTITY chk.onlyoneicon.accesskey "I">
+<!ENTITY chk.startwidthwindows.label "Pokreni aplikaciju sa Windowsima">
+<!ENTITY chk.startwidthwindows.accesskey "S">
+<!ENTITY chk.currentuseronly.label "Samo za trenutnog korsnika">
+<!ENTITY chk.currentuseronly.accesskey "C">

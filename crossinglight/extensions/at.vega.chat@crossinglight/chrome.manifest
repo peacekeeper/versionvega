@@ -1,0 +1,2 @@
+content at.vega.chat chrome/content/ xpcnativewrappers=yes
+locale at.vega.chat en-US chrome/locale/en-US/

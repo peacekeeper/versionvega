@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Nastavenia">
+<!ENTITY groupbox.general.label "Nastavenia">
+<!ENTITY chk.always.label "Vždy minimalizovať do oznamovacej oblasti">
+<!ENTITY chk.always.accesskey "V">
+<!ENTITY chk.twoclickrestore.label "Obnovíte dvojklikom v oznamovacej oblasti">
+<!ENTITY chk.twoclickrestore.accesskey "O">
+<!ENTITY chk.minimizeonclose.label "Pri zatvorení minimalizovať do oznamovacej oblasti">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "Vždy zobraziť ikonu v oznamovacej oblasti">
+<!ENTITY chk.trayalwaysshow.accesskey "V">
+<!ENTITY chk.restoreonopen.label "Obnoviť okno namiesto otvorenia nového">
+<!ENTITY chk.restoreonopen.accesskey "k">
+<!ENTITY chk.onlyoneicon.label "Vždy zobraziť len jednu ikonu v oznamovacej oblasti">
+<!ENTITY chk.onlyoneicon.accesskey "b">
+<!ENTITY chk.startwidthwindows.label "Spustiť pri štarte Windows">
+<!ENTITY chk.startwidthwindows.accesskey "S">
+<!ENTITY chk.currentuseronly.label "Len pre aktuálneho používateľa">
+<!ENTITY chk.currentuseronly.accesskey "L">

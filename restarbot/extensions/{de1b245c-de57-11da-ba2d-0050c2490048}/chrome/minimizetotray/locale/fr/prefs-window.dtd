@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Options de Minimize To Tray">
+<!ENTITY groupbox.general.label "Options de démarrage">
+<!ENTITY chk.always.label "Toujours réduire vers la zone de notification plutôt que la barre des tâches">
+<!ENTITY chk.always.accesskey "a">
+<!ENTITY chk.twoclickrestore.label "Un double-clic est nécessaire pour restaurer la fenêtre de la zone de notification">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "Réduire vers la zone de notification à la fermeture">
+<!ENTITY chk.minimizeonclose.accesskey "R">
+<!ENTITY chk.trayalwaysshow.label "Toujours voir l'icône dans la zone de notification">
+<!ENTITY chk.trayalwaysshow.accesskey "T">
+<!ENTITY chk.restoreonopen.label "Restaurer la fenêtre plutôt qu'en ouvrir une nouvelle">
+<!ENTITY chk.restoreonopen.accesskey "f">
+<!ENTITY chk.onlyoneicon.label "N'afficher qu'une seule icône dans la zone de notification">
+<!ENTITY chk.onlyoneicon.accesskey "i">
+<!ENTITY chk.startwidthwindows.label "Charger automatiquement &brandShortName; lors du démarrage du système d'exploitation">
+<!ENTITY chk.startwidthwindows.accesskey "s">
+<!ENTITY chk.currentuseronly.label "Juste pour l'utilisateur en cours">
+<!ENTITY chk.currentuseronly.accesskey "c">

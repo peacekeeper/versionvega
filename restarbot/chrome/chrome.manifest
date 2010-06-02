@@ -1,0 +1,15 @@
+content restarbot content/restarbot/
+content app content/restarbot/
+content branding content/branding/
+
+locale restarbot en_US locale/en_US/restarbot/
+locale app en_US locale/en_US/restarbot/
+locale branding en-US locale/en_US/branding/
+
+skin restarbot classic/1.0 skin/classic/
+skin app classic/1.0 skin/classic/
+
+overlay chrome://global/content/alerts/alert.xul chrome://restarbot/content/overlay/alert.xul
+
+override chrome://global/skin/alerts/alert.css chrome://restarbot/content/override/alert.css
+override chrome://global/skin/scrollbars.css chrome://restarbot/content/override/scrollbars.css

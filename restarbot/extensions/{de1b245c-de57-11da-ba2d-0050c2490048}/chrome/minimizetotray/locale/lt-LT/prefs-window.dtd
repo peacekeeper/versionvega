@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Perkėlimo į sistemos dėklą nustatymai">
+<!ENTITY groupbox.general.label "Paleidimo nustatymai">
+<!ENTITY chk.always.label "Visada mažinti į sistemos dėklą vietoj užduočių juostos">
+<!ENTITY chk.always.accesskey "A">
+<!ENTITY chk.twoclickrestore.label "Reikalauti dvigubo spragtelėjimo atstatymui iš sistemos dėklo">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "Uždarant perkelti į sistemos dėklą">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "Visada rodyti sistemos dėklo piktogramą">
+<!ENTITY chk.trayalwaysshow.accesskey "T">
+<!ENTITY chk.restoreonopen.label "Atstatyti langą vietoj to, kad būtų atidarytas naujas">
+<!ENTITY chk.restoreonopen.accesskey "W">
+<!ENTITY chk.onlyoneicon.label "Rodyti tik vieną sistemos dėklo piktogramą">
+<!ENTITY chk.onlyoneicon.accesskey "I">
+<!ENTITY chk.startwidthwindows.label "Automatiškai paleisti programą kartu su Windows">
+<!ENTITY chk.startwidthwindows.accesskey "S">
+<!ENTITY chk.currentuseronly.label "Tik šiam naudotojui">
+<!ENTITY chk.currentuseronly.accesskey "C">

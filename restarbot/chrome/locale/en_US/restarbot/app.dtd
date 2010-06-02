@@ -1,0 +1,4 @@
+<!ENTITY app.title	"Restarbot">
+<!ENTITY app.id		"restarbot">	
+<!ENTITY cmd.about.label	"About">
+<!ENTITY cmd.about.accesskey "A">

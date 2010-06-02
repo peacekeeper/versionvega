@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay [
+<!ENTITY % songbirdBrandDTD SYSTEM "chrome://minimizetotray/locale/brand.dtd"> %songbirdBrandDTD;
+<!ENTITY % playerDTD SYSTEM "chrome://songbird/locale/songbird.dtd"> %playerDTD;
+<!ENTITY % commonDTD SYSTEM "chrome://minimizetotray/locale/common.dtd"> %commonDTD;
+]>
+<overlay id="minimizetotrayPlayerOverlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="text/javascript" src="chrome://minimizetotray/content/core.js"/>
+	<!--
+		both are single window apps, so they function the same as far as we
+		care
+	-->
+	<script type="text/javascript" src="chrome://minimizetotray/content/mail.js"/>
+	<script type="text/javascript" src="chrome://minimizetotray/content/player.js"/>
+	<!--  the key short cut -->
+	<keyset id="mainKeyset">
+		<key id="extensions.mook.minimizetotray.key.menuitem.player" key="&cmd.totray.key;"
+			modifiers="accel,alt" command="extensions.mook.minimizetotray.menuitem.menuitem"/>
+	</keyset>
+	<!-- file menu item  -->
+	<menupopup id="menu_FilePopup">
+		<menuitem insertbefore="menu_FileQuitItem"
+			id="extensions.mook.minimizetotray.menuitem.menuitem.player" label="&cmd.totray.label;"
+			key="extensions.mook.minimizetotray.key.menuitem.player" accesskey="&cmd.totray.accesskey;"
+			oncommand="window.extensions.mook.minimizetotray.minimizeWindow();"/>
+	</menupopup>
+	<!-- tray popup -->
+	<window id="mainplayer">
+		<popup id="extensions.mook.minimizetotray.traypopup"
+			onpopupshowing="window.extensions.mook.minimizetotray.loadPopupMenu();">
+			<menuitem id="extensions.mook.minimizetotray.traypopup.restore"/>
+			<menuseparator
+				id="extensions.mook.minimizetotray.traypopup.restore.separator"/>
+			<menuitem key="control-playpause-key" observes="controlIsPlaying"
+				label="&menu.control.play;" accesskey="&menu.control.play.accesskey;"/>
+			<menuitem key="control-next-key" label="&menu.control.next;"
+				accesskey="&menu.control.next.accesskey;"/>
+			<menuitem key="control-previous-key" label="&menu.control.prev;"
+				accesskey="&menu.control.prev.accesskey;"/>
+			<menuseparator id="extensions.mook.minimizetotray.pupup.close.separator"/>
+		</popup>
+	</window>
+</overlay>

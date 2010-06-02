@@ -1,0 +1,20 @@
+<!ENTITY button.totray.label "Умањи">
+<!ENTITY button.totray.tooltip "Умањи прозор у системску траку послова">
+<!ENTITY cmd.totray.label "Умањи у системску траку послова">
+<!ENTITY cmd.totray.accesskey "У">
+<!ENTITY cmd.totray.key "У">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!ENTITY cmd.restore.label "Врати &brandShortName;">
+<!ENTITY cmd.restore.window.label "Врати прозор">
+<!ENTITY cmd.restore.accesskey "В">
+<!ENTITY cmd.restoreall.label "Врати све прозоре">
+<!ENTITY cmd.restoreall.accesskey "С">
+<!ENTITY cmd.close.label "Затвори &brandShortName;">
+<!ENTITY cmd.close.window.label "Затвори прозор">
+<!ENTITY cmd.close.accesskey "З">
+<!ENTITY cmd.quit.label "Изађи из брзог покретања">
+<!ENTITY cmd.quit.accesskey "и">
+<!ENTITY cmd.newwindow.label "Нови прозор">
+<!ENTITY cmd.newwindow.accesskey "Н">
+<!ENTITY menu.restore.label "Врати">
+<!ENTITY menu.restore.accesskey "Р">

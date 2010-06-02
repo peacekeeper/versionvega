@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://app/skin/common.css" type="text/css"?>
+<?xml-stylesheet href="ray.css" type="text/css"?>
+
+<window id="@vega*vote" title="@vega*vote"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	onload="onLoad();" onunload="onUnload();" flex="1" style="overflow:auto">
+
+	<script src="ray.js" />
+
+	<hbox id="tabs">
+		<button label="Create Poll" oncommand="onDisplayCreatePollBox();" />
+		<button label="List Polls" oncommand="onDisplayListPollsList();" />
+	</hbox>
+
+	<vbox id="content" flex="1">
+		<richlistbox id="listPollsList" flex="1" class="plain">
+		</richlistbox>
+
+		<vbox id="createPollBox">
+			<grid>
+				<columns>
+					<column />
+					<column flex="1"/>
+				</columns>
+				<rows>
+					<row flex="1">
+						<description>Title:</description>
+						<textbox id="titleTextBox" flex="1" />
+					</row>
+					<row flex="1">
+						<description>Description:</description>
+						<textbox id="descriptionTextBox" flex="1" />
+					</row>
+				</rows>
+			</grid>
+			<button label="Create" oncommand="onPollCreate();" />
+		</vbox>
+
+		<vbox id="pollDetailsBox">
+			<description id="titleDescription">-</description>
+			<description id="descriptionDescription">-</description>
+			<grid>
+				<columns>
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<hbox>
+							<description>YES:</description>
+							<description id="yesDescription">-</description>
+						</hbox>
+						<hbox>
+							<description>NO:</description>
+							<description id="noDescription">-</description>
+						</hbox>
+					</row>
+					<row>
+						<button label="Vote YES" oncommand="onYes();" />
+						<button label="Vote NO" oncommand="onNo();" />
+					</row>
+				</rows>
+			</grid>
+			<hbox>
+				<description>Add a comment:</description>
+				<textbox id="commentTextBox" flex="1" />
+				<button label="Go" oncommand="onComment();" />
+			</hbox>
+			<hbox>
+				<description>Propose poll to:</description>
+				<textbox id="proposePollTextBox" />
+				<button label="Go" oncommand="onProposePoll();" />
+			</hbox>
+		</vbox>
+	</vbox>
+
+</window>

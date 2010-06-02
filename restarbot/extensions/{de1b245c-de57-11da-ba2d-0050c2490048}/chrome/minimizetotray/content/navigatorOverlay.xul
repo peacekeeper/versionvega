@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay [
+<!ENTITY % brandDTD SYSTEM "chrome://minimizetotray/locale/brand.dtd"> %brandDTD;
+<!ENTITY % downloadsDTD SYSTEM "chrome://communicator/locale/downloads/downloadmanager.dtd"> %downloadsDTD;
+<!ENTITY % abMainWindowDTD SYSTEM "chrome://messenger/locale/addressbook/abMainWindow.dtd"> %abMainWindowDTD;
+<!ENTITY % messengerDTD SYSTEM "chrome://messenger/locale/messenger.dtd"> %messengerDTD;
+<!ENTITY % editorDTD SYSTEM "chrome://editor/locale/editor.dtd"> %editorDTD;
+<!ENTITY % commonDTD SYSTEM "chrome://minimizetotray/locale/common.dtd"> %commonDTD;
+]>
+<overlay id="minimizetotrayNavigatorOverlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="text/javascript" src="chrome://minimizetotray/content/core.js"/>
+	<script type="text/javascript" src="chrome://minimizetotray/content/browser.js"/>
+	<script type="text/javascript" src="chrome://minimizetotray/content/navigaor.js"/>
+	<!--  the key short cut -->
+	<keyset id="mainKeyset">
+		<key id="extensions.mook.minimizetotray.key.menuitem"/>
+	</keyset>
+	<!-- toolbar button -->
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbarbutton id="extensions-minimizetotray-button-minimize"/>
+	</toolbarpalette>
+	<!-- file menu item  -->
+	<menupopup id="menu_FilePopup">
+		<menuitem insertbefore="menu_FileQuitItem"
+			id="extensions.mook.minimizetotray.menuitem.menuitem"/>
+	</menupopup>
+	<!-- tray popup -->
+	<popupset id="mainPopupSet">
+		<popup id="extensions.mook.minimizetotray.traypopup"
+			onpopupshowing="window.extensions.mook.minimizetotray.loadPopupMenu();">
+			<menuitem id="extensions.mook.minimizetotray.traypopup.restore"/>
+			<menuitem label="&cmd.newwindow.label;" accesskey="&cmd.newwindow.accesskey;"
+				command="cmd_newNavigator"/>
+			<menuseparator/>
+			<menuitem label="&editorWindow.titlemodifier;"
+				oncommand="toOpenWindowByType('composer:html', 
+                     'chrome://editor/content/editor.xul',
+                     'chrome,dialog=no,resizable');"/>
+			<menuitem label="&messengerWindow.title;"
+				oncommand="toOpenWindowByType('mail:3pane', 
+                     'chrome://messenger/content/messenger.xul',
+                     'chrome,dialog=no,resizable');"/>
+			<menuitem label="&downloadManager.title;"
+				oncommand="toOpenWindowByType('Download:Manager', 
+                     'chrome://communicator/content/downloads/downloadmanager.xul',
+                     'chrome,dialog=no,resizable');"/>
+			<menuitem label="&addressbookWindow.title;"
+				oncommand="toOpenWindowByType('mail:addressbook', 
+                     'chrome://messenger/content/addressbook/addressbook.xul',
+                     'chrome,dialog=no,resizable');"/>
+			<menuseparator id="extensions.mook.minimizetotray.pupup.close.separator"/>
+		</popup>
+	</popupset>
+	<!-- F11 minimize-button Overlay -->
+	<toolbarbutton id="minimize-button" oncommand="mtt_minimizebuttonOnCommand();"
+		onclick="mtt_minimizebuttonOnClick(event);"/>
+</overlay>

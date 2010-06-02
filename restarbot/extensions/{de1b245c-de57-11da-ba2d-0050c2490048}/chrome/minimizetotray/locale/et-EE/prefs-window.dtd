@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Süsteemisalve minimeerimise sätted">
+<!ENTITY groupbox.general.label "Käivitumise sätted">
+<!ENTITY chk.always.label "Alati minimeeri tegumiriba asemel süsteemisalve">
+<!ENTITY chk.always.accesskey "A">
+<!ENTITY chk.twoclickrestore.label "Süsteemisalvest taastamiseks on vaja topeltklõpsu">
+<!ENTITY chk.twoclickrestore.accesskey "S">
+<!ENTITY chk.minimizeonclose.label "Akna sulgemisel minimeeri süsteemisalve">
+<!ENTITY chk.minimizeonclose.accesskey "m">
+<!ENTITY chk.trayalwaysshow.label "Alati näita ikooni süsteemisalves">
+<!ENTITY chk.trayalwaysshow.accesskey "n">
+<!ENTITY chk.restoreonopen.label "Uue akna avamise asemel taasta minimeeritud aken">
+<!ENTITY chk.restoreonopen.accesskey "U">
+<!ENTITY chk.onlyoneicon.label "Süsteemisalves näita alati ainult üht ikooni">
+<!ENTITY chk.onlyoneicon.accesskey "ü">
+<!ENTITY chk.startwidthwindows.label "Süsteemi käivitumisel ava &brandShortName; kiirkäivitumisrežiimis">
+<!ENTITY chk.startwidthwindows.accesskey "k">
+<!ENTITY chk.currentuseronly.label "Ainult praeguse kasutaja jaoks">
+<!ENTITY chk.currentuseronly.accesskey "p">

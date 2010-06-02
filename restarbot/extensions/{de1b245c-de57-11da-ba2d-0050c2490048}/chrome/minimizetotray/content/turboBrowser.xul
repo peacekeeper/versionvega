@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE overlay [
+<!ENTITY % brandDTD SYSTEM "chrome://minimizetotray/locale/brand.dtd"> %brandDTD;
+<!ENTITY % browserDTD SYSTEM "chrome://browser/locale/browser.dtd"> %browserDTD;
+<!ENTITY % commonDTD SYSTEM "chrome://minimizetotray/locale/common.dtd"> %commonDTD;
+]>
+<window id="MinimizeToTrayWindow"
+	onclose="window.extensions.mook.minimizetotray.trayTurboClose();"
+	hidechrome="true"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	windowtype="minimizetotray::turbo">
+	<script type="text/javascript" src="chrome://minimizetotray/content/core.js"/>
+	<script type="text/javascript" src="chrome://minimizetotray/content/turbo.js"/>
+	<script type="text/javascript" src="chrome://minimizetotray/content/turboBrowser.js"/>
+	<popup
+		onpopupshowing="this.focus(); window.extensions.mook.minimizetotray.populateTurboMenu(false);"
+		id="extensions.mook.minimizetotray.traypopup">
+		<menuitem label="&cmd.newwindow.label;" accesskey="&cmd.newwindow.accesskey;"
+			oncommand="window.extensions.mook.minimizetotray.openNewWindow();"
+			style="font-weight: 700;"/>
+		<menu id="extensions.mook.minimizetotray.traypopup.restore.menu"
+			label="&menu.restore.label;" accesskey="&menu.restore.accesskey;">
+			<menupopup id="extensions.mook.minimizetotray.traypopup.restore.popup"
+				style="max-width:200px;">
+				<menuseparator
+					id="extensions.mook.minimizetotray.traypopup.restore.separator"/>
+				<menuitem label="&cmd.restoreall.label;" accesskey="&cmd.restoreall.accesskey;"
+					oncommand="window.extensions.mook.minimizetotray.restoreAllWindows();"
+					style="font-weight: 700;"/>
+			</menupopup>
+		</menu>
+		<menuseparator/>
+		<menuitem label="&downloads.label;" accesskey="&downloads.accesskey;"
+			oncommand="window.open('chrome://mozapps/content/downloads/downloads.xul', 
+                       'Download:Manager',
+                       'chrome,dialog=no,resizable');"/>
+		<menuseparator/>
+		<menuitem id="extensions.mook.minimizetotray.traypopup.quit"
+			label="&cmd.quit.label;" accesskey="&cmd.quit.accesskey;"
+			oncommand="window.extensions.mook.minimizetotray.trayTurboClose();"/>
+	</popup>
+</window>

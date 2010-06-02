@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay [
+<!ENTITY % brandDTD SYSTEM "chrome://minimizetotray/locale/brand.dtd"> %brandDTD;
+<!ENTITY % commonDTD SYSTEM "chrome://minimizetotray/locale/common.dtd"> %commonDTD;
+]>
+<?xml-stylesheet href="chrome://minimizetotray/skin/minimizetotray.css" type="text/css"?>
+<overlay id="minimizetotrayBrowserOverlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="text/javascript" src="chrome://minimizetotray/content/core.js"/>
+	<script type="text/javascript" src="chrome://minimizetotray/content/download.js"/>
+	<keyset id="downloadKeys">
+		<key id="extensions.mook.minimizetotray.key.menuitem" key="&cmd.totray.key;"
+			modifiers="&cmd.totray.modifier;" oncommand="window.extensions.mook.minimizetotray.minimizeWindow();"/>
+	</keyset>
+	<popupset>
+		<popup id="extensions.mook.minimizetotray.traypopup">
+			<menuitem label="&cmd.restore.label;" accesskey="&cmd.restore.accesskey;"
+				oncommand="window.extensions.mook.minimizetotray.restore();" style="font-weight: 700;"/>
+			<menuitem label="&cmd.close.label;" accesskey="&cmd.close.accesskey;"
+				command="window.extensions.mook.minimizetotray.trayWindowClose()"/>
+		</popup>
+	</popupset>
+</overlay>

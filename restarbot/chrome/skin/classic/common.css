@@ -1,0 +1,26 @@
+@CHARSET "ISO-8859-1";
+
+window {
+	-moz-appearance: none;
+}
+
+cl-section {
+	-moz-binding: url('chrome://restarbot/skin/common.xml#cl-section');
+	background-image: url('chrome://restarbot/skin/images/section.png'); 
+	background-repeat: no-repeat; 
+	padding-left: 20px; 
+	padding-top: 8px;
+	min-height: 40px;
+}
+
+cl-section hbox {
+	float: left;
+}
+
+.border {
+	-moz-border-image: url('images/border.png') 3 3 3 3 repeat;
+}
+
+.border2 {
+	-moz-border-image: url('images/border2.png') 3 3 3 3 repeat;
+}

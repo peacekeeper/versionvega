@@ -1,0 +1,171 @@
+@CHARSET "ISO-8859-1";
+
+window {
+	-moz-appearance: none;
+	color: white;
+	background-color: black;
+	font-family: monospace;
+	font-size: 14pt;
+	font-weight: bold;
+	padding: 5px;
+}
+
+menuitem {
+	font-family: monospace;
+	font-size: 10pt;
+	font-weight: normal;
+}
+
+hbox.topic {
+	-moz-border-image: url('images/border2.png') 3 3 3 3 repeat;
+	-moz-box-align: center;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+image.addbutton {
+	list-style-image: url('images/downloadButtons.png');
+	list-style-position: outside;
+	list-style-type: disc;
+	-moz-image-region: rect(0px, 16px, 16px, 0px);
+}
+
+image.addbutton:hover {
+	list-style-image: url('images/downloadButtons.png');
+	list-style-position: outside;
+	list-style-type: disc;
+	-moz-image-region: rect(16px, 16px, 32px, 0px);
+}
+
+image.removebutton {
+	list-style-image: url('images/downloadButtons.png');
+	list-style-position: outside;
+	list-style-type: disc;
+	-moz-image-region: rect(0px, 32px, 16px, 16px);
+}
+
+image.removebutton:hover {
+	list-style-image: url('images/downloadButtons.png');
+	list-style-position: outside;
+	list-style-type: disc;
+	-moz-image-region: rect(16px, 32px, 32px, 16px);
+}
+
+spacer {
+	height: 5px;
+}
+
+vbox.edit {
+	-moz-border-image: url('images/border.png') 3 3 3 3 repeat;
+    background-color: black;
+	padding: 10px;
+	background-image: url('images/back.jpg');
+}
+
+textbox.edit {
+	-moz-appearance: none;
+	color: white;
+	font-family: monospace;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+hbox.bottombox {
+	-moz-box-align: center;
+}
+
+vbox.logomenu {
+	-moz-border-image: url('images/border2.png') 3 3 3 3 repeat;
+	background-color: black;
+	padding: 5px;
+}
+
+#browser-bottombox {
+}
+
+statusbar {
+	-moz-binding: url('chrome://restarbot/skin/core.xml#statusbar');
+	-moz-appearance: none;
+	background-color: transparent;
+	min-height: 28px;
+	border: none;
+}
+
+statusbarpanel {
+	-moz-appearance: none;
+	margin: 3px 0px 2px 0px;
+	padding: 0px 4px;
+	border: none;
+}
+
+#statusbar-display {
+	-moz-appearance: none;
+	text-align: left;
+	color: white;
+	border: none;
+}
+
+cl-commandbox {
+	-moz-box-orient: horizontal;
+	-moz-border-image: url('images/border.png') 3 3 3 3 repeat;
+	background-repeat: repeat-x;
+	margin: 8px;
+	padding: 0;
+}
+
+cl-input {
+	-moz-binding: url('chrome://restarbot/skin/core.xml#cl-input');
+	-moz-box-align: center;
+	background-color: black;
+	padding: 10px 10px 10px 10px;
+	font-family: Courier New, Courier, monospace;
+	font-size: 14pt;
+	font-weight: bold;
+	color: white;
+}
+
+cl-taskicons {
+	padding: 5px;
+	height: 40px;
+}
+
+cl-taskicon {
+	-moz-binding: url('chrome://restarbot/skin/core.xml#cl-taskicon');
+	margin-right: -5px;
+}
+
+cl-taskqueuedicon {
+	-moz-binding: url('chrome://restarbot/skin/core.xml#cl-taskqueuedicon');
+	margin-right: -5px;
+}
+
+#topicslist {
+	-moz-appearance: none;
+	-moz-border-image: url('images/border2.png') 3 3 3 3 repeat;
+	background-color: black;
+	overflow: auto;
+}
+
+#topicslist richlistitem {
+	-moz-box-orient: horizontal;
+	-moz-box-align: center;
+	background-image: url('images/gradient.png');
+	background-repeat: no-repeat;
+	background-position: 0% 50%;
+	background-color: black;
+	color: white;
+	padding: 2px;
+	margin: 2px;
+	font-family: monospace;
+	font-size: 10pt;
+	font-weight: normal;
+}
+
+#topicslist richlistitem[selected="true"] {
+	background-image: url('images/gradient2.png');
+	background-repeat: no-repeat;
+	background-position: 0% 50%;
+	background-color: black;
+	margin: 0;
+	border: 2px solid white;
+}

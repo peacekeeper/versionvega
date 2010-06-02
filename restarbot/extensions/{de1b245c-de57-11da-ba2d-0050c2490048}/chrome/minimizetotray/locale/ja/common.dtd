@@ -1,0 +1,24 @@
+<!--      toolbar button      -->
+<!ENTITY button.totray.label "最小化">
+<!ENTITY button.totray.tooltip "ウィンドウをトレイに最小化">
+<!--	 menu item			-->
+<!ENTITY cmd.totray.label "トレイに最小化">
+<!ENTITY cmd.totray.accesskey "M">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!--      tray popup      -->
+<!ENTITY cmd.restore.label "&brandShortName; を元に戻す">
+<!ENTITY cmd.restore.window.label "ウィンドウを元に戻す">
+<!ENTITY cmd.restore.accesskey "R">
+<!ENTITY cmd.restoreall.label "すべてのウィンドウを元に戻す">
+<!ENTITY cmd.restoreall.accesskey "A">
+<!ENTITY cmd.close.label "&brandShortName; を閉じる">
+<!ENTITY cmd.close.window.label "ウィンドウを閉じる">
+<!ENTITY cmd.close.accesskey "C">
+<!ENTITY cmd.quit.label "クイック起動を終了">
+<!ENTITY cmd.quit.accesskey "x">
+<!ENTITY cmd.newwindow.label "新しいウィンドウを開く">
+<!ENTITY cmd.newwindow.accesskey "N">
+<!--     tray sub menu   -->
+<!ENTITY menu.restore.label "元に戻す">
+<!ENTITY menu.restore.accesskey "R">

@@ -1,0 +1,1289 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://app/skin/common.css" type="text/css"?>
+<?xml-stylesheet href="ray.css" type="text/css"?>
+
+<window id="@vega*control" title="@vega*control" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" onload="onLoad();" onunload="onUnload();"
+	flex="1">
+
+	<script src="ray.js" />
+
+	<hbox id="apis">
+		<description>APIs:</description>
+		<button label="vega" oncommand="display('vega');" />
+		<button label="orion" oncommand="display('orion');" />
+		<button label="sirius" oncommand="display('sirius');" />
+		<button label="polaris" oncommand="display('polaris');" />
+	</hbox>
+
+	<vbox id="content" flex="1">
+
+	<vbox id="vega">
+
+	<cl-section>vega</cl-section>
+
+	<description>This is a low-level interface to the "vega" API. It provides functionality for connecting
+	to a network, for sending unicast, multicast and anycast messages, and for storing key/value data in the
+	network.</description>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="connect()" oncommand="onVegaConnect();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>localPort:</description>
+					<textbox id="vegaConnectParam1" />
+				</row>
+				<row>
+					<description>remoteHost:</description>
+					<textbox id="vegaConnectParam2" />
+				</row>
+				<row>
+					<description>remotePort:</description>
+					<textbox id="vegaConnectParam3" />
+				</row>
+				<row>
+					<description>parameters:</description>
+					<textbox id="vegaConnectParam4" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="disconnect()" oncommand="onVegaDisconnect();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="connected()" oncommand="onVegaConnected();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="nodeId()" oncommand="onVegaNodeId();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="localHost()" oncommand="onVegaLocalHost();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="localPort()" oncommand="onVegaLocalPort();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="publicHost()" oncommand="onVegaPublicHost();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="publicPort()" oncommand="onVegaPublicPort();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="remoteHost()" oncommand="onVegaRemoteHost();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="remotePort()" oncommand="onVegaRemotePort();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="parameters()" oncommand="onVegaParameters();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="lookupRandom()" oncommand="onVegaLookupRandom();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="lookupNeighbors()" oncommand="onVegaLookupNeighbors();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>num:</description>
+					<textbox id="vegaLookupNeighborsParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="send()" oncommand="onVegaSend();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>nodeId:</description>
+					<textbox id="vegaSendParam1" />
+				</row>
+				<row>
+					<description>ray:</description>
+					<textbox id="vegaSendParam2" />
+				</row>
+				<row>
+					<description>content:</description>
+					<textbox id="vegaSendParam3" />
+				</row>
+				<row>
+					<description>flags:</description>
+					<textbox id="vegaSendParam4" />
+				</row>
+				<row>
+					<description>extension:</description>
+					<textbox id="vegaSendParam5" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="subscribeTopic()" oncommand="onVegaSubscribeTopic();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>client:</description>
+					<textbox id="vegaSubscribeTopicParam1" />
+				</row>
+				<row>
+					<description>topic:</description>
+					<textbox id="vegaSubscribeTopicParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="unsubscribeTopic)" oncommand="onVegaUnsubscribeTopic();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>client:</description>
+					<textbox id="vegaUnsubscribeTopicParam1" />
+				</row>
+				<row>
+					<description>topic:</description>
+					<textbox id="vegaUnsubscribeTopicParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="topics()" oncommand="onVegaTopics();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>client:</description>
+					<textbox id="vegaTopicsParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="resetTopics()" oncommand="onVegaResetTopics();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>client:</description>
+					<textbox id="vegaResetTopicsParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="multicast()" oncommand="onVegaMulticast();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>nodeId:</description>
+					<textbox id="vegaMulticastParam1" />
+				</row>
+				<row>
+					<description>ray:</description>
+					<textbox id="vegaMulticastParam2" />
+				</row>
+				<row>
+					<description>content:</description>
+					<textbox id="vegaMulticastParam3" />
+				</row>
+				<row>
+					<description>flags:</description>
+					<textbox id="vegaMulticastParam4" />
+				</row>
+				<row>
+					<description>extension:</description>
+					<textbox id="vegaMulticastParam5" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="anycast()" oncommand="onVegaAnycast();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>nodeId:</description>
+					<textbox id="vegaAnycastParam1" />
+				</row>
+				<row>
+					<description>ray:</description>
+					<textbox id="vegaAnycastParam2" />
+				</row>
+				<row>
+					<description>content:</description>
+					<textbox id="vegaAnycastParam3" />
+				</row>
+				<row>
+					<description>flags:</description>
+					<textbox id="vegaAnycastParam4" />
+				</row>
+				<row>
+					<description>extension:</description>
+					<textbox id="vegaAnycastParam5" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="get()" oncommand="onVegaGet();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>key:</description>
+					<textbox id="vegaGetParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="put()" oncommand="onVegaPut();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>key:</description>
+					<textbox id="vegaPutParam1" />
+				</row>
+				<row>
+					<description>value:</description>
+					<textbox id="vegaPutParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="multiPut()" oncommand="onVegaMultiPut();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>key:</description>
+					<textbox id="vegaMultiPutParam1" />
+				</row>
+				<row>
+					<description>value:</description>
+					<textbox id="vegaMultiPutParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="multiGet()" oncommand="onVegaMultiGet();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>key:</description>
+					<textbox id="vegaMultiGetParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="multiGetIndex()" oncommand="onVegaMultiGetIndex();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>key:</description>
+					<textbox id="vegaMultiGetIndexParam1" />
+				</row>
+				<row>
+					<description>index:</description>
+					<textbox id="vegaMultiGetIndexParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="multiGetCount()" oncommand="onVegaMultiGetCount();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>key:</description>
+					<textbox id="vegaMultiGetCountParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="multiGetRandom()" oncommand="onVegaMultiGetRandom();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>key:</description>
+					<textbox id="vegaMultiGetRandomParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="multiDelete()" oncommand="onVegaMultiDelete();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>key:</description>
+					<textbox id="vegaMultiDeleteParam1" />
+				</row>
+				<row>
+					<description>value:</description>
+					<textbox id="vegaMultiDeleteParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="subscribeRay()" oncommand="onVegaSubscribeRay();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>client:</description>
+					<textbox id="vegaSubscribeRayParam1" />
+				</row>
+				<row>
+					<description>ray:</description>
+					<textbox id="vegaSubscribeRayParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+	
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="unsubscribeRay()" oncommand="onVegaUnsubscribeRay();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>client:</description>
+					<textbox id="vegaUnsubscribeRayParam1" />
+				</row>
+				<row>
+					<description>ray:</description>
+					<textbox id="vegaUnsubscribeRayParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="rays()" oncommand="onVegaRays();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>client:</description>
+					<textbox id="vegaRaysParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="resetRays()" oncommand="onVegaResetRays();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>client:</description>
+					<textbox id="vegaResetRaysParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+	</vbox>
+	
+	<vbox id="orion">
+
+	<cl-section>orion</cl-section>
+
+	<description>This is a low-level interface to the "orion" API. It provides functionality related to identity and
+	cryptography.</description>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="login()" oncommand="onOrionLogin();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>iname:</description>
+					<textbox id="orionLoginParam1" />
+				</row>
+				<row>
+					<description>password:</description>
+					<textbox id="orionLoginParam2" type="password" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="logout()" oncommand="onOrionLogout();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="loggedin()" oncommand="onOrionLoggedin();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="iname()" oncommand="onOrionIname();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="inumber()" oncommand="onOrionInumber();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="sign()" oncommand="onOrionSign();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>str:</description>
+					<textbox id="orionSignParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="verify()" oncommand="onOrionVerify();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>str:</description>
+					<textbox id="orionVerifyParam1" />
+				</row>
+				<row>
+					<description>signature:</description>
+					<textbox id="orionVerifyParam2" />
+				</row>
+				<row>
+					<description>xri:</description>
+					<textbox id="orionVerifyParam3" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="encrypt()" oncommand="onOrionEncrypt();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>str:</description>
+					<textbox id="orionEncryptParam1" />
+				</row>
+				<row>
+					<description>xri:</description>
+					<textbox id="orionEncryptParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="decrypt()" oncommand="onOrionDecrypt();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>decrypt:</description>
+					<textbox id="orionDecryptParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="symGenerateKey()" oncommand="onOrionSymGenerateKey();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="symEncrypt()" oncommand="onOrionSymEncrypt();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>str:</description>
+					<textbox id="orionSymEncryptParam1" />
+				</row>
+				<row>
+					<description>key:</description>
+					<textbox id="orionSymEncryptParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="symDecrypt()" oncommand="onOrionSymDecrypt();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>str:</description>
+					<textbox id="orionSymDecryptParam1" />
+				</row>
+				<row>
+					<description>key:</description>
+					<textbox id="orionSymDecryptParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="guid()" oncommand="onOrionGuid();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="timeToken1()" oncommand="onOrionTimeToken1();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>data:</description>
+					<textbox id="orionTimeToken1Param1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="timeToken24()" oncommand="onOrionTimeToken24();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>data:</description>
+					<textbox id="orionTimeToken24Param1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="timeToken30()" oncommand="onOrionTimeToken30();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>data:</description>
+					<textbox id="orionTimeToken30Param1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="timeLeft1()" oncommand="onOrionTimeLeft1();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="timeLeft24()" oncommand="onOrionTimeLeft24();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="timeLeft30()" oncommand="onOrionTimeLeft30();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="verifyTimeToken()" oncommand="onOrionVerifyTimeToken();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>str:</description>
+					<textbox id="orionVerifyTimeTokenParam1" />
+				</row>
+				<row>
+					<description>signature:</description>
+					<textbox id="orionVerifyTimeTokenParam2" />
+				</row>
+				<row>
+					<description>xri:</description>
+					<textbox id="orionVerifyTimeTokenParam3" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	</vbox>
+	
+	<vbox id="sirius">
+
+	<cl-section>sirius</cl-section>
+
+	<description>This is a low-level interface to the "sirius" API. It makes it possible to store XDI semantic data
+	in the network.</description>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="get()" oncommand="onSiriusGet();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="siriusGetParam1" />
+				</row>
+				<row>
+					<description>format:</description>
+					<textbox id="siriusGetParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="add()" oncommand="onSiriusAdd();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="siriusAddParam1" />
+				</row>
+				<row>
+					<description>format:</description>
+					<textbox id="siriusAddParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="set()" oncommand="onSiriusSet();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="siriusSetParam1" />
+				</row>
+				<row>
+					<description>format:</description>
+					<textbox id="siriusSetParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="mod()" oncommand="onSiriusMod();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="siriusModParam1" />
+				</row>
+				<row>
+					<description>format:</description>
+					<textbox id="siriusModParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="del()" oncommand="onSiriusDel();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="siriusDelParam1" />
+				</row>
+				<row>
+					<description>format:</description>
+					<textbox id="siriusDelParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="getLiterals()" oncommand="onSiriusGetLiterals();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="siriusGetLiteralsParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="getLiteral()" oncommand="onSiriusGetLiteral();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="siriusGetLiteralParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="getReferences()" oncommand="onSiriusGetReferences();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="siriusGetReferencesParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="getReference()" oncommand="onSiriusGetReference();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="siriusGetReferenceParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="execute()" oncommand="onSiriusExecute();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="siriusExecuteParam1" />
+				</row>
+				<row>
+					<description>format:</description>
+					<textbox id="siriusExecuteParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	</vbox>
+	
+	<vbox id="polaris">
+
+	<cl-section>polaris</cl-section>
+
+	<description>This is a low-level interface to the "polaris" API. It makes it possible to store XDI semantic data
+	with your i-number.</description>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="get()" oncommand="onPolarisGet();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="polarisGetParam1" />
+				</row>
+				<row>
+					<description>format:</description>
+					<textbox id="polarisGetParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="add()" oncommand="onPolarisAdd();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="polarisAddParam1" />
+				</row>
+				<row>
+					<description>format:</description>
+					<textbox id="polarisAddParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="set()" oncommand="onPolarisSet();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="polarisSetParam1" />
+				</row>
+				<row>
+					<description>format:</description>
+					<textbox id="polarisSetParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="mod()" oncommand="onPolarisMod();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="polarisModParam1" />
+				</row>
+				<row>
+					<description>format:</description>
+					<textbox id="polarisModParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="del()" oncommand="onPolarisDel();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="polarisDelParam1" />
+				</row>
+				<row>
+					<description>format:</description>
+					<textbox id="polarisDelParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="getLiterals()" oncommand="onPolarisGetLiterals();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="polarisGetLiteralsParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="getLiteral()" oncommand="onPolarisGetLiteral();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="polarisGetLiteralParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="getReferences()" oncommand="onPolarisGetReferences();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="polarisGetReferencesParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="getReference()" oncommand="onPolarisGetReference();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="polarisGetReferenceParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="execute()" oncommand="onPolarisExecute();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>xri:</description>
+					<textbox id="polarisExecuteParam1" />
+				</row>
+				<row>
+					<description>format:</description>
+					<textbox id="polarisExecuteParam2" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	</vbox>
+
+	</vbox>
+
+</window>

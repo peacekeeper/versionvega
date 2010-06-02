@@ -1,0 +1,24 @@
+<!--     toolbar button     -->
+<!ENTITY button.totray.label "最小化">
+<!ENTITY button.totray.tooltip "最小化窗口到托盘">
+<!--	 menu item			-->
+<!ENTITY cmd.totray.label "最小化到托盘">
+<!ENTITY cmd.totray.accesskey "M">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!--     tray popup     -->
+<!ENTITY cmd.restore.label "恢复 &brandShortName;">
+<!ENTITY cmd.restore.window.label "恢复窗口">
+<!ENTITY cmd.restore.accesskey "R">
+<!ENTITY cmd.restoreall.label "全部恢复">
+<!ENTITY cmd.restoreall.accesskey "A">
+<!ENTITY cmd.close.label "关闭 &brandShortName;">
+<!ENTITY cmd.close.window.label "关闭窗口">
+<!ENTITY cmd.close.accesskey "C">
+<!ENTITY cmd.quit.label "退出快速启动">
+<!ENTITY cmd.quit.accesskey "x">
+<!ENTITY cmd.newwindow.label "打开新窗口">
+<!ENTITY cmd.newwindow.accesskey "N">
+<!--     tray sub menu   -->
+<!ENTITY menu.restore.label "恢复">
+<!ENTITY menu.restore.accesskey "R">

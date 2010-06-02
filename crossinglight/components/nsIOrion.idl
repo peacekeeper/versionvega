@@ -1,0 +1,27 @@
+#include "nsISupports.idl"
+[scriptable, uuid(9941e4df-fc86-41c9-9420-3673e681fe48)]
+interface nsIOrion : nsISupports
+{
+	void login(in string iname, in string password);
+	void logout();
+	void loggedin([retval] out string ret);
+	void iname([retval] out string ret);
+	void inumber([retval] out string ret);
+	void xdiUri([retval] out string ret);
+	void resolve(in string iname, [retval] out string ret);
+	void sign(in string str, [retval] out string ret);
+	void verify(in string str, in string signature, in string xri, [retval] out string ret);
+	void encrypt(in string str, in string xri, [retval] out string ret);
+	void decrypt(in string str, [retval] out string ret);
+	void symGenerateKey([retval] out string ret);
+	void symEncrypt(in string str, in string key, [retval] out string ret);
+	void symDecrypt(in string str, in string key, [retval] out string ret);
+	void guid([retval] out string ret);
+	void timeToken1(in string str, [retval] out string ret);
+	void timeToken24(in string str, [retval] out string ret);
+	void timeToken30(in string str, [retval] out string ret);
+	void timeLeft1([retval] out string ret);
+	void timeLeft24([retval] out string ret);
+	void timeLeft30([retval] out string ret);
+	void verifyTimeToken(in string data, in string timeToken, in string xri, [retval] out string ret);
+};

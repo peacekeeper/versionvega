@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "אפשרויות Minimize To Tray">
+<!ENTITY groupbox.general.label "אפשרויות הפעלה">
+<!ENTITY chk.always.label "תמיד מזער למגש במקום לשורת המשימות">
+<!ENTITY chk.always.accesskey "ת">
+<!ENTITY chk.twoclickrestore.label "דרושה לחיצה כפולה לשיחזור מהמגש">
+<!ENTITY chk.twoclickrestore.accesskey "ד">
+<!ENTITY chk.minimizeonclose.label "מזער למגש בסגירה">
+<!ENTITY chk.minimizeonclose.accesskey "מ">
+<!ENTITY chk.trayalwaysshow.label "הצג תמיד צלמית במגש">
+<!ENTITY chk.trayalwaysshow.accesskey "צ">
+<!ENTITY chk.restoreonopen.label "שחזר חלון במקום לפתוח חדש">
+<!ENTITY chk.restoreonopen.accesskey "ח">
+<!ENTITY chk.onlyoneicon.label "תמיד הצג רק צלמית אחת">
+<!ENTITY chk.onlyoneicon.accesskey "י">
+<!ENTITY chk.startwidthwindows.label "התחל יישום עם חלונות">
+<!ENTITY chk.startwidthwindows.accesskey "ש">
+<!ENTITY chk.currentuseronly.label "עבור המשתמש הנוכחי בלבד">
+<!ENTITY chk.currentuseronly.accesskey "ע">

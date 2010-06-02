@@ -1,0 +1,33 @@
+@CHARSET "ISO-8859-1";
+
+window {
+	margin: 0;
+	color: white;
+	background-color: black;
+	font-family: monospace;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+#apis {
+	-moz-box-align: center;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#content {
+	padding: 10px;
+	overflow: auto;	
+}
+
+row {
+	-moz-box-align: center;
+}
+
+spacer {
+	height: 10px;
+}
+
+vbox.border2 {
+	padding: 10px;
+}

@@ -1,0 +1,20 @@
+<!ENTITY button.totray.label "Thu nhỏ">
+<!ENTITY button.totray.tooltip "Thu nhỏ cửa sổ xuống khay">
+<!ENTITY cmd.totray.label "Thu nhỏ xuống khay">
+<!ENTITY cmd.totray.accesskey "M">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!ENTITY cmd.restore.label "Phục hồi &brandShortName;">
+<!ENTITY cmd.restore.window.label "Phục hồi cửa sổ">
+<!ENTITY cmd.restore.accesskey "R">
+<!ENTITY cmd.restoreall.label "Phục hồi tất cả các cửa sổ">
+<!ENTITY cmd.restoreall.accesskey "A">
+<!ENTITY cmd.close.label "Đóng &brandShortName;">
+<!ENTITY cmd.close.window.label "Đóng cửa sổ">
+<!ENTITY cmd.close.accesskey "C">
+<!ENTITY cmd.quit.label "Tắt thanh khởi động nhanh">
+<!ENTITY cmd.quit.accesskey "x">
+<!ENTITY cmd.newwindow.label "Mở cửa sổ mới">
+<!ENTITY cmd.newwindow.accesskey "N">
+<!ENTITY menu.restore.label "Phục hồi">
+<!ENTITY menu.restore.accesskey "R">

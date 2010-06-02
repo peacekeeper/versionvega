@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Minimize To Tray විකල්ප">
+<!ENTITY groupbox.general.label "Start Up විකල්පය">
+<!ENTITY chk.always.label "වසන විට සිස්ටම් ට්‍රේ තුළට යවන්න">
+<!ENTITY chk.always.accesskey "A">
+<!ENTITY chk.twoclickrestore.label "පෙර තත්වයට පත් කිරීමට ඩෙවරක් ක්ලික් කිරීම කල යුතුයි">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "වසන විට සිස්ටම් ට්‍රේ තුළට යවන්න">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "හැමවිට අයිකනය පෙන්වන්න">
+<!ENTITY chk.trayalwaysshow.accesskey "T">
+<!ENTITY chk.restoreonopen.label "අලුත් වින්ඩෝවක් වෙනුවට පෙර තිබූ වින්ඩෝවම පෙන්වන්න">
+<!ENTITY chk.restoreonopen.accesskey "W">
+<!ENTITY chk.onlyoneicon.label "සැමවිටම එක අයිකනයක් පමණක් පෙන්වන්න">
+<!ENTITY chk.onlyoneicon.accesskey "I">
+<!ENTITY chk.startwidthwindows.label "Load &brandShortName; in quick launch mode at system startup">
+<!ENTITY chk.startwidthwindows.accesskey "S">
+<!ENTITY chk.currentuseronly.label "මෙම භාවිතා කරන්නා සඳහා පමණයි">
+<!ENTITY chk.currentuseronly.accesskey "C">

@@ -1,0 +1,24 @@
+<!--     toolbar button     -->
+<!ENTITY button.totray.label "Minnka">
+<!ENTITY button.totray.tooltip "Minnka glugga í tilkynningasvæði">
+<!--	 menu item			-->
+<!ENTITY cmd.totray.label "Minnka í tilkynningasvæði">
+<!ENTITY cmd.totray.accesskey "M">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!--     tray popup     -->
+<!ENTITY cmd.restore.label "Endurheimta &brandShortName;">
+<!ENTITY cmd.restore.window.label "Endurheimta glugga">
+<!ENTITY cmd.restore.accesskey "E">
+<!ENTITY cmd.restoreall.label "Endurheimta alla">
+<!ENTITY cmd.restoreall.accesskey "a">
+<!ENTITY cmd.close.label "Loka &brandShortName;">
+<!ENTITY cmd.close.window.label "Loka glugga">
+<!ENTITY cmd.close.accesskey "L">
+<!ENTITY cmd.quit.label "Hætta flýtiræsingu">
+<!ENTITY cmd.quit.accesskey "H">
+<!ENTITY cmd.newwindow.label "Opna nýjan glugga">
+<!ENTITY cmd.newwindow.accesskey "O">
+<!--     tray sub menu   -->
+<!ENTITY menu.restore.label "Endurheimta">
+<!ENTITY menu.restore.accesskey "E">

@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Opţiuni MinimizeToTray Plus">
+<!ENTITY groupbox.general.label "Opţiuni MinimizeToTray Plus">
+<!ENTITY chk.always.label "Minimizează întotdeauna în zona de notificare în loc de bara de aplicaţii">
+<!ENTITY chk.always.accesskey "z">
+<!ENTITY chk.twoclickrestore.label "Restaurează la dublu-clic pe pictograma din zona de notificare">
+<!ENTITY chk.twoclickrestore.accesskey "d">
+<!ENTITY chk.minimizeonclose.label "Minimizează în zona de notificare la închidere">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "Afişează întotdeauna pictograma din zona de notificare">
+<!ENTITY chk.trayalwaysshow.accesskey "p">
+<!ENTITY chk.restoreonopen.label "Restaurează ferestra în loc să deschizi una nouă">
+<!ENTITY chk.restoreonopen.accesskey "R">
+<!ENTITY chk.onlyoneicon.label "Afişează doar o singură pictogramă">
+<!ENTITY chk.onlyoneicon.accesskey "s">
+<!ENTITY chk.startwidthwindows.label "Porneşte odată cu Windows">
+<!ENTITY chk.startwidthwindows.accesskey "W">
+<!ENTITY chk.currentuseronly.label "Doar pentru utilizatorul curent">
+<!ENTITY chk.currentuseronly.accesskey "c">

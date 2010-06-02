@@ -1,0 +1,23 @@
+@CHARSET "ISO-8859-1";
+
+window {
+	-moz-appearance: none;
+	background: black url('images/icons.png') no-repeat;
+	color: white;
+	font-family: Courier New, Courier, monospace;
+	font-size: 11pt;
+	font-weight: bold;
+	padding: 10px;
+}
+
+spacer {
+	min-width: 10px;
+}
+
+#container {
+	overflow: auto;
+}
+
+#buttons {
+	margin-top: 10px;
+}

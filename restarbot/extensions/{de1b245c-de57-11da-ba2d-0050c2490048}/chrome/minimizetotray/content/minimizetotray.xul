@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay [
+<!ENTITY % brandDTD SYSTEM "chrome://minimizetotray/locale/brand.dtd"> %brandDTD;
+<!ENTITY % commonDTD SYSTEM "chrome://minimizetotray/locale/common.dtd"> %commonDTD;
+]>
+<?xml-stylesheet href="chrome://minimizetotray/skin/minimizetotray.css" type="text/css"?>
+<overlay id="minimizetotrayOverlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<!-- items that go at the end of every popup menu -->
+	<popup id="extensions.mook.minimizetotray.traypopup">
+		<menuitem insertafter="extensions.mook.minimizetotray.pupup.close.separator"
+			id="extensions.mook.minimizetotray.turbo.quit" label="&cmd.quit.label;"
+			accesskey="&cmd.quit.accesskey;" oncommand="window.extensions.mook.minimizetotray.trayTurboClose();"/>
+		<menuitem id="extensions.mook.minimizetotray.window.close"
+			label="&cmd.close.label;" accesskey="&cmd.close.accesskey;"
+			oncommand="window.extensions.mook.minimizetotray.trayWindowClose();"/>
+	</popup>
+	<!--  the restore menu item -->
+	<menuitem id="extensions.mook.minimizetotray.traypopup.restore"
+		label="&cmd.restore.label;" accesskey="&cmd.restore.accesskey;"
+		oncommand="window.extensions.mook.minimizetotray.restore();" style="font-weight: 700;"/>
+	<!-- the menu on turbo popups that allows restoring any window  -->
+	<menu id="extensions.mook.minimizetotray.traypopup.restore.menu"
+		label="&menu.restore.label;" accesskey="&menu.restore.accesskey;">
+		<menupopup id="extensions.mook.minimizetotray.traypopup.restore.popup"
+			style="max-width:200px;">
+			<menuseparator
+				id="extensions.mook.minimizetotray.traypopup.restore.separator"/>
+			<menuitem label="&cmd.restoreall.label;" accesskey="&cmd.restoreall.accesskey;"
+				oncommand="window.extensions.mook.minimizetotray.restoreAllWindows();"
+				style="font-weight: 700;"/>
+		</menupopup>
+	</menu>
+	<!-- toolbar button -->
+	<toolbarbutton class="toolbarbutton-1"
+		id="extensions-minimizetotray-button-minimize" label="&button.totray.label;"
+		tooltiptext="&button.totray.tooltip;" oncommand="window.extensions.mook.minimizetotray.minimizeWindow();"/>
+	<!-- file menu item  -->
+	<menuitem id="extensions.mook.minimizetotray.menuitem.menuitem"
+		label="&cmd.totray.label;" key="extensions.mook.minimizetotray.key.menuitem"
+		accesskey="&cmd.totray.accesskey;" oncommand="window.extensions.mook.minimizetotray.minimizeWindow();"/>
+	<!--  the key short cut -->
+	<key id="extensions.mook.minimizetotray.key.menuitem" key="&cmd.totray.key;"
+		modifiers="&cmd.totray.modifier;" command="extensions.mook.minimizetotray.menuitem.menuitem"/>
+</overlay>

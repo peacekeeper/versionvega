@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Stillingar fyrir minnka í tilkynningasvæði">
+<!ENTITY groupbox.general.label "Ræsistillingar">
+<!ENTITY chk.always.label "Alltaf minnka í tilkynningasvæði í staðinn fyrir verkslá">
+<!ENTITY chk.always.accesskey "A">
+<!ENTITY chk.twoclickrestore.label "Nota tvöfaldan músarsmell til að endurheimta frá tilkynningasvæði">
+<!ENTITY chk.twoclickrestore.accesskey "N">
+<!ENTITY chk.minimizeonclose.label "Ef glugga er lokað minnka þá í tilkynningasvæði">
+<!ENTITY chk.minimizeonclose.accesskey "E">
+<!ENTITY chk.trayalwaysshow.label "Alltaf sýna í tilkynningasvæði">
+<!ENTITY chk.trayalwaysshow.accesskey "t">
+<!ENTITY chk.restoreonopen.label "Endurheimta glugga í staðinn fyrir að opna nýjan">
+<!ENTITY chk.restoreonopen.accesskey "g">
+<!ENTITY chk.onlyoneicon.label "Sýna bara eina mynd í tilkynningasvæði">
+<!ENTITY chk.onlyoneicon.accesskey "S">
+<!ENTITY chk.startwidthwindows.label "Ræsa forrit með windows">
+<!ENTITY chk.startwidthwindows.accesskey "R">
+<!ENTITY chk.currentuseronly.label "Aðeins fyrir núverandi notanda">
+<!ENTITY chk.currentuseronly.accesskey "f">

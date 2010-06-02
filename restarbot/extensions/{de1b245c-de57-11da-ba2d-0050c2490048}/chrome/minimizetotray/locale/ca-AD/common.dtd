@@ -1,0 +1,24 @@
+<!--     toolbar button     -->
+<!ENTITY button.totray.label "Minimitza">
+<!ENTITY button.totray.tooltip "Minimitza la finestra a la safata del sistema">
+<!--	 menu item			-->
+<!ENTITY cmd.totray.label "Minimitza la finestra a la safata del sistema">
+<!ENTITY cmd.totray.accesskey "M">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!--     tray popup     -->
+<!ENTITY cmd.restore.label "Restaura el &brandShortName;">
+<!ENTITY cmd.restore.window.label "Restaura la finestra">
+<!ENTITY cmd.restore.accesskey "R">
+<!ENTITY cmd.restoreall.label "Restaura-ho tot">
+<!ENTITY cmd.restoreall.accesskey "t">
+<!ENTITY cmd.close.label "Surt del &brandShortName;">
+<!ENTITY cmd.close.window.label "Tanca la finestra">
+<!ENTITY cmd.close.accesskey "T">
+<!ENTITY cmd.quit.label "Surt de l&apos;execució ràpida">
+<!ENTITY cmd.quit.accesskey "S">
+<!ENTITY cmd.newwindow.label "Obre una finestra nova">
+<!ENTITY cmd.newwindow.accesskey "O">
+<!--     tray sub menu   -->
+<!ENTITY menu.restore.label "Restaura">
+<!ENTITY menu.restore.accesskey "R">

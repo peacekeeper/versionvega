@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Настройки сворачивания в трей">
+<!ENTITY groupbox.general.label "Настройки запуска">
+<!ENTITY chk.always.label "Всегда сворачивать в трей, а не в панель задач">
+<!ENTITY chk.always.accesskey "с">
+<!ENTITY chk.twoclickrestore.label "Открывать из трея только по двойному нажатию">
+<!ENTITY chk.twoclickrestore.accesskey "т">
+<!ENTITY chk.minimizeonclose.label "Минимизировать при закрытии">
+<!ENTITY chk.minimizeonclose.accesskey "и">
+<!ENTITY chk.trayalwaysshow.label "Всегда показывать значок в трее">
+<!ENTITY chk.trayalwaysshow.accesskey "е">
+<!ENTITY chk.restoreonopen.label "Восстанавливать окно вместо открытия нового">
+<!ENTITY chk.restoreonopen.accesskey "а">
+<!ENTITY chk.onlyoneicon.label "Показывать только один значок в трее">
+<!ENTITY chk.onlyoneicon.accesskey "о">
+<!ENTITY chk.startwidthwindows.label "Запускать приложения с окнами">
+<!ENTITY chk.startwidthwindows.accesskey "ь">
+<!ENTITY chk.currentuseronly.label "Только для текущего пользователя">
+<!ENTITY chk.currentuseronly.accesskey "к">

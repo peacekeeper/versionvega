@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Minimize to Tray - beállítások">
+<!ENTITY groupbox.general.label "Indítás testreszabása">
+<!ENTITY chk.always.label "Elrejtés a tálcára minden esetben">
+<!ENTITY chk.always.accesskey "E">
+<!ENTITY chk.twoclickrestore.label "Visszaállítás a tálcáról csak dupla kattintás esetén">
+<!ENTITY chk.twoclickrestore.accesskey "d">
+<!ENTITY chk.minimizeonclose.label "A bezárás gomb a tálcára rejti az alkalmazást">
+<!ENTITY chk.minimizeonclose.accesskey "t">
+<!ENTITY chk.trayalwaysshow.label "Tálca ikon megjelenítése mindig">
+<!ENTITY chk.trayalwaysshow.accesskey "m">
+<!ENTITY chk.restoreonopen.label "Ablak visszaállítása új ablak megnyitása helyett">
+<!ENTITY chk.restoreonopen.accesskey "v">
+<!ENTITY chk.onlyoneicon.label "Csak egy tálca ikon megjelenítése">
+<!ENTITY chk.onlyoneicon.accesskey "i">
+<!ENTITY chk.startwidthwindows.label "Indítás a windows indulásakor">
+<!ENTITY chk.startwidthwindows.accesskey "w">
+<!ENTITY chk.currentuseronly.label "Csak a jelenlegi felhasználónak">
+<!ENTITY chk.currentuseronly.accesskey "j">

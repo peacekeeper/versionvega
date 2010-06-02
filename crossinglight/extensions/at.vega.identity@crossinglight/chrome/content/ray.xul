@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://app/skin/common.css" type="text/css"?>
+<?xml-stylesheet href="ray.css" type="text/css"?>
+
+<window id="@vega*identity" title="@vega*identity" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" onload="onLoad();" onunload="onUnload();"
+	flex="1">
+
+	<script src="ray.js" />
+
+	<hbox id="apis">
+		<button label="Core Identity" oncommand="display('coreIdentity');" />
+		<button label="Extended Identity" oncommand="display('extendedIdentity');" />
+		<button label="Time Tokens" oncommand="display('timeTokens');" />
+	</hbox>
+
+	<vbox id="content" flex="1">
+
+	<vbox id="coreIdentity">
+
+	<cl-section>Core Identity</cl-section>
+
+	<grid>
+		<columns>
+			<column />
+			<column />
+		</columns>
+		<rows>
+				<row>
+					<description class="plain">I-Name:</description>
+					<description class="plain" id="inameDescription" flex="1" />
+				</row>
+				<row>
+					<description class="plain">I-Number:</description>
+					<description class="plain" id="inumberDescription" flex="1" />
+				</row>
+		</rows>
+	</grid>
+
+	<hbox>
+		<button label="Refresh" oncommand="onRefreshCoreIdentity();" />
+	</hbox>
+
+	</vbox>
+
+	<vbox id="extendedIdentity">
+
+	<cl-section>Extended Identity</cl-section>
+
+	<grid>
+		<columns>
+			<column />
+			<column flex="1" />
+		</columns>
+		<rows>
+			<row>
+				<description class="plain">Name:</description>
+				<textbox id="nameTextbox" flex="1" />
+			</row>
+			<row>
+				<description class="plain">Organization:</description>
+				<textbox id="organizationTextbox" flex="1" />
+			</row>
+			<row>
+				<description class="plain">Street:</description>
+				<textbox id="streetTextbox" flex="1" />
+			</row>
+			<row>
+				<description class="plain">Postal Code:</description>
+				<textbox id="postalcodeTextbox" flex="1" />
+			</row>
+			<row>
+				<description class="plain">City:</description>
+				<textbox id="cityTextbox" flex="1" />
+			</row>
+			<row>
+				<description class="plain">State/Province:</description>
+				<textbox id="stateTextbox" flex="1" />
+			</row>
+			<row>
+				<description class="plain">Country:</description>
+				<textbox id="countryTextbox" flex="1" />
+			</row>
+			<row>
+				<description class="plain">Gender:</description>
+				<textbox id="genderTextbox" flex="1" />
+			</row>
+		</rows>
+	</grid>
+
+	<cl-section>About yourself:</cl-section>
+
+	<hbox>
+		<textbox id="descriptionTextbox" multiline="true" flex="1" />
+	</hbox>
+
+	<hbox>
+		<button label="Refresh" oncommand="onRefreshExtendedIdentity();" />
+		<button label="Save" oncommand="onSaveExtendedIdentity();" />
+	</hbox>
+
+	</vbox>
+
+	<vbox id="timeTokens">
+
+	<cl-section>Time Tokens</cl-section>
+
+	<grid class="border2">
+		<columns>
+			<column />
+			<column />
+		</columns>
+		<rows>
+			<row>
+				<description class="plain"><image src="chrome://crossinglight/skin/images/timetoken1.png" /></description>
+				<description class="plain timeleft" id="timeLeft1Description">[ ... ]</description>
+				<description class="plain timeleftpct" id="timeLeft1PctDescription">%</description>
+			</row>
+			<row>
+				<description class="plain"><image src="chrome://crossinglight/skin/images/timetoken24.png" /></description>
+				<description class="plain timeleft" id="timeLeft24Description">[ ... ]</description>
+				<description class="plain timeleftpct" id="timeLeft24PctDescription">%</description>
+			</row>
+			<row>
+				<description class="plain"><image src="chrome://crossinglight/skin/images/timetoken30.png" /></description>
+				<description class="plain timeleft" id="timeLeft30Description">[ ... ]</description>
+				<description class="plain timeleftpct" id="timeLeft30PctDescription">%</description>
+			</row>
+		</rows>
+	</grid>
+
+	<hbox>
+		<button label="Refresh" oncommand="onRefreshTimeTokens();" />
+	</hbox>
+
+	</vbox>
+
+	</vbox>
+
+</window>

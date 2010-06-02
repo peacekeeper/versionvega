@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Minimize To Tray - Опции">
+<!ENTITY groupbox.general.label "Опции за стартувањето">
+<!ENTITY chk.always.label "Секогаш минимизирај во системската лента наместо во лентата со задачи">
+<!ENTITY chk.always.accesskey "С">
+<!ENTITY chk.twoclickrestore.label "Бара двоен клик за да се обнови од системската лента">
+<!ENTITY chk.twoclickrestore.accesskey "Б">
+<!ENTITY chk.minimizeonclose.label "Минимизирај во системската лента при затворање">
+<!ENTITY chk.minimizeonclose.accesskey "М">
+<!ENTITY chk.trayalwaysshow.label "Секогаш покажувај ја иконата во системската лента">
+<!ENTITY chk.trayalwaysshow.accesskey "T">
+<!ENTITY chk.restoreonopen.label "Обнови го прозорецот наместо отворање на нов">
+<!ENTITY chk.restoreonopen.accesskey "П">
+<!ENTITY chk.onlyoneicon.label "Покажувај само една икона во системската лента">
+<!ENTITY chk.onlyoneicon.accesskey "а">
+<!ENTITY chk.startwidthwindows.label "Стартувај ја апликацијата со windows">
+<!ENTITY chk.startwidthwindows.accesskey "С">
+<!ENTITY chk.currentuseronly.label "Само за тековниот корисник">
+<!ENTITY chk.currentuseronly.accesskey "т">

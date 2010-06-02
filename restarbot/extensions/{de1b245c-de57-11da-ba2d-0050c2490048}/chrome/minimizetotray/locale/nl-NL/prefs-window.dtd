@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Minimize To Tray opties">
+<!ENTITY groupbox.general.label "Opstartopties">
+<!ENTITY chk.always.label "Altijd minimaliseren naar systeemvak in plaats van taakbalk">
+<!ENTITY chk.always.accesskey "A">
+<!ENTITY chk.twoclickrestore.label "Dubbelklikken om te herstellen uit het systeemvak">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "Bij sluiten naar het systeemvak minimaliseren">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "Systeemvakpictogram weergeven">
+<!ENTITY chk.trayalwaysshow.accesskey "y">
+<!ENTITY chk.restoreonopen.label "Venster herstellen in plaats van nieuw openen">
+<!ENTITY chk.restoreonopen.accesskey "V">
+<!ENTITY chk.onlyoneicon.label "Altijd slechts één systeemvakpictogram weergeven">
+<!ENTITY chk.onlyoneicon.accesskey "i">
+<!ENTITY chk.startwidthwindows.label "Toepassing starten met vensters">
+<!ENTITY chk.startwidthwindows.accesskey "S">
+<!ENTITY chk.currentuseronly.label "Voor alleen huidige gebruiker">
+<!ENTITY chk.currentuseronly.accesskey "H">

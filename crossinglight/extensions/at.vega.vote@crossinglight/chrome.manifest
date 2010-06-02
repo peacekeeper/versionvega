@@ -1,0 +1,2 @@
+content at.vega.vote chrome/content/ xpcnativewrappers=yes
+locale at.vega.vote en-US chrome/locale/en-US/

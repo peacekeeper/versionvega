@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://crossinglight/skin/core.css" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://crossinglight/locale/app.dtd">
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" id="&app.id;" title="&app.title;"
+	windowtype="crossinglight:window" width="800" height="600" screenX="50"
+	screenY="50" sizemode="normal" hidechrome="false"
+	onload="onWindowLoad();" onunload="onWindowUnload();" onkeypress="onWindowKeyPress(event);">
+
+	<!-- SCRIPTS -->
+
+	<script type="application/javascript;version=1.7" src="js/debug.js" />
+	<script type="application/javascript;version=1.7" src="js/sound.js" />
+	<script type="application/javascript;version=1.7" src="js/net.js" />
+	<script type="application/javascript;version=1.7" src="js/code.js" />
+	<script type="application/javascript;version=1.7" src="sol.js" />
+	<script type="application/javascript;version=1.7" src="luna.js" />
+	<script type="application/javascript;version=1.7" src="crossinglight.js" />
+
+	<!-- STRING BUNDLE -->
+
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="strings"
+			src="chrome://crossinglight/locale/strings.properties" />
+	</stringbundleset>
+
+	<!-- COMMANDS -->
+
+	<commandset id="mainCommandSet">
+		<command id="cmd_js_console" oncommand="cmdDebugConsole();" />
+		<command id="cmd_js_about" oncommand="cmdAbout();" />
+		<command id="cmd_js_extensions" oncommand="cmdExtensions();" />
+		<command id="cmd_js_config" oncommand="cmdConfig();" />
+		<command id="cmd_js_xpcomviewer" oncommand="cmdXPCOMViewer();" />
+		<command id="cmd_js_dominspector" oncommand="cmdDOMInspector();" />
+		<command id="cmd_js_opendefaultray" oncommand="cmdOpenDefaultRay();" />
+		<command id="cmd_js_openrunlevelray" oncommand="cmdOpenRunlevelRay();" />
+		<command id="cmd_js_closeray" oncommand="cmdCloseRay();" />
+		<command id="cmd_js_togglefullscreen" oncommand="cmdToggleFullScreen();" />
+	</commandset>
+
+	<keyset id="mainKeyset">
+		<key key="D" modifiers="shift control" command="cmd_js_console" />
+		<key key="A" modifiers="shift control" command="cmd_js_about" />
+		<key key="E" modifiers="shift control" command="cmd_js_extensions" />
+		<key key="C" modifiers="shift control" command="cmd_js_config" />
+		<key key="V" modifiers="shift control" command="cmd_js_xpcomviewer" />
+		<key key="I" modifiers="shift control" command="cmd_js_dominspector" />
+		<key key="T" modifiers="control" command="cmd_js_opendefaultray" />
+		<key key="R" modifiers="control" command="cmd_js_openrunlevelray" />
+		<key keycode="VK_F4" modifiers="control" command="cmd_js_closeray" />
+		<key keycode="VK_RETURN" modifiers="alt" command="cmd_js_togglefullscreen" />
+	</keyset>
+
+	<popupset id="mainPopupSet">
+		<menupopup class="pulsepopup" id="pulsepopup" position="start_before"
+			onpopupshowing="onPulsePopupShowing(this);" flex="1">
+			<vbox flex="1">
+				<description class="pulsepopupiname" id="pulsepopupiname" />
+				<description class="pulsepopupray" id="pulsepopupray" />
+				<vbox flex="1">
+					<description class="plain pulsepopupcontent" id="pulsepopupcontent"
+						flex="1">
+					</description>
+				</vbox>
+				<box align="right">
+					<button class="pulsepopupexecute" label="Execute"
+						oncommand="onPulsePopupExecute();" />
+				</box>
+			</vbox>
+		</menupopup>
+		<menupopup class="raypopup" id="raypopup" position="start_before"
+			onpopupshowing="onRayPopupShowing();" flex="1">
+			<menuitem label="Open Shell" command="cmd_js_opendefaultray" />
+			<menuitem label="Open Runlevel" command="cmd_js_openrunlevelray" />
+			<menuseparator />
+			<menuitem label="Close" command="cmd_js_closeray" />
+		</menupopup>
+		<menupopup id="logomenupopup" position="start_before">
+			<menuitem label="About" command="cmd_js_about" />
+			<menuitem label="Open Shell" command="cmd_js_opendefaultray" />
+			<menuitem label="Open Runlevel" command="cmd_js_openrunlevelray" />
+			<menuitem label="Toogle Fullscreen" command="cmd_js_togglefullscreen" />
+			<menuseparator />
+			<menuitem label="Configuration" command="cmd_js_config" />
+			<menuitem label="Debug Console" command="cmd_js_console" />
+		</menupopup>
+	</popupset>
+
+	<!-- MAIN UI -->
+
+	<description id="solerror">Hum something went wrong...</description>
+
+	<vbox id="solsuccess" flex="1" style="display: none">
+
+		<hbox flex="1">
+			<vbox>
+				<cl-rayicons id="rayicons" flex="1" />
+				<cl-taskicons id="taskicons" />
+			</vbox>
+			<vbox flex="1">
+				<vbox id="browser-bottombox">
+<!-- 					<findbar browserid="content" id="FindToolbar"/> -->
+	
+					<statusbar class="chromeclass-status" id="status-bar">
+						<statusbarpanel id="statusbar-display" label="..." flex="1"/>
+						<statusbarpanel class="statusbarpanel-progress" collapsed="true" id="statusbar-progresspanel">
+							<progressmeter class="progressmeter-statusbar" id="statusbar-icon" mode="normal" value="0"/>
+						</statusbarpanel>
+					</statusbar>
+				</vbox>
+
+				<hbox flex="1">
+					<deck id="appcontent" flex="1" />
+					<vbox>
+						<vbox class="logomenu" popup="logomenupopup" tooltiptext="Click here to start...">
+							<image src="chrome://branding/content/logo32.png" />
+						</vbox>
+						<vbox id="pulsesbox" flex="1" >
+							<iframe flex="1" id="pulses" src="effects/pulse.html" />
+						</vbox>
+					</vbox>
+				</hbox>
+			</vbox>
+		</hbox>
+
+		<cl-commandbox id="commandbox">
+			<cl-input id="input" onkeypress="onInputKeyPress(event);" flex="1" />
+			<iframe id="fountain" src="effects/fountain.html" />
+		</cl-commandbox>
+
+	</vbox>
+
+</window>

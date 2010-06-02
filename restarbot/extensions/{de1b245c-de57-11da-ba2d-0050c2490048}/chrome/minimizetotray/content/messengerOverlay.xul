@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay [
+<!ENTITY % brandDTD SYSTEM "chrome://minimizetotray/locale/brand.dtd"> %brandDTD;
+<!ENTITY % mailDTD SYSTEM "chrome://messenger/locale/messenger.dtd"> %mailDTD;
+<!ENTITY % abMainWindowDTD SYSTEM "chrome://messenger/locale/addressbook/abMainWindow.dtd"> %abMainWindowDTD;
+<!ENTITY % commonDTD SYSTEM "chrome://minimizetotray/locale/common.dtd"> %commonDTD;
+]>
+<overlay id="minimizetotrayMailOverlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="text/javascript" src="chrome://minimizetotray/content/core.js"/>
+	<script type="text/javascript" src="chrome://minimizetotray/content/mail.js"/>
+	<!--  the key short cut -->
+	<keyset id="tasksKeys">
+		<key id="extensions.mook.minimizetotray.key.menuitem"/>
+	</keyset>
+	<!-- toolbar button -->
+	<toolbarpalette id="MailToolbarPalette">
+		<toolbarbutton id="extensions-minimizetotray-button-minimize"/>
+	</toolbarpalette>
+	<!-- file menu item  -->
+	<menupopup id="menu_FilePopup">
+		<menuseparator id="MinimizeToTrayMenuSeparator"
+			insertafter="printMenuItem"/>
+		<menuitem insertafter="MinimizeToTrayMenuSeparator"
+			id="extensions.mook.minimizetotray.menuitem.menuitem"/>
+	</menupopup>
+	<!-- tray popup -->
+	<window id="messengerWindow">
+		<popup id="extensions.mook.minimizetotray.traypopup"
+			onpopupshowing="window.extensions.mook.minimizetotray.loadPopupMenu();">
+			<menuitem id="extensions.mook.minimizetotray.traypopup.restore"/>
+			<menuseparator
+				id="extensions.mook.minimizetotray.traypopup.restore.separator"/>
+			<menuitem label="&getNewMsgCmd.label;"
+				oncommand="goDoCommand('cmd_getMsgsForAuthAccounts');"/>
+			<menuitem label="&newMsgCmd.label;" accesskey="&newMsgCmd.accesskey;"
+				oncommand="MsgNewMessage(null);"/>
+			<menuitem label="&addressbookWindow.title;"
+				oncommand="toOpenWindowByType('mail:addressbook', 
+                     'chrome://messenger/content/addressbook/addressbook.xul',
+                     'chrome,dialog=no,resizable');"/>
+			<menuseparator id="extensions.mook.minimizetotray.pupup.close.separator"/>
+		</popup>
+	</window>
+</overlay>

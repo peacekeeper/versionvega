@@ -1,0 +1,12 @@
+content crossinglight content/crossinglight/
+content app content/crossinglight/
+content branding content/branding/
+
+locale crossinglight en_US locale/en_US/crossinglight/
+locale app en_US locale/en_US/crossinglight/
+locale branding en-US locale/en_US/branding/
+
+skin crossinglight classic/1.0 skin/classic/
+skin app classic/1.0 skin/classic/
+
+override chrome://global/skin/scrollbars.css chrome://crossinglight/content/override/scrollbars.css

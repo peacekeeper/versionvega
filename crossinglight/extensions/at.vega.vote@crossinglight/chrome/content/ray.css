@@ -1,0 +1,110 @@
+@CHARSET "ISO-8859-1";
+
+window {
+	margin: 0;
+	color: white;
+	background-color: black;
+	font-family: monospace;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+#tabs {
+	-moz-box-align: center;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#content {
+	padding: 10px;
+	overflow: auto;	
+}
+
+#listPollsList {
+	-moz-appearance: none;
+	-moz-border-image: url('chrome://crossinglight/skin/images/border2.png') 3 3 3 3 repeat;
+	background-color: black;
+}
+
+#listPollsList richlistitem {
+	-moz-box-orient: horizontal;
+	-moz-box-align: start;
+	background-image: url('chrome://crossinglight/skin/images/gradient.png');
+	background-repeat: repeat;
+	background-position: 0% 50%;
+	background-color: black;
+	color: white;
+	padding: 2px;
+	margin: 2px;
+	font-family: monospace;
+	font-size: 10pt;
+	font-weight: normal;
+	height: 16px;
+}
+
+#listPollsList richlistitem[selected="true"] {
+	background-image: url('chrome://crossinglight/skin/images/gradient2.png');
+	background-repeat: repeat;
+	background-position: 0% 50%;
+	background-color: black;
+	margin: 0;
+	border: 2px solid white;
+}
+
+#listPollsList richlistitem .addressdescription {
+	font-weight: bold;
+}
+
+#listPollsList richlistitem .descriptiondescription {
+	font-weight: normal;
+}
+
+#listPollsList richlistitem vbox {
+	-moz-box-align: center;
+}	
+
+#pollDetailsBox grid {
+	-moz-border-image: url('chrome://crossinglight/skin/images/border2.png') 3 3 3 3 repeat;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+#titleDescription {
+	font-weight: bold;
+}
+
+#descriptionDescription {
+	font-weight: normal;
+}
+
+#yesDescription {
+	color: #009cff;
+	font-size: 32pt;
+}
+
+#noDescription {
+	color: #ff9c00;
+	font-size: 32pt;
+}
+
+image.deletebutton {
+	list-style-image: url('chrome://crossinglight/skin/images/downloadButtons.png');
+	list-style-position: outside;
+	list-style-type: disc;
+	-moz-image-region: rect(0px, 32px, 16px, 16px);
+}
+
+image.deletebutton:hover {
+	list-style-image: url('chrome://crossinglight/skin/images/downloadButtons.png');
+	list-style-position: outside;
+	list-style-type: disc;
+	-moz-image-region: rect(16px, 32px, 32px, 16px);
+}
+
+row {
+	-moz-box-align: center;
+}
+
+hbox {
+	-moz-box-align: center;
+}

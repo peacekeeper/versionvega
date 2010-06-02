@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "MinimizeToTray - Einstellungen">
+<!ENTITY groupbox.general.label "Einstellungen für MinimizeToTray">
+<!ENTITY chk.always.label "Immer in den Infobereich statt in die Taskleiste  minimieren">
+<!ENTITY chk.always.accesskey "I">
+<!ENTITY chk.twoclickrestore.label "Mit Doppelklick aus dem Infobereich wiederherstellen">
+<!ENTITY chk.twoclickrestore.accesskey "D">
+<!ENTITY chk.minimizeonclose.label "Beim Schließen in den Infobereich minimieren">
+<!ENTITY chk.minimizeonclose.accesskey "S">
+<!ENTITY chk.trayalwaysshow.label "Symbol im Infobereich immer anzeigen">
+<!ENTITY chk.trayalwaysshow.accesskey "a">
+<!ENTITY chk.restoreonopen.label "Fenster wiederherstellen statt ein neues zu öffnen">
+<!ENTITY chk.restoreonopen.accesskey "w">
+<!ENTITY chk.onlyoneicon.label "Nur einzelnes Symbol anzeigen">
+<!ENTITY chk.onlyoneicon.accesskey "e">
+<!ENTITY chk.startwidthwindows.label "Anwendung zusammen mit Windows starten">
+<!ENTITY chk.startwidthwindows.accesskey "z">
+<!ENTITY chk.currentuseronly.label "Nur für den aktuellen Benutzer">
+<!ENTITY chk.currentuseronly.accesskey "B">

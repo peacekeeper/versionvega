@@ -1,0 +1,28 @@
+@CHARSET "ISO-8859-1";
+
+vbox.edit {
+    background-color: black;
+	background-image: url('back.jpg');
+    padding: 10px;
+}
+
+box.edit {
+	padding-bottom: 10px;
+}
+
+textbox.edit {
+	-moz-appearance: none;
+	color: white;
+	font-family: monospace;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+description {
+	-moz-appearance: none;
+	padding: 10px;
+	color: white;
+	font-family: monospace;
+	font-size: 14pt;
+	font-weight: bold;
+}

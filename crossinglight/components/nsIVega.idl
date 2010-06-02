@@ -1,0 +1,39 @@
+#include "nsISupports.idl"
+[scriptable, uuid(03b3745b-2764-4a28-b080-e528998e6485)]
+interface nsIVega : nsISupports
+{
+	void connect(in string localPort, in string remoteHost, in string remotePort, in string parameters);
+	void disconnect();
+	void connected([retval] out string ret);
+	void nodeId([retval] out string ret);
+	void localHost([retval] out string ret);
+	void localPort([retval] out string ret);
+	void publicHost([retval] out string ret);
+	void publicPort([retval] out string ret);
+	void remoteHost([retval] out string ret);
+	void remotePort([retval] out string ret);
+	void parameters([retval] out string ret);
+	void lookupRandom([retval] out string ret);
+	void lookupNeighbors(in string num, out PRUint32 retCount, [array, size_is(retCount), retval] out string ret);
+	void send(in string nodeId, in string ray, in string content, in string flags, in string extension);
+	void subscribeTopic(in string client, in string topic);
+	void unsubscribeTopic(in string client, in string topic);
+	void topics(in string client, out PRUint32 retCount, [array, size_is(retCount), retval] out string ret);
+	void resetTopics(in string client);
+	void multicast(in string topic, in string ray, in string content, in string flags, in string extension);
+	void anycast(in string topic, in string ray, in string content, in string flags, in string extension);
+	void get(in string key, [retval] out string ret);
+	void put(in string key, in string value);
+	void multiPut(in string key, in string value);
+	void multiGet(in string key, out PRUint32 retCount, [array, size_is(retCount), retval] out string ret);
+	void multiGetIndex(in string key, in string index, [retval] out string ret);
+	void multiGetCount(in string key, [retval] out string ret);
+	void multiGetRandom(in string key, [retval] out string ret);
+	void multiDelete(in string key, in string value);
+	void subscribeRay(in string client, in string ray);
+	void unsubscribeRay(in string client, in string ray);
+	void rays(in string client, out PRUint32 retCount, [array, size_is(retCount), retval] out string ret);
+	void resetRays(in string client);
+	void hasPackets(in string client, [retval] out string ret);
+	void fetchPacket(in string client, [retval] out string ret);
+};

@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://restarbot/skin/core.css" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://restarbot/locale/app.dtd">
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" id="&app.id;" title="&app.title;"
+	windowtype="restarbot:window" width="500" height="250" screenX="200"
+	screenY="200" sizemode="normal" hidechrome="false" onload="onWindowLoad();"
+	onunload="onWindowUnload();">
+
+	<!-- SCRIPTS -->
+
+	<script type="application/javascript;version=1.7" src="js/debug.js" />
+	<script type="application/javascript;version=1.7" src="js/net.js" />
+	<script type="application/javascript;version=1.7" src="js/code.js" />
+	<script type="application/javascript;version=1.7" src="restarbot.js" />
+	<script type="application/javascript;version=1.7" src="sol.js" />
+
+	<!-- STRING BUNDLE -->
+
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="strings"
+			src="chrome://restarbot/locale/strings.properties" />
+	</stringbundleset>
+
+	<!-- COMMANDS -->
+
+	<commandset id="mainCommandSet">
+		<command id="cmd_js_console" oncommand="cmdDebugConsole();" />
+		<command id="cmd_js_about" oncommand="cmdAbout();" />
+		<command id="cmd_js_extensions" oncommand="cmdExtensions();" />
+		<command id="cmd_js_config" oncommand="cmdConfig();" />
+		<command id="cmd_js_xpcomviewer" oncommand="cmdXPCOMViewer();" />
+		<command id="cmd_js_dominspector" oncommand="cmdDOMInspector();" />
+		<command id="cmd_js_opendefaultray" oncommand="cmdOpenDefaultRay();" />
+		<command id="cmd_js_openrunlevelray" oncommand="cmdOpenRunlevelRay();" />
+		<command id="cmd_js_closeray" oncommand="cmdCloseRay();" />
+		<command id="cmd_js_togglefullscreen" oncommand="cmdToggleFullScreen();" />
+		<command id="cmd_js_mode_broadcast" oncommand="cmdModeBroadcast();" />
+		<command id="cmd_js_mode_user" oncommand="cmdModeUser();" />
+		<command id="cmd_js_mode_topic" oncommand="cmdModeTopic();" />
+		<command id="cmd_js_mode_random" oncommand="cmdModeRandom();" />
+	</commandset>
+
+	<keyset id="mainKeyset">
+		<key key="D" modifiers="shift control" command="cmd_js_console" />
+		<key key="A" modifiers="shift control" command="cmd_js_about" />
+		<key key="E" modifiers="shift control" command="cmd_js_extensions" />
+		<key key="C" modifiers="shift control" command="cmd_js_config" />
+		<key key="V" modifiers="shift control" command="cmd_js_xpcomviewer" />
+		<key key="I" modifiers="shift control" command="cmd_js_dominspector" />
+		<key key="T" modifiers="control" command="cmd_js_opendefaultray" />
+		<key key="R" modifiers="control" command="cmd_js_openrunlevelray" />
+		<key keycode="VK_F4" modifiers="control" command="cmd_js_closeray" />
+		<key keycode="VK_RETURN" modifiers="alt" command="cmd_js_togglefullscreen" />
+		<key key="1" modifiers="control" command="cmd_js_mode_broadcast" />
+		<key key="2" modifiers="control" command="cmd_js_mode_user" />
+		<key key="3" modifiers="control" command="cmd_js_mode_topic" />
+		<key key="4" modifiers="control" command="cmd_js_mode_random" />
+	</keyset>
+
+	<popupset id="mainPopupSet">
+		<menupopup id="logomenupopup" position="end_before">
+			<menuitem label="About" command="cmd_js_about" />
+			<menuitem label="Open Shell" command="cmd_js_opendefaultray" />
+			<menuitem label="Open Runlevel" command="cmd_js_openrunlevelray" />
+			<menuitem label="Toogle Fullscreen" command="cmd_js_togglefullscreen" />
+			<menuseparator />
+			<menuitem label="Configuration" command="cmd_js_config" />
+			<menuitem label="Debug Console" command="cmd_js_console" />
+		</menupopup>
+	</popupset>
+
+	<!-- MAIN UI -->
+
+	<vbox flex="1" id="splash" hidden="true">
+		<hbox align="center">
+			<image src="chrome://branding/content/logo32.png" />
+			<description>Loading...</description>
+		</hbox>
+		<spacer flex="1" />
+	</vbox>
+
+	<vbox flex="1" id="ui">
+		<hbox class="plain topic">
+			<button id="mode" label="Broadcast!" oncommand="onMode();" tooltiptext="Click here to change the mode." />
+			<description id="broadcast">to all your followers.</description>
+			<textbox id="user" flex="1" />
+			<menulist id="topicsmenulist" flex="1" label="Choose one"
+				editable="true">
+				<menupopup id="topicsmenupopup" />
+			</menulist>
+		</hbox>
+		<spacer />
+		<vbox class="plain edit" flex="1">
+			<textbox class="plain edit" id="edit" multiline="true" flex="1" />
+		</vbox>
+		<spacer />
+		<hbox class="plain bottombox">
+			<vbox class="logomenu" popup="logomenupopup" tooltiptext="Click here to start...">
+				<image src="chrome://branding/content/logo32.png" />
+			</vbox>
+			<cl-taskicons id="taskicons" />
+			<spacer flex="1" />
+			<vbox>
+				<button label="Following" oncommand="onFollowing();" />
+			</vbox>
+			<vbox>
+				<button label="Send" oncommand="onSend();" />
+			</vbox>
+		</hbox>
+	</vbox>
+
+</window>

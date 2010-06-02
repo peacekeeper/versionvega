@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chat.css" type="text/css"?>
+
+<window id="@vega*chat" title="Restarbot: Chat" width="800" height="300"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	onload="onWindowLoad();" onunload="onWindowUnload();">
+
+	<script type="application/javascript;version=1.7" src="js/debug.js" />
+	<script type="application/javascript;version=1.7" src="js/net.js" />
+	<script type="application/javascript;version=1.7" src="js/code.js" />
+	<script src="chat.js" />
+
+	<vbox class="plain" flex="1">
+
+		<vbox id="titlebox">
+			<hbox align="center">
+				<vbox><image src="chrome://branding/content/logo32.png" /></vbox>
+				<description id="title">...</description>
+			</hbox>
+		</vbox>
+		
+		<box class="plain main" flex="1">
+			<iframe class="plain main" id="main" flex="1" src="chat.html" frameborder="0" />
+		</box>
+
+		<cl-commandbox id="commandbox">
+			<cl-input id="input" onkeypress="onInputKeyPress(event);" flex="1" />
+		</cl-commandbox>
+
+	</vbox>
+
+</window>

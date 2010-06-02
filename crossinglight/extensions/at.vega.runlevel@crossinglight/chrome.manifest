@@ -1,0 +1,2 @@
+content at.vega.runlevel chrome/content/ xpcnativewrappers=yes
+locale at.vega.runlevel en-US chrome/locale/en-US/

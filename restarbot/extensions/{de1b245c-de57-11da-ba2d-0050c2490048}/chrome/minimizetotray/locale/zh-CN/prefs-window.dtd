@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "“最小化到托盘”的选项">
+<!ENTITY groupbox.general.label "启动选项">
+<!ENTITY chk.always.label "总是最小化到托盘，替代任务栏">
+<!ENTITY chk.always.accesskey "A">
+<!ENTITY chk.twoclickrestore.label "鼠标双击时从托盘恢复窗口">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "关闭窗口时最小化到托盘">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "总是显示托盘图标">
+<!ENTITY chk.trayalwaysshow.accesskey "T">
+<!ENTITY chk.restoreonopen.label "使用恢复窗口代替打开新窗口">
+<!ENTITY chk.restoreonopen.accesskey "W">
+<!ENTITY chk.onlyoneicon.label "只显示一个托盘图标">
+<!ENTITY chk.onlyoneicon.accesskey "I">
+<!ENTITY chk.startwidthwindows.label "跟随 Windows 启动">
+<!ENTITY chk.startwidthwindows.accesskey "S">
+<!ENTITY chk.currentuseronly.label "仅限当前用户使用">
+<!ENTITY chk.currentuseronly.accesskey "C">

@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://app/skin/common.css" type="text/css"?>
+<?xml-stylesheet href="ray.css" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://app/locale/app.dtd">
+
+<window id="@vega*runlevel" title="@vega*runlevel" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" onload="onLoad();" onunload="onUnload();"
+	flex="1" style="overflow:auto">
+
+	<script src="ray.js" />
+
+	<hbox id="runlevels">
+		<description>Node Runlevel: </description>
+		<description id="runlevelDescription" />
+		<description class="runlevelBox" id="runlevelBox0" style="color: gray">*****</description>
+		<description class="runlevelBox" id="runlevelBox1" style="color: red">*****</description>
+		<description class="runlevelBox" id="runlevelBox2" style="color: orange">*****</description>
+		<description class="runlevelBox" id="runlevelBox3" style="color: yellow">*****</description>
+		<html:a style="display:block" href="#" id="refreshButton" onclick="onRefresh();">Refresh</html:a>
+	</hbox>
+
+	<vbox id="content" flex="1">
+
+	<vbox id="nothingPanel" class="plain border2">
+
+		<cl-section>@versionvega access service not available.</cl-section>
+
+		<description multiline="true" class="plain">For &app.title; to work, the
+		@versionvega access service must be activated.</description>
+
+		<hbox style="margin-top: 5px"><button class="plain" label="Try again." oncommand="onNothing();" /></hbox>
+
+	</vbox>
+
+	<vbox id="onlinePanel" class="plain border2">
+
+		<cl-section>Online!</cl-section>
+
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows flex="1" class="plain">
+				<row class="plain">
+					<description class="plain">Port:</description>
+					<description class="plain" id="onlineLocalPort" flex="1" />
+				</row>
+				<row class="plain">
+					<description class="plain">Node ID:</description>
+					<description class="plain" id="onlineNodeId" flex="1" />
+				</row>
+			</rows>
+		</grid>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows flex="1" class="plain">
+				<row class="plain">
+					<description class="plain"># of Direct Neighbors:</description>
+					<description class="plain" id="onlineNeighborNodes" flex="1" />
+				</row>
+				<row class="plain">
+					<description class="plain"># of Network Nodes:</description>
+					<description class="plain" id="onlineNetworkNodes" flex="1" />
+				</row>
+				<row class="plain">
+					<hbox style="margin-top: 5px"><button class="plain" label="Go Offline." oncommand="onGoOffline();" /></hbox>
+				</row>
+			</rows>
+		</grid>
+
+	</vbox>
+
+	<vbox id="offlinePanel" class="plain border2">
+
+		<cl-section>Offline!</cl-section>
+
+		<grid flex="1" class="plain">
+			<rows flex="1" class="plain">
+				<row class="plain">
+					<description>Connect to network</description>
+				</row>
+				<row class="plain">
+					<textbox id="offlineConnectTo" flex="1" value="" onkeypress="onOfflineKeyPress(event);" />
+					<hbox><button class="plain" label="Go Online." oncommand="onGoOnline1();" /></hbox>
+				</row>
+				<row class="plain" style="padding-top: 15px">
+					<description>Start new network</description>
+					<hbox><button class="plain" label="Go Online." oncommand="onGoOnline2();" /></hbox>
+				</row>
+			</rows>
+		</grid>
+
+	</vbox>
+
+	<spacer style="height: 10px" />
+
+	<vbox id="loggedinPanel" class="plain border2">
+
+		<cl-section>Logged in!</cl-section>
+
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows flex="1" class="plain">
+				<row class="plain">
+					<description class="plain">I-Name:</description>
+					<description class="plain" id="loggedinIname" flex="1" />
+				</row>
+				<row class="plain">
+					<description class="plain">I-Number:</description>
+					<description class="plain" id="loggedinInumber" flex="1" />
+				</row>
+				<row class="plain">
+					<hbox style="margin-top: 5px"><button class="plain" label="Logout." oncommand="onLogout();" /></hbox>
+				</row>
+			</rows>
+		</grid>
+
+	</vbox>
+
+	<vbox id="loggedoutPanel" class="plain border2">
+
+		<cl-section>Not logged in!</cl-section>
+
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows flex="1" class="plain">
+				<row class="plain">
+					<description class="plain">I-Name:</description>
+					<textbox id="loggedoutIname" flex="1" value="" onkeypress="onLoggedoutKeyPress(event);" />
+				</row>
+				<row class="plain">
+					<description class="plain">Password:</description>
+					<textbox id="loggedoutPassword" flex="1" value="" type="password" onkeypress="onLoggedoutKeyPress(event);" />
+				</row>
+				<row class="plain">
+					<checkbox id="stayInvisible" label="Stay invisible" checked="false" />
+				</row>
+				<row class="plain">
+					<hbox style="margin-top: 5px"><button class="plain" label="Login." oncommand="onLogin();" /></hbox>
+				</row>
+			</rows>
+		</grid>
+
+	</vbox>
+
+	<spacer style="height: 10px" />
+
+	<vbox class="plain border2">
+
+		<cl-section>About the status fountain</cl-section>
+
+		<description multiline="true">
+		The node runlevel as well as the status fountain in the bottom right corner
+		indicate your current @versionvega connection and identity status. For most 
+		purposes the color should be yellow. The following colors are possible:
+		</description>
+
+		<spacer style="height: 10px" />
+
+		<description multiline="true">
+		<html:div><html:span style="color:gray">GRAY</html:span> ... The @versionvega access service is not activated.</html:div>
+		</description>
+
+		<description multiline="true">
+		<html:div><html:span style="color:red">RED</html:span> ... You are not connected to any network.</html:div>
+		</description>
+
+		<description multiline="true">
+		<html:div><html:span style="color:orange">ORANGE</html:span> ... You are connected to a network, but not identified.</html:div>
+		</description>
+
+		<description multiline="true">
+		<html:div><html:span style="color:yellow">YELLOW</html:span> ... You are connected to a network and identified.</html:div>
+		</description>
+
+	</vbox>
+
+	</vbox>
+
+</window>

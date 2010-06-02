@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay [
+<!ENTITY % brandDTD SYSTEM "chrome://minimizetotray/locale/brand.dtd"> %brandDTD;
+<!ENTITY % browserDTD SYSTEM "chrome://browser/locale/browser.dtd"> %browserDTD;
+<!ENTITY % commonDTD SYSTEM "chrome://minimizetotray/locale/common.dtd"> %commonDTD;
+]>
+<overlay id="minimizetotrayBrowserOverlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="text/javascript" src="chrome://minimizetotray/content/core.js"/>
+	<script type="text/javascript" src="chrome://minimizetotray/content/browser.js"/>
+	<!--  the key short cut -->
+	<keyset id="mainKeyset">
+		<key id="extensions.mook.minimizetotray.key.menuitem"/>
+	</keyset>
+	<!-- toolbar button -->
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbarbutton id="extensions-minimizetotray-button-minimize"/>
+	</toolbarpalette>
+	<!-- file menu item  -->
+	<menupopup id="menu_FilePopup">
+		<menuitem insertafter="goOfflineMenuitem"
+			id="extensions.mook.minimizetotray.menuitem.menuitem"/>
+		<menuseparator insertafter="goOfflineMenuitem"/>
+	</menupopup>
+	<!-- tray popup -->
+	<popupset id="mainPopupSet">
+		<popup id="extensions.mook.minimizetotray.traypopup"
+			onpopupshowing="window.extensions.mook.minimizetotray.loadPopupMenu();">
+			<menuitem id="extensions.mook.minimizetotray.traypopup.restore"/>
+			<menuitem label="&cmd.newwindow.label;" accesskey="&cmd.newwindow.accesskey;"
+				command="cmd_newNavigator"/>
+			<menuseparator/>
+			<!--
+				- open download manager by using toOpenWindowByType - instead of
+				command="Tools:Downloads" to force it to - open a new window when
+				Download Manager Tweak is installed - (which overrides the command).
+			-->
+			<menuitem label="&downloads.label;" accesskey="&downloads.accesskey;"
+				oncommand="toOpenWindowByType('Download:Manager', 
+                     'chrome://mozapps/content/downloads/downloads.xul',
+                     'chrome,dialog=no,resizable');"/>
+			<menuseparator id="extensions.mook.minimizetotray.pupup.close.separator"/>
+		</popup>
+	</popupset>
+	<!-- F11 minimize-button Overlay -->
+	<toolbarbutton id="minimize-button" oncommand="mtt_minimizebuttonOnCommand();"
+		onclick="mtt_minimizebuttonOnClick(event);"/>
+</overlay>

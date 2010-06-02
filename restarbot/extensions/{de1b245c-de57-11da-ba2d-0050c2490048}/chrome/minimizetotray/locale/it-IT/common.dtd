@@ -1,0 +1,20 @@
+<!ENTITY button.totray.label "Riduci a icona">
+<!ENTITY button.totray.tooltip "Riduci la finestra a icona nell'area di notifica">
+<!ENTITY cmd.totray.label "Riduci a icona nell'area di notifica">
+<!ENTITY cmd.totray.accesskey "o">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!ENTITY cmd.restore.label "Ripristina &brandShortName;">
+<!ENTITY cmd.restore.window.label "Ripristina finestra">
+<!ENTITY cmd.restore.accesskey "R">
+<!ENTITY cmd.restoreall.label "Ripristina tutte le finestre">
+<!ENTITY cmd.restoreall.accesskey "t">
+<!ENTITY cmd.close.label "Chiudi &brandShortName;">
+<!ENTITY cmd.close.window.label "Chiudi finestra">
+<!ENTITY cmd.close.accesskey "C">
+<!ENTITY cmd.quit.label "Termina avvio rapido">
+<!ENTITY cmd.quit.accesskey "E">
+<!ENTITY cmd.newwindow.label "Nuova finestra">
+<!ENTITY cmd.newwindow.accesskey "N">
+<!ENTITY menu.restore.label "Ripristina">
+<!ENTITY menu.restore.accesskey "R">

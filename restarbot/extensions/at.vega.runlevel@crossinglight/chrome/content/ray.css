@@ -1,0 +1,49 @@
+@CHARSET "ISO-8859-1";
+
+window {
+	margin: 0;
+	color: white;
+	background-color: black;
+	background-image: url('back.png');
+	background-position: top right;
+	background-repeat: no-repeat;
+	font-family: monospace;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+#runlevels {
+	-moz-box-align: center;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#runlevelDescription {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.runlevelBox {
+}
+
+#refreshButton {
+	color: white;
+	margin-left: 10px;
+}
+
+#content {
+	padding: 10px;
+	overflow: auto;	
+}
+
+textbox {
+	background-color: white;
+}
+
+row {
+	-moz-box-align: center;
+}
+
+vbox.border2 {
+	padding: 10px;
+}

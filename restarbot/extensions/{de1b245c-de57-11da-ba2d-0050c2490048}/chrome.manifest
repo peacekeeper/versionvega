@@ -1,0 +1,76 @@
+content	minimizetotray										chrome/minimizetotray/content/
+skin	minimizetotray	classic/1.0							chrome/minimizetotray/skin/
+
+override chrome://minimizetotray/locale/brand.dtd chrome://global/locale/brand.dtd
+
+# Restarbot
+overlay	chrome://restarbot/content/restarbot.xul		        chrome://restarbot/content/overlay/restarbotOverlay.xul application={restarbot@versionvega}
+overlay	chrome://restarbot/content/restarbot.xul		        chrome://minimizetotray/content/minimizetotray.xul
+
+# Firefox, Flock
+overlay	chrome://browser/content/browser.xul		        chrome://minimizetotray/content/browserOverlay.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+overlay	chrome://browser/content/browser.xul		        chrome://minimizetotray/content/browserOverlay.xul application={a463f10c-3994-11da-9945-000d60ca027b}
+overlay	chrome://browser/content/browser.xul		        chrome://minimizetotray/content/minimizetotray.xul
+
+# Firefox download window
+overlay chrome://mozapps/content/downloads/downloads.xul    chrome://minimizetotray/content/downloadOverlay.xul
+overlay chrome://mozapps/content/downloads/downloads.xul    chrome://minimizetotray/content/minimizetotray.xul
+
+# Thunderbird, Postbox
+overlay	chrome://messenger/content/messenger.xul	        chrome://minimizetotray/content/mailOverlay.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6}
+overlay	chrome://messenger/content/messenger.xul	        chrome://minimizetotray/content/mailOverlay.xul application=postbox@postbox-inc.com
+overlay	chrome://messenger/content/messenger.xul	        chrome://minimizetotray/content/minimizetotray.xul
+
+# Sunbird
+overlay chrome://sunbird/content/calendar.xul				chrome://minimizetotray/content/calendarOverlay.xul
+overlay chrome://sunbird/content/calendar.xul		        chrome://minimizetotray/content/minimizetotray.xul
+
+# SeaMonkey
+overlay chrome://navigator/content/navigator.xul			chrome://minimizetotray/content/navigatorOverlay.xul
+overlay chrome://navigator/content/navigator.xul			chrome://minimizetotray/content/minimizetotray.xul
+overlay	chrome://messenger/content/messenger.xul			chrome://minimizetotray/content/messengerOverlay.xul application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}
+
+# Songbird
+overlay chrome://songbird/content/xul/layoutWithBrowserOverlay.xul	chrome://minimizetotray/content/playerOverlay.xul
+overlay chrome://songbird/content/xul/layoutWithBrowserOverlay.xul	chrome://minimizetotray/content/minimizetotray.xul
+override chrome://minimizetotray/locale/brand.dtd chrome://branding/locale/brand.dtd application=songbird@songbirdnest.com
+
+style	chrome://global/content/customizeToolbar.xul		chrome://minimizetotray/skin/minimizetotray.css
+
+#locale	minimizetotray	bg-BG	chrome/minimizetotray/locale/bg-BG/
+locale	minimizetotray	ca-AD	chrome/minimizetotray/locale/ca-AD/
+#locale	minimizetotray	cs-CZ	chrome/minimizetotray/locale/cs-CZ/
+locale	minimizetotray	da-DK	chrome/minimizetotray/locale/da-DK/
+locale	minimizetotray	de		chrome/minimizetotray/locale/de/
+locale	minimizetotray	el-GR	chrome/minimizetotray/locale/el-GR/
+locale	minimizetotray	en-US	chrome/minimizetotray/locale/en-US/
+locale	minimizetotray	es-ES	chrome/minimizetotray/locale/es-ES/
+locale	minimizetotray	et-EE	chrome/minimizetotray/locale/et-EE/
+#locale	minimizetotray	eu-ES	chrome/minimizetotray/locale/eu-ES/
+#locale	minimizetotray	fi-FI	chrome/minimizetotray/locale/fi-FI/
+locale	minimizetotray	fr		chrome/minimizetotray/locale/fr/
+locale	minimizetotray	fy-NL	chrome/minimizetotray/locale/fy-NL/
+locale	minimizetotray	he-IL	chrome/minimizetotray/locale/he-IL/
+locale	minimizetotray	hr-HR	chrome/minimizetotray/locale/hr-HR/
+locale	minimizetotray	hu-HU	chrome/minimizetotray/locale/hu-HU/
+locale	minimizetotray	is-IS	chrome/minimizetotray/locale/is-IS/
+locale	minimizetotray	it-IT	chrome/minimizetotray/locale/it-IT/
+locale	minimizetotray	ja	    chrome/minimizetotray/locale/ja/
+locale	minimizetotray	ko-KR	chrome/minimizetotray/locale/ko-KR/
+locale	minimizetotray	lt-LT	chrome/minimizetotray/locale/lt-LT/
+locale	minimizetotray	mk-MK	chrome/minimizetotray/locale/mk-MK/
+#locale	minimizetotray	nb-NO	chrome/minimizetotray/locale/nb-NO/
+locale	minimizetotray	nl		chrome/minimizetotray/locale/nl/
+locale	minimizetotray	pl-PL	chrome/minimizetotray/locale/pl-PL/
+locale	minimizetotray	pt-BR	chrome/minimizetotray/locale/pt-BR/
+locale	minimizetotray	pt-PT	chrome/minimizetotray/locale/pt-PT/
+locale	minimizetotray	ro-RO	chrome/minimizetotray/locale/ro-RO/
+locale	minimizetotray	ru-RU	chrome/minimizetotray/locale/ru-RU/
+locale	minimizetotray	si-LK	chrome/minimizetotray/locale/si-LK/
+locale	minimizetotray	sk-SK	chrome/minimizetotray/locale/sk-SK/
+#locale	minimizetotray	sl-SL	chrome/minimizetotray/locale/sl-SL/
+locale	minimizetotray	sr-RS	chrome/minimizetotray/locale/sr-RS/
+#locale	minimizetotray	sv-SE	chrome/minimizetotray/locale/sv-SE/
+locale	minimizetotray	vi-VN	chrome/minimizetotray/locale/vi-VN/
+locale	minimizetotray	zh-CN	chrome/minimizetotray/locale/zh-CN/
+locale	minimizetotray	zh-TW	chrome/minimizetotray/locale/zh-TW/

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay [
+<!ENTITY % brandDTD SYSTEM "chrome://minimizetotray/locale/brand.dtd"> %brandDTD;
+<!ENTITY % browserDTD SYSTEM "chrome://app/locale/app.dtd"> %browserDTD;
+<!ENTITY % commonDTD SYSTEM "chrome://minimizetotray/locale/common.dtd"> %commonDTD;
+]>
+<overlay id="minimizetotrayBrowserOverlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="text/javascript" src="chrome://minimizetotray/content/core.js"/>
+	<script type="text/javascript" src="chrome://minimizetotray/content/browser.js"/>
+	<keyset id="mainKeyset">
+		<key id="extensions.mook.minimizetotray.key.menuitem" />
+	</keyset>
+	<commandset id="mainCommandSet" />
+	<!-- tray popup -->
+	<popupset id="mainPopupSet">
+		<popup id="extensions.mook.minimizetotray.traypopup"
+			onpopupshowing="window.extensions.mook.minimizetotray.loadPopupMenu();">
+			<menuitem id="extensions.mook.minimizetotray.traypopup.restore"/>
+			<menuitem label="Broadcast!" command="cmd_js_mode_broadcast"/>
+			<menuitem label="Send to user!" command="cmd_js_mode_user"/>
+			<menuitem label="Send to channel!" command="cmd_js_mode_topic"/>
+			<menuitem label="Send to random!" command="cmd_js_mode_random"/>
+			<menuseparator id="extensions.mook.minimizetotray.pupup.close.separator"/>
+		</popup>
+	</popupset>
+	<!-- F11 minimize-button Overlay -->
+	<toolbarbutton id="minimize-button" oncommand="mtt_minimizebuttonOnCommand();"
+		onclick="mtt_minimizebuttonOnClick(event);"/>
+</overlay>

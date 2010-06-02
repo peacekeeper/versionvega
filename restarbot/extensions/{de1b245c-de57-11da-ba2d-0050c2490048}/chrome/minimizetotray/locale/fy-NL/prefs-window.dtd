@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "MinimizeToTray Opsjes">
+<!ENTITY groupbox.general.label "MinimizeToTray Opsjes">
+<!ENTITY chk.always.label "Altyd nei it systeemfek ferlytsje">
+<!ENTITY chk.always.accesskey "A">
+<!ENTITY chk.twoclickrestore.label "Dûbelklikke om wer út it systeemfek op te roppen">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "By sluten nei it systeemfek ferlytsje">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "Fekikoantsje altyd toane">
+<!ENTITY chk.trayalwaysshow.accesskey "t">
+<!ENTITY chk.restoreonopen.label "Finster werstelle yn stee fan in nije iepenje">
+<!ENTITY chk.restoreonopen.accesskey "w">
+<!ENTITY chk.onlyoneicon.label "Altyd mar ien ikoantsje toane">
+<!ENTITY chk.onlyoneicon.accesskey "i">
+<!ENTITY chk.startwidthwindows.label "Start applikaasje mei finsters">
+<!ENTITY chk.startwidthwindows.accesskey "S">
+<!ENTITY chk.currentuseronly.label "Allinnich foar de aktuele brûker">
+<!ENTITY chk.currentuseronly.accesskey "a">

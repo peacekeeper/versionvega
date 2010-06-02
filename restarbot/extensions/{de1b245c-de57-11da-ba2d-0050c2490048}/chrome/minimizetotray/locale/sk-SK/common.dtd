@@ -1,0 +1,24 @@
+<!--     toolbar button     -->
+<!ENTITY button.totray.label "Minimalizovať">
+<!ENTITY button.totray.tooltip "Minimalizovať okno do oznamovacej oblasti">
+<!--	 menu item			-->
+<!ENTITY cmd.totray.label "Minimalizovať do oznamovacej oblasti">
+<!ENTITY cmd.totray.accesskey "n">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!--     tray popup     -->
+<!ENTITY cmd.restore.label "Obnoviť &brandShortName;">
+<!ENTITY cmd.restore.window.label "Obnoviť okno">
+<!ENTITY cmd.restore.accesskey "R">
+<!ENTITY cmd.restoreall.label "Obnoviť všetko">
+<!ENTITY cmd.restoreall.accesskey "v">
+<!ENTITY cmd.close.label "Zavrieť &brandShortName;">
+<!ENTITY cmd.close.window.label "Zavrieť okno">
+<!ENTITY cmd.close.accesskey "C">
+<!ENTITY cmd.quit.label "Ukončiť rýchle spustenie">
+<!ENTITY cmd.quit.accesskey "x">
+<!ENTITY cmd.newwindow.label "Otvoriť nové okno">
+<!ENTITY cmd.newwindow.accesskey "N">
+<!--     tray sub menu   -->
+<!ENTITY menu.restore.label "Obnoviť">
+<!ENTITY menu.restore.accesskey "O">

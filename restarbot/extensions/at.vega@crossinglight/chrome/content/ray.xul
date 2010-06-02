@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://app/skin/common.css" type="text/css"?>
+<?xml-stylesheet href="ray.css" type="text/css"?>
+
+<window id="@vega" title="@vega"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" onload="onLoad();" onunload="onUnload();">
+
+	<script src="ray.js" />
+
+	<vbox class="plain main" flex="1">
+
+		<html:iframe class="plain main" id="main" flex="1" src="ray.html"
+			frameborder="0" />
+
+		<grid class="plain" id="apps">
+			<columns>
+				<column flex="1" />
+				<column flex="1" />
+				<column flex="1" />
+			</columns>
+			<rows>
+				<row>
+					<hbox align="center"><image src="chrome://app/skin/images/button1.png" /><html:a style="display:block" href="#" onclick="onButton1();">Runlevel</html:a></hbox>
+					<hbox align="center"><image src="chrome://app/skin/images/button2.png" /><html:a style="display:block" href="#" onclick="onButton2();">Identity</html:a></hbox>
+					<hbox align="center"><image src="chrome://app/skin/images/button3.png" /><html:a style="display:block" href="#" onclick="onButton3();">Friends</html:a></hbox>
+				</row>
+				<row>
+					<hbox align="center"><image src="chrome://app/skin/images/button4.png" /><html:a style="display:block" href="#" onclick="onButton4();">Direct Chat</html:a></hbox>
+					<hbox align="center"><image src="chrome://app/skin/images/button5.png" /><html:a style="display:block" href="#" onclick="onButton5();">Topic Chat</html:a></hbox>
+					<hbox align="center"><image src="chrome://app/skin/images/button6.png" /><html:a style="display:block" href="#" onclick="onButton6();">Broadcast Chat</html:a></hbox>
+				</row>
+				<row>
+					<hbox align="center"><image src="chrome://app/skin/images/button7.png" /><html:a style="display:block" href="#" onclick="onButton7();">Read Text</html:a></hbox>
+					<hbox align="center"><image src="chrome://app/skin/images/button8.png" /><html:a style="display:block" href="#" onclick="onButton8();">Write Text</html:a></hbox>
+					<hbox align="center"><image src="chrome://app/skin/images/button9.png" /><html:a style="display:block" href="#" onclick="onButton9();">...</html:a></hbox>
+				</row>
+				<row>
+					<hbox align="center"><image src="chrome://app/skin/images/button10.png" /><html:a style="display:block" href="#" onclick="onButton10();">Web Overlay</html:a></hbox>
+					<hbox align="center"><image src="chrome://app/skin/images/button11.png" /><html:a style="display:block" href="#" onclick="onButton11();">Voting</html:a></hbox>
+					<hbox align="center"><image src="chrome://app/skin/images/button12.png" /><html:a style="display:block" href="#" onclick="onButton12();">Control Panel</html:a></hbox>
+				</row>
+			</rows>
+		</grid>
+
+	</vbox>
+
+</window>

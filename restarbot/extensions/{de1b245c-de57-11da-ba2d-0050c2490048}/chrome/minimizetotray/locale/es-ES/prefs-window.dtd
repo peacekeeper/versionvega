@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Minimize To Tray - Opciones">
+<!ENTITY groupbox.general.label "Opciones de inicio">
+<!ENTITY chk.always.label "Minimizar siempre al área de notificación en lugar de a la barra de tareas">
+<!ENTITY chk.always.accesskey "S">
+<!ENTITY chk.twoclickrestore.label "Usar doble click para restaurar del área de notificación">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "Minimizar al área de notificación al cerrar">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "Mostrar siempre el icono en la bandeja">
+<!ENTITY chk.trayalwaysshow.accesskey "s">
+<!ENTITY chk.restoreonopen.label "Restaurar la ventana en lugar de abrir una nueva">
+<!ENTITY chk.restoreonopen.accesskey "v">
+<!ENTITY chk.onlyoneicon.label "Mostrar sólo un icono en la bandeja">
+<!ENTITY chk.onlyoneicon.accesskey "i">
+<!ENTITY chk.startwidthwindows.label "Iniciar la aplicación con windows">
+<!ENTITY chk.startwidthwindows.accesskey "n">
+<!ENTITY chk.currentuseronly.label "Sólo para el usuario actual">
+<!ENTITY chk.currentuseronly.accesskey "u">

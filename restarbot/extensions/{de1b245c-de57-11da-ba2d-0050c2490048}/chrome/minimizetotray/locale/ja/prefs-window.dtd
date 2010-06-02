@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Minimize To Tray オプション">
+<!ENTITY groupbox.general.label "起動オプション">
+<!ENTITY chk.always.label "常にタスクバーの代わりにトレイへ最小化">
+<!ENTITY chk.always.accesskey "A">
+<!ENTITY chk.twoclickrestore.label "ダブルクリックでトレイから元に戻す">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "閉じるとトレイに最小化">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "トレイアイコンを常に表示する">
+<!ENTITY chk.trayalwaysshow.accesskey "T">
+<!ENTITY chk.restoreonopen.label "新規ウィンドウを開く代わりに元に戻す">
+<!ENTITY chk.restoreonopen.accesskey "W">
+<!ENTITY chk.onlyoneicon.label "トレイアイコンを一つだけ表示する">
+<!ENTITY chk.onlyoneicon.accesskey "I">
+<!ENTITY chk.startwidthwindows.label "システム起動時に &brandShortName; をクイック起動モードで読み込む">
+<!ENTITY chk.startwidthwindows.accesskey "S">
+<!ENTITY chk.currentuseronly.label "現在のユーザーのみ">
+<!ENTITY chk.currentuseronly.accesskey "C">

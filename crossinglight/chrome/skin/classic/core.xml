@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<bindings xmlns="http://www.mozilla.org/xbl"
+	xmlns:xbl="http://www.mozilla.org/xbl"
+	xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<binding id="cl-input" extends="chrome://global/content/bindings/textbox.xml#textbox">
+		<content>
+			<children />
+			<xul:vbox><xul:image src="chrome://crossinglight/skin/images/input.png" /></xul:vbox>
+			<xul:hbox class="textbox-input-box plain" flex="1" xbl:inherits="context,spellcheck">
+				<html:input class="textbox-input plain" flex="1" anonid="input" xbl:inherits="onfocus,onblur,value,type,maxlength,disabled,size,readonly,tabindex,accesskey"/>
+			</xul:hbox>
+		</content>
+	</binding>
+	<binding id="statusbar" extends="chrome://global/content/bindings/general.xml#statusbar">
+		<content>
+			<children/>
+		</content>
+	</binding>
+	<binding id="cl-rayicon" extends="chrome://global/content/bindings/general.xml#image">
+		<content>
+			<children/>
+			<xul:image xbl:inherits="src,alt" />
+			<xul:label xbl:inherits="value" />
+		</content>
+	</binding>
+	<binding id="cl-taskicon" extends="chrome://global/content/bindings/general.xml#image">
+		<content>
+			<children/>
+			<xul:box><xul:image src="chrome://crossinglight/skin/images/task.png" xbl:inherits="alt" /></xul:box>
+		</content>
+	</binding>
+	<binding id="cl-taskqueuedicon" extends="chrome://global/content/bindings/general.xml#image">
+		<content>
+			<children/>
+			<xul:box><xul:image src="chrome://crossinglight/skin/images/taskqueued.png" xbl:inherits="alt tooltiptext" /></xul:box>
+		</content>
+	</binding>
+</bindings>

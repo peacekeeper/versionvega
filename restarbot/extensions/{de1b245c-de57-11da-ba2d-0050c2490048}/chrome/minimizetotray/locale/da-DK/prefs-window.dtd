@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Minimize To Tray - Indstillinger">
+<!ENTITY groupbox.general.label "Opstartsindstillinger">
+<!ENTITY chk.always.label "Minimer altid til statusfeltet i stedet for til proceslinjen">
+<!ENTITY chk.always.accesskey "n">
+<!ENTITY chk.twoclickrestore.label "Kræv et dobbeltklik for at gendanne fra statusfeltet">
+<!ENTITY chk.twoclickrestore.accesskey "K">
+<!ENTITY chk.minimizeonclose.label "Minimer til statusfeltet ved luk">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "Vis altid ikonet i statusfeltet">
+<!ENTITY chk.trayalwaysshow.accesskey "V">
+<!ENTITY chk.restoreonopen.label "Gendan vindue i stedet for at åbne nyt">
+<!ENTITY chk.restoreonopen.accesskey "G">
+<!ENTITY chk.onlyoneicon.label "Vis aldrig mere end et ikon i statusfeltet">
+<!ENTITY chk.onlyoneicon.accesskey "s">
+<!ENTITY chk.startwidthwindows.label "Indlæs &brandShortName; i Kvik start-tilstand ved systemopstart">
+<!ENTITY chk.startwidthwindows.accesskey "I">
+<!ENTITY chk.currentuseronly.label "Kun for denne bruger">
+<!ENTITY chk.currentuseronly.accesskey "u">

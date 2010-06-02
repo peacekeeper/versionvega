@@ -1,0 +1,9 @@
+@CHARSET "ISO-8859-1";
+
+box.main {
+	background-color: black;
+	padding: 10px 10px 10px 10px;
+}
+
+iframe.main {
+}

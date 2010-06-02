@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://restarbot/skin/core.css" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://restarbot/locale/app.dtd">
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" id="&app.id;" title="Following"
+	windowtype="restarbot:following:window" width="500" height="250" screenX="250"
+	screenY="250" sizemode="normal" hidechrome="false" onload="onWindowLoad();"
+	onunload="onWindowUnload();">
+
+	<!-- SCRIPTS -->
+
+	<script type="application/javascript;version=1.7" src="js/debug.js" />
+	<script type="application/javascript;version=1.7" src="js/net.js" />
+	<script type="application/javascript;version=1.7" src="js/code.js" />
+	<script type="application/javascript;version=1.7" src="following.js" />
+
+	<!-- STRING BUNDLE -->
+
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="strings"
+			src="chrome://restarbot/locale/strings.properties" />
+	</stringbundleset>
+
+	<!-- MAIN UI -->
+
+	<vbox flex="1">
+		<description>Users and topics you are following:</description>
+		<richlistbox id="topicslist" flex="1">
+		</richlistbox>
+		<spacer />
+		<hbox class="plain bottombox">
+			<textbox id="addtopictextbox" value="+newtopic" />
+			<image class="addbutton" tooltiptext="Subscribe" onclick="onSubscribe();" />
+			<spacer flex="1" />
+			<vbox>
+				<button label="Ok" oncommand="onOk();" />
+			</vbox>
+		</hbox>
+	</vbox>
+
+</window>

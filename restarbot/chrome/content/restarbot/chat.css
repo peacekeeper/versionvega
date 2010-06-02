@@ -1,0 +1,38 @@
+@CHARSET "ISO-8859-1";
+
+window {
+	-moz-appearance: none;
+	color: white;
+	background-color: black;
+	font-family: monospace;
+	font-size: 14pt;
+	font-weight: bold;
+	padding: 5px;
+}
+
+box.main {
+	background-color: black;
+	padding: 10px 10px 10px 10px;
+}
+
+iframe.main {
+}
+
+cl-commandbox {
+	-moz-box-orient: horizontal;
+	-moz-border-image: url('chrome://restarbot/skin/images/border.png') 3 3 3 3 repeat;
+	background-repeat: repeat-x;
+	margin: 8px;
+	padding: 0;
+}
+
+cl-input {
+	-moz-binding: url('chrome://restarbot/skin/core.xml#cl-input');
+	-moz-box-align: center;
+	background-color: black;
+	padding: 10px 10px 10px 10px;
+	font-family: Courier New, Courier, monospace;
+	font-size: 14pt;
+	font-weight: bold;
+	color: white;
+}

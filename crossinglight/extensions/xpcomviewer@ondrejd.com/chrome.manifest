@@ -1,0 +1,24 @@
+content xpcomviewer chrome/content/ xpcnativewrappers=yes
+locale xpcomviewer en-US chrome/locale/en-US/
+locale xpcomviewer cs-CZ chrome/locale/cs-CZ/
+skin xpcomviewer classic/1.0 chrome/skin/classic/
+
+# Mozilla Firefox overlays
+overlay chrome://browser/content/browser.xul chrome://xpcomviewer/content/overlays/firefox.xul
+style chrome://global/content/customizeToolbar.xul chrome://xpcomviewer/skin/overlays.css
+
+# Mozilla Thunderbird overlays
+overlay chrome://messenger/content/mailWindowOverlay.xul chrome://xpcomviewer/content/overlays/thunderbird.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6}
+overlay chrome://messenger/content/messengercompose/messengercompose.xul chrome://xpcomviewer/content/overlays/thunderbird.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6}
+overlay chrome://messenger/content/addressbook/addressbook.xul chrome://xpcomviewer/content/overlays/thunderbird.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6}
+
+#overlay chrome://komodo/content/komodo.xul chrome://xpcomviewer/content/overlays/komodo.xul
+#overlay chrome://songbird/content/xul/menuOverlay.xul chrome://xpcomviewer/content/overlays/songbird.xul application=songbird@songbirdnest.com
+#overlay chrome://calendar/content/calendar.xul chrome://xpcomviewer/content/overlays/sunbird.xul application={718e30fb-e89b-41dd-9da7-e25a45638b28}
+#style chrome://calendar/content/customizeToolbar.xul chrome://xpcomviewer/skin/overlays.css application={718e30fb-e89b-41dd-9da7-e25a45638b28}
+#overlay chrome://instantbird/content/blist.xul chrome://xpcomviewer/content/overlays/instantbird.xul application={33cb9019-c295-46dd-be21-8c4936574bee}
+#overlay chrome://emusic/content/startup.xul chrome://xpcomviewer/content/overlays/emusic.xul application=dlm@emusic.com
+#overlay chrome://communicator/content/tasksOverlay.xul chrome://xpcomviewer/content/overlays/seamonkey.xul
+#overlay chrome://navigator/content/navigatorOverlay.xul chrome://xpcomviewer/content/overlays/seamonkey.xul
+#overlay chrome://communicator/content/pref/preftree.xul chrome://xpcomviewer/content/preferences-old/prefs-overlay.xul
+#overlay chrome://collab/content/collab.xul chrome://xpcomviewer/content/overlays/spicebird.xul application={ee53ece0-255c-4cc6-8a7e-81a8b6e5ba2c}

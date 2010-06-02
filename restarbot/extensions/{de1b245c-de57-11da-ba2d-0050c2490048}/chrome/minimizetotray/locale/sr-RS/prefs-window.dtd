@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Minimize To Tray опције">
+<!ENTITY groupbox.general.label "Опције приликом покретања">
+<!ENTITY chk.always.label "Увек умањи у системску траку послова уместо у траку задатака">
+<!ENTITY chk.always.accesskey "У">
+<!ENTITY chk.twoclickrestore.label "Захтевај дупли клик за враћање из системске траке послова">
+<!ENTITY chk.twoclickrestore.accesskey "Д">
+<!ENTITY chk.minimizeonclose.label "Уместо затварања, умањи у системску траку послова">
+<!ENTITY chk.minimizeonclose.accesskey "З">
+<!ENTITY chk.trayalwaysshow.label "Икону у системској траци послова показуј увек">
+<!ENTITY chk.trayalwaysshow.accesskey "И">
+<!ENTITY chk.restoreonopen.label "Врати прозор уместо да отвараш нови">
+<!ENTITY chk.restoreonopen.accesskey "В">
+<!ENTITY chk.onlyoneicon.label "Увек приказуј само једну икону у системској траци послова">
+<!ENTITY chk.onlyoneicon.accesskey "Ј">
+<!ENTITY chk.startwidthwindows.label "Учитај &brandShortName; одмах након покретања система">
+<!ENTITY chk.startwidthwindows.accesskey "О">
+<!ENTITY chk.currentuseronly.label "Само за тренутног корисника">
+<!ENTITY chk.currentuseronly.accesskey "Т">

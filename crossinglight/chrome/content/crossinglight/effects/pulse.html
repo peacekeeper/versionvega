@@ -1,0 +1,360 @@
+<!--
+Copyright 2009, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+		* Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+		* Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+		* Neither the name of Google Inc. nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script type="text/javascript">
+//global variables
+var g_o3davailable;
+var g_o3delement;
+var g_o3d;
+var g_math;
+var g_client;
+var g_viewInfo;
+var g_pack = [];
+var g_particleSystem = [];
+var g_textures = [];
+var g_packets = [];
+var g_emitters = [];
+var g_transforms = [];
+var g_mustTranslateY = [];
+var g_life = [];
+</script>
+
+<script type="text/javascript" src="o3djs/base.js"></script>
+
+<script type="text/javascript" id="o3dscript">
+o3djs.require('o3djs.util');
+o3djs.require('o3djs.math');
+o3djs.require('o3djs.quaternions');
+o3djs.require('o3djs.rendergraph');
+o3djs.require('o3djs.particles');
+o3djs.require('o3djs.loader');
+o3djs.require('o3djs.dump');
+
+/**
+ * Loads a texture.
+ * @param {!o3djs.loader.Loader} loader Loader to use to load texture.
+ * @param {string} url relativel url of texture.
+ * @param {number} index Index at which to record texture.
+ */
+function loadTexture(loader, url, index) {
+	loader.loadTexture(
+			g_pack[0],
+			o3djs.util.getAbsoluteURI(url),
+			function(texture, exception) {
+				if (exception) {
+					alert(exception);
+				} else {
+					g_textures[index] = texture;
+				}
+			});
+}
+
+/**
+ * Creates the client area.
+ */
+function init() {
+
+	// detect O3D
+
+	g_o3davailable = o3djs.util.requiredVersionAvailable("0.1.42");
+	g_o3delement = document.getElementById("o3d");
+	g_o3delement.style.width = "100%";
+	g_o3delement.style.height = "100%";
+	g_o3delement.style.display = "block";
+	g_o3delement.style.backgroundColor = "black";
+	g_o3delement.style.textAlign = "center";
+
+	if (! g_o3davailable) {
+
+	} else {
+
+		// These are here so they are shared by both V8 and the browser.
+		window.g_finished = false;	// for selenium
+		window.g_timeMult = 1;
+		window.g_clock = 0;
+	
+		// Comment out the line below to run the sample in the browser JavaScript
+		// engine. This may be helpful for debugging.
+		o3djs.util.setMainEngine(o3djs.util.Engine.V8);
+		o3djs.util.makeClients(initStep2);
+	}
+
+	this.addEventListener("newpulse", onNewPulse, false);
+}
+
+/**
+ * Initializes O3D and creates one shape.
+ * @param {Array} clientElements Array of o3d object elements.
+ */
+function initStep2(clientElements) {
+
+	 // Initializes global variables and libraries.
+	var o3dElement = clientElements[0];
+	g_o3d = o3dElement.o3d;
+	g_math = o3djs.math;
+	window.g_client = g_client = o3dElement.client;
+
+	// Creates a pack to manage our resources/assets
+	g_pack[0] = g_client.createPack();
+
+	g_viewInfo = o3djs.rendergraph.createBasicView(
+			g_pack[0],
+			g_client.root,
+			g_client.renderGraphRoot);
+
+	g_viewInfo.drawContext.projection = g_math.matrix4.orthographic(
+			0-document.width/2 + 0.5,
+			document.width/2 + 0.5,
+			document.height + 0.5,
+			0 + 0.5,
+			0.01,								// Near plane.
+			10000);							// Far plane.
+
+	window.onresize = function() {
+
+	 		g_viewInfo.drawContext.projection = g_math.matrix4.orthographic(
+				0-document.width/2 + 0.5,
+				document.width/2 + 0.5,
+	 				document.height + 0.5,
+	 				0 + 0.5,
+	 				0.01,								// Near plane.
+	 				10000);							// Far plane.
+		 };
+			
+	g_viewInfo.drawContext.view = g_math.matrix4.lookAt(
+			[0, 0, 1], // eye
+			[0, 0, 0],	 // target
+			[0, 1, 0]);	// up
+
+	g_viewInfo.clearBuffer.clearColor = [0, 0, 0, 0];
+
+	// Load textures. This happens asynchronously.
+	var loader = o3djs.loader.createLoader(initStep3);
+	loadTexture(loader, 'assets/pulse.png', 0);
+	loader.finish();
+
+	// Listen to click events.
+	o3dElement.client.setEventCallback("click", onClick);
+}
+
+function initStep3() {
+	// Normally we wouldn't pass in a random function but for selenium we need
+	// the particle system to produce the exact same results each time so
+	// we're passing in a predictable random function.
+	g_particleSystem[0] = o3djs.particles.createParticleSystem(
+			g_pack[0],
+			g_viewInfo);
+
+	// Setup an onrender callback for animation.
+	g_client.setRenderCallback(onrender);
+
+	window.g_finished = true;	// for selenium testing.
+}
+
+function onClick(event) {
+
+	// Find out which pulse the click applies to
+
+	var y = event.y ? event.y : event.clientY - document.getBoxObjectFor(event.target.parentNode).y;
+	var i = Math.floor(y / 30);
+
+	var packet = g_packets[i];
+	if (! packet) return;
+	
+	// Convert our internal click event to an external XUL message event and dispatch it.
+
+	var data = JSON.stringify(packet);
+
+	var xulevent = document.createEvent("MessageEvent");
+	xulevent.initMessageEvent("pulseclick", true, true, data, null, null, null);
+	var o3delement = document.getElementById("o3d");
+	o3delement.dispatchEvent(xulevent);
+}
+
+function onNewPulse(event) {
+
+	var data = JSON.parse(event.data);
+
+	var newPackets = [ data.packet ];
+	for (i in g_transforms) {
+
+		var packet = g_packets.shift();
+		newPackets.push(packet);
+	}
+	g_packets = newPackets;
+	
+	var newMustTranslateY = [ 0 ];
+	for (i in g_transforms) {
+
+		var mustTranslateY = g_mustTranslateY.shift();
+		newMustTranslateY.push(mustTranslateY + 30);
+	}
+	g_mustTranslateY = newMustTranslateY;
+
+	var newLife = [ 30 ];
+	for (i in g_transforms) {
+		
+		var life = g_life.shift();
+		newLife.push(life);
+	}
+	g_life = newLife;
+
+	if (! g_o3davailable) {
+
+		var emitter = document.createElement("img");
+		setColor(emitter, data.color);
+		emitter.onclick = onClick;
+		if (g_o3delement.firstChild)
+			g_o3delement.insertBefore(emitter, g_o3delement.firstChild);
+		else
+			g_o3delement.appendChild(emitter);
+
+		g_transforms.unshift({ });
+		g_emitters.unshift(emitter);
+	} else {
+
+		var transform = g_pack[0].createObject('Transform');
+		g_transforms.unshift(transform);
+		transform.parent = g_client.root;
+		transform.translate(0, 15, 0);
+	
+		var emitter = g_particleSystem[0].createParticleEmitter(g_textures[0]);
+		g_emitters.unshift(emitter);
+		emitter.setState(o3djs.particles.ParticleStateIds.ADD);
+		setColor(emitter, data.color);
+		emitter.setParameters({
+			numParticles: 20,
+			lifeTime: 4,
+			timeRange: 2,
+			startSize: 20,
+			endSize: 30,
+			velocity:[0, 0, 0], 
+			velocityRange: [0, 0, 0],
+			worldAcceleration: [0, 0, 0],
+			spinSpeedRange: 4});
+	
+		transform.addShape(emitter.shape);
+	}
+}
+
+function setColor(emitter, color) {
+
+	if (color == 1) {
+
+		if (! g_o3davailable) 
+			emitter.setAttribute("src", "pulsepink.png");
+		else
+			emitter.setColorRamp(
+				[1, 1, 1, 0.2,
+				1, 0, 1, 1, 
+				0, 0, 0, 0.3,
+				0, 0, 0, 0]);
+	} else if (color == 2) {
+
+		if (! g_o3davailable) 
+			emitter.setAttribute("src", "pulsepurple.png");
+		else
+			emitter.setColorRamp(
+				[1, 1, 1, 0.2,
+				0.3, 0, 1, 1, 
+				0, 0, 0, 0.3,
+				0, 0, 0, 0]);
+	} else if (color == 3) {
+
+		if (! g_o3davailable) 
+			emitter.setAttribute("src", "pulseblue.png");
+		else
+			emitter.setColorRamp(
+				[1, 1, 1, 0.2,
+				0, 0, 1, 1, 
+				0, 0, 0, 0.3,
+				0, 0, 0, 0]);
+	}
+}
+
+/**
+ * Called every frame.
+ * @param {!o3d.RenderEvent} renderEvent Rendering Information.
+ */
+function onrender(renderEvent) {
+	var elapsedTime = renderEvent.elapsedTime * window.g_timeMult;
+	window.g_clock += elapsedTime;
+
+	var translateY = elapsedTime*100;
+
+	for (i in g_mustTranslateY) {
+
+		if (g_mustTranslateY[i] > 0) {
+		 		g_transforms[i].translate(0, translateY, 0);
+		 		g_mustTranslateY[i] -= translateY;
+		}
+	}
+
+	var decreaseLife = elapsedTime;
+	var deaths = [ ];
+
+	for (ii in g_life) {
+
+		g_life[ii] -= decreaseLife;
+
+		if (g_life[ii] < 0) {
+
+			deaths.unshift(ii);
+		}
+	}
+	
+	for (iii in deaths) {
+		
+		g_transforms[deaths[iii]].parent = null;
+		g_packets.splice(deaths[iii], 1);
+		g_emitters.splice(deaths[iii], 1);
+		g_transforms.splice(deaths[iii], 1);
+		g_mustTranslateY.splice(deaths[iii], 1);
+		g_life.splice(deaths[iii], 1);
+	}
+}
+
+/**
+ * Remove any callbacks so they don't get called after the page has unloaded.
+ */
+function unload() {
+	if (g_client) {
+		g_client.cleanup();
+	}
+}
+</script>
+</head>
+<body onload="init();" onunload="unload();" style="background-color:black;padding:0px;margin:10px 0 0 0;">
+<div id="o3d" />
+</body>
+</html>

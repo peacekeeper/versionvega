@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+	<RDF:Description RDF:about="urn:mozilla:install-manifest">
+		<em:id>at.vega.web@crossinglight</em:id>
+		<em:name>@vega*web</em:name>
+		<em:description>WWW Overlay</em:description>
+		<em:version>0.1</em:version>
+		<em:type>2</em:type>
+		<em:optionsURL>chrome://at.vega.web/content/preferences/preferences.xul</em:optionsURL>
+		<em:aboutURL>chrome://at.vega.web/content/about.xul</em:aboutURL>
+		<em:iconURL>chrome://branding/content/logo32.png</em:iconURL>
+		<em:updateURL>http://files.versionvega.com/extensions/at.vega.web-update.rdf</em:updateURL>
+		<em:updateKey>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDK426erD/H3XtsjvaB5+PJqbhjZc9EDI5OCJS8R3FIObJ9ZHJK1TXeaE7JWqt9WUmBWTEFvwS+FI9vWu8058N9CHhDNyeP6i4LuUYjTURnn7Yw/IgzyIJ2oKsYa32RuxAyteqAWqPT/J63wBixIeCxmysfawB/zH4KaPiY3vnrzQIDAQAB</em:updateKey>
+
+		<em:targetApplication>
+			<Description>
+				<em:id>{crossinglight@versionvega}</em:id>
+				<em:minVersion>0.1</em:minVersion>
+				<em:maxVersion>0.*</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+    
+		<em:targetApplication>
+			<Description>
+				<em:id>{restarbot@versionvega}</em:id>
+				<em:minVersion>0.1</em:minVersion>
+				<em:maxVersion>0.*</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+
+	</RDF:Description>
+</RDF:RDF>

@@ -1,0 +1,38 @@
+@CHARSET "ISO-8859-1";
+
+window {
+	margin: 0;
+	color: white;
+	background-color: black;
+	font-family: monospace;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+box.main {
+}
+
+iframe.main {
+}
+
+#apps {
+	-moz-appearance: none;
+	background-color: black;
+	padding: 3px;
+}
+
+column {
+	padding: 3px;
+}
+
+row {
+	padding: 3px;
+}
+
+#inputprompt {
+	font-size: 10pt;
+}
+
+a {
+	color: white;
+}

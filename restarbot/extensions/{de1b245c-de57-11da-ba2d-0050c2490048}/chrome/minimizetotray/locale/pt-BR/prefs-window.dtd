@@ -1,0 +1,18 @@
+<!ENTITY dialog.title.label "Minimizar para a bandeja">
+<!ENTITY groupbox.general.label "Minimizar para a bandeja">
+<!ENTITY chk.always.label "Sempre Minimizar para a bandeja">
+<!ENTITY chk.always.accesskey "S">
+<!ENTITY chk.twoclickrestore.label "Requer um clique duplo para restaurar da bandeja">
+<!ENTITY chk.twoclickrestore.accesskey "R">
+<!ENTITY chk.minimizeonclose.label "Minimizar para a bandeja no fechar.">
+<!ENTITY chk.minimizeonclose.accesskey "M">
+<!ENTITY chk.trayalwaysshow.label "Sempre mostrar ícone na bandeja">
+<!ENTITY chk.trayalwaysshow.accesskey "T">
+<!ENTITY chk.restoreonopen.label "Restaurar janela ao invés de abrir nova">
+<!ENTITY chk.restoreonopen.accesskey "W">
+<!ENTITY chk.onlyoneicon.label "Somente mostrar um ícone na bandeja">
+<!ENTITY chk.onlyoneicon.accesskey "I">
+<!ENTITY chk.startwidthwindows.label "Iniciar aplicação com janelas">
+<!ENTITY chk.startwidthwindows.accesskey "S">
+<!ENTITY chk.currentuseronly.label "Somente para o usuário atual">
+<!ENTITY chk.currentuseronly.accesskey "C">

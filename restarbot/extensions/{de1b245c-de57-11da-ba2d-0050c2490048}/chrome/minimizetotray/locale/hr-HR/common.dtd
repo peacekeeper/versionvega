@@ -1,0 +1,20 @@
+<!ENTITY button.totray.label "Minimiziraj">
+<!ENTITY button.totray.tooltip "Minimiziraj prozor u traku">
+<!ENTITY cmd.totray.label "Minimiziraj u traku">
+<!ENTITY cmd.totray.accesskey "M">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!ENTITY cmd.restore.label "Obnovi &brandShortName;">
+<!ENTITY cmd.restore.window.label "Vrati prozor">
+<!ENTITY cmd.restore.accesskey "R">
+<!ENTITY cmd.restoreall.label "Vrati sve prozore">
+<!ENTITY cmd.restoreall.accesskey "A">
+<!ENTITY cmd.close.label "Zatvori &brandShortName;">
+<!ENTITY cmd.close.window.label "Zatvori prozor">
+<!ENTITY cmd.close.accesskey "C">
+<!ENTITY cmd.quit.label "Zatvori Quick Launch">
+<!ENTITY cmd.quit.accesskey "x">
+<!ENTITY cmd.newwindow.label "Novi prozor">
+<!ENTITY cmd.newwindow.accesskey "N">
+<!ENTITY menu.restore.label "Obnovi">
+<!ENTITY menu.restore.accesskey "R">

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://app/skin/common.css" type="text/css"?>
+<?xml-stylesheet href="ray.css" type="text/css"?>
+
+<window id="@vega*web" title="@vega*web" width="400" height="300"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	onload="onLoad();" onunload="onUnload();">
+
+	<script src="ray.js" />
+
+	<vbox id="content" flex="1">
+
+		<vbox class="plain border2" id="page" flex="1">
+		</vbox>
+
+		<box class="plain main" flex="1">
+			<html:iframe class="plain main" id="main" flex="1" src="ray.html" frameborder="0" />
+		</box>
+
+	</vbox>
+
+</window>

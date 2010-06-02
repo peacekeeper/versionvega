@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="ray.css" type="text/css"?>
+
+<window id="@vega*write" title="@vega*write"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" onload="onLoad();" onunload="onUnload();">
+
+	<script src="ray.js" />
+
+	<vbox class="plain edit" flex="1">
+
+		<box class="plain edit" flex="1">
+			<textbox class="plain edit" id="edit" multiline="true" flex="1" />
+		</box>
+
+		<description class="plain">Type the command *save to save your text.</description>
+
+	</vbox>
+
+</window>

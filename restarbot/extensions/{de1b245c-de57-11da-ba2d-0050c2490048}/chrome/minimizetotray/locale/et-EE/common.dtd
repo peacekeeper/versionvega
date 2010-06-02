@@ -1,0 +1,20 @@
+<!ENTITY button.totray.label "Minimeeri">
+<!ENTITY button.totray.tooltip "Minimeeri aken süsteemisalve">
+<!ENTITY cmd.totray.label "Minimeeri süsteemisalve">
+<!ENTITY cmd.totray.accesskey "M">
+<!ENTITY cmd.totray.key "M">
+<!ENTITY cmd.totray.modifier "accel,shift">
+<!ENTITY cmd.restore.label "Taasta &brandShortName;">
+<!ENTITY cmd.restore.window.label "Taasta aken">
+<!ENTITY cmd.restore.accesskey "T">
+<!ENTITY cmd.restoreall.label "Taasta kõik aknad">
+<!ENTITY cmd.restoreall.accesskey "k">
+<!ENTITY cmd.close.label "Sulge &brandShortName;">
+<!ENTITY cmd.close.window.label "Sulge aken">
+<!ENTITY cmd.close.accesskey "S">
+<!ENTITY cmd.quit.label "Sulge kiirkäivitaja">
+<!ENTITY cmd.quit.accesskey "e">
+<!ENTITY cmd.newwindow.label "Uus aken">
+<!ENTITY cmd.newwindow.accesskey "a">
+<!ENTITY menu.restore.label "Taasta">
+<!ENTITY menu.restore.accesskey "T">
