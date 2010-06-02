@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<project name="component-sirius" default="build" basedir=".">
+
+	<property file="build.properties" />
+
+	<target name="init">
+		<mkdir dir="${bin}" />
+		<mkdir dir="${doc}" />
+		<mkdir dir="${dist}" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac debug="true" srcdir="${src}" destdir="${bin}" classpath="${classpath}" source="1.5" target="1.5" nowarn="true" />
+		<copy todir="${bin}">
+			<fileset dir="${src}" includes="**/*" excludes="**/*.java" />
+		</copy>
+	</target>
+
+	<target name="doc" depends="init">
+		<javadoc destdir="${doc}" package="true" classpath="${classpath}">
+			<fileset dir="${src}" includes="**/*.java" />
+		</javadoc>
+	</target>
+
+	<target name="build" depends="compile">
+		<jar destfile="${dist}/${output-jar}">
+			<fileset dir="${bin}" includes="**/*" />
+		</jar>
+	</target>
+
+	<target name="clean">
+		<delete verbose="true">
+			<fileset dir="${bin}" />
+		</delete>
+		<delete verbose="true">
+			<fileset dir="${doc}" />
+		</delete>
+		<delete verbose="true">
+			<fileset dir="${dist}" />
+		</delete>
+	</target>
+
+</project>
