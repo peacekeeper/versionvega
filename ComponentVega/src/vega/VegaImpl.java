@@ -24,6 +24,8 @@ import java.util.Queue;
 import java.util.Random;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import orion.Orion;
@@ -55,6 +57,8 @@ import vega.comm.VegaPastContent;
 import vega.comm.VegaScribeContent;
 import vega.util.BlockingContinuation;
 import vega.util.HashCash;
+import vega.util.Nonce;
+import vega.util.NonceUtil;
 import vega.util.XriUtil;
 
 public class VegaImpl implements Vega {
@@ -68,6 +72,8 @@ public class VegaImpl implements Vega {
 	private static final String INSTANCE_PAST = "vegapast";
 
 	private static final int DEFAULT_VEGA_PORT = 15020;
+
+	private static Log log = LogFactory.getLog(VegaImpl.class);
 
 	private static Random random = new Random();
 
@@ -100,19 +106,16 @@ public class VegaImpl implements Vega {
 
 	public void init() {
 
-		VegaLogger.init();
-
 		System.setProperty(XmlPullParserFactory.PROPERTY_NAME, "org.xmlpull.mxp1.MXParserFactory");
 	}
 
 	public void shutdown() {
 
-		VegaLogger.shutdown();
 	}
 
 	public String connect(String localPort, String remoteHost, String remotePort, String parameters) throws Exception {
 
-		VegaLogger.logger.info("connect(" + localPort + "," + remoteHost + "," + remotePort + ",<parameters>)");
+		log.info("connect(" + localPort + "," + remoteHost + "," + remotePort + ",<parameters>)");
 
 		try {
 
@@ -161,7 +164,7 @@ public class VegaImpl implements Vega {
 
 				for (Map.Entry<Object, Object> property : properties.entrySet()) {
 
-					VegaLogger.logger.info("Setting parameter " + (String) property.getKey() + " --> " + (String) property.getValue());
+					log.info("Setting parameter " + (String) property.getKey() + " --> " + (String) property.getValue());
 					this.environment.getParameters().setString((String) property.getKey(), (String) property.getValue());
 				}
 			}
@@ -175,19 +178,19 @@ public class VegaImpl implements Vega {
 
 				remoteAddr = InetAddress.getByName(remoteHost);
 				remoteSockAddr = new InetSocketAddress(remoteAddr, Integer.valueOf(remotePort).intValue());
-				VegaLogger.logger.info("Boot address is " + remoteSockAddr.toString());
+				log.info("Boot address is " + remoteSockAddr.toString());
 			} else {
 
 				remoteAddr = null;
 				remoteSockAddr = null;
-				VegaLogger.logger.info("No boot address.");
+				log.info("No boot address.");
 			}
 
 			// figure out local address
 
 			InetAddress localAddr = InetAddress.getLocalHost();
 			InetSocketAddress localSockAddr = new InetSocketAddress(localAddr, Integer.valueOf(localPort).intValue());
-			VegaLogger.logger.info("Local address is " + localSockAddr.toString());
+			log.info("Local address is " + localSockAddr.toString());
 
 			// figure out public address and port
 
@@ -210,11 +213,11 @@ public class VegaImpl implements Vega {
 				sendBuffer = sendString.getBytes();
 
 				DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, InetAddress.getByName(remoteHost), Integer.valueOf(remotePort).intValue() - 1);
-				VegaLogger.logger.info("Sending probe packet...");
+				log.info("Sending probe packet...");
 				clientSocket.send(sendPacket);
 
 				DatagramPacket receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
-				VegaLogger.logger.info("Receiving probe packet...");
+				log.info("Receiving probe packet...");
 				clientSocket.receive(receivePacket);
 				receiveString = new String(receiveBuffer).substring(0, receivePacket.getLength());
 
@@ -222,21 +225,21 @@ public class VegaImpl implements Vega {
 				String publicPort = receiveString.split(" ")[1];
 				publicAddr = InetAddress.getByName(publicHost);
 				publicSockAddr = new InetSocketAddress(publicAddr, Integer.valueOf(publicPort).intValue());
-				VegaLogger.logger.info("Public address is " + publicSockAddr.toString());
+				log.info("Public address is " + publicSockAddr.toString());
 
 				clientSocket.close();
 			} else {
 
 				publicAddr = null;
 				publicSockAddr = null;
-				VegaLogger.logger.info("No public address.");
+				log.info("No public address.");
 			}
 
 			if (publicAddr != null && localAddr.equals(publicAddr)) {
 
 				publicAddr = null;
 				publicSockAddr = null;
-				VegaLogger.logger.info("Local address is public address.");
+				log.info("Local address is public address.");
 			}
 
 			// construct pastry ID factory
@@ -255,7 +258,7 @@ public class VegaImpl implements Vega {
 
 			// create node
 
-			VegaLogger.logger.info("Instantiating node...");
+			log.info("Instantiating node...");
 
 			this.createNode(publicSockAddr);
 
@@ -281,7 +284,7 @@ public class VegaImpl implements Vega {
 
 				public void update(Observable object, Object arg) {
 
-					VegaLogger.logger.info("Observed " + arg + " to " + object);
+					log.info("Observed " + arg + " to " + object);
 
 					if (arg instanceof RuntimeException) {
 
@@ -295,10 +298,10 @@ public class VegaImpl implements Vega {
 
 			if (remoteSockAddr == null) {
 
-				VegaLogger.logger.info("Booting node into new network...");
+				log.info("Booting node into new network...");
 			} else {
 
-				VegaLogger.logger.info("Booting node into " + remoteSockAddr.toString());
+				log.info("Booting node into " + remoteSockAddr.toString());
 			}
 
 			this.pastryNode.boot(Collections.singleton(remoteSockAddr));
@@ -318,13 +321,13 @@ public class VegaImpl implements Vega {
 
 				synchronized(this.pastryNode) {
 
-					VegaLogger.logger.info("Waiting for node to boot...");
+					log.info("Waiting for node to boot...");
 					this.pastryNode.wait(500);
 					counter++;
 				}
 			}
 
-			VegaLogger.logger.info("Booting complete! Our node ID: " + this.pastryNode.getNodeId().toStringFull() + ". Our node handle: " + this.pastryNode.getLocalNodeHandle().toString() + ". Our node: " + this.pastryNode.toString());
+			log.info("Booting complete! Our node ID: " + this.pastryNode.getNodeId().toStringFull() + ". Our node handle: " + this.pastryNode.getLocalNodeHandle().toString() + ". Our node: " + this.pastryNode.toString());
 		} catch (Exception ex) {
 
 			this.disconnect();
@@ -343,18 +346,18 @@ public class VegaImpl implements Vega {
 		/*if (this.isInternetRoutablePrefix(localAddr) || (remoteAddr != null && this.isInternetRoutablePrefix(remoteAddr))) {
 		if (false) {
 
-			VegaLogger.logger.info("Constructing InternetPastryNodeFactory...");
+			log.info("Constructing InternetPastryNodeFactory...");
 			nodeFactory = new rice.pastry.socket.internet.InternetPastryNodeFactory(nodeIdFactory, localAddr, Integer.valueOf(localPort).intValue(), this.environment, null, Collections.singletonList(remoteSockAddr), null);
 		} else*/ {
 
-			VegaLogger.logger.info("Constructing SocketPastryNodeFactory...");
+			log.info("Constructing SocketPastryNodeFactory...");
 			nodeFactory = new rice.pastry.socket.SocketPastryNodeFactory(nodeIdFactory, Integer.valueOf(localPort).intValue(), this.environment);
 		}
 
 		this.pastryNode = nodeFactory.newNode(nodeIdFactory.generateNodeId(), publicSockAddr);
 
-		VegaLogger.logger.info("Local node: " + this.pastryNode.getClass().getName());
-		VegaLogger.logger.info("Local port is " + localPort);
+		log.info("Local node: " + this.pastryNode.getClass().getName());
+		log.info("Local port is " + localPort);
 	}
 
 	protected void createEndpoint() {
@@ -382,7 +385,7 @@ public class VegaImpl implements Vega {
 
 	public void disconnect() throws Exception {
 
-		VegaLogger.logger.fine("disconnect()");
+		log.debug("disconnect()");
 
 		try {
 
@@ -409,7 +412,7 @@ public class VegaImpl implements Vega {
 
 	public String connected() throws Exception {
 
-		VegaLogger.logger.fine("connected()");
+		log.debug("connected()");
 
 		if (this.environment != null && this.pastryNode != null && this.endpoint != null) {
 
@@ -426,7 +429,7 @@ public class VegaImpl implements Vega {
 
 	public String nodeId() throws Exception {
 
-		VegaLogger.logger.fine("nodeId()");
+		log.debug("nodeId()");
 
 		if (this.endpoint == null) return(null);
 
@@ -435,56 +438,56 @@ public class VegaImpl implements Vega {
 
 	public String localHost() throws Exception {
 
-		VegaLogger.logger.fine("localHost()");
+		log.debug("localHost()");
 
 		return(this.localHost);
 	}
 
 	public String localPort() throws Exception {
 
-		VegaLogger.logger.fine("localPort()");
+		log.debug("localPort()");
 
 		return(this.localPort);
 	}
 
 	public String publicHost() throws Exception {
 
-		VegaLogger.logger.fine("publicHost()");
+		log.debug("publicHost()");
 
 		return(this.publicHost);
 	}
 
 	public String publicPort() throws Exception {
 
-		VegaLogger.logger.fine("publicPort()");
+		log.debug("publicPort()");
 
 		return(this.publicPort);
 	}
 
 	public String remoteHost() throws Exception {
 
-		VegaLogger.logger.fine("remoteHost()");
+		log.debug("remoteHost()");
 
 		return(this.remoteHost);
 	}
 
 	public String remotePort() throws Exception {
 
-		VegaLogger.logger.fine("remotePort()");
+		log.debug("remotePort()");
 
 		return(this.remotePort);
 	}
 
 	public String parameters() throws Exception {
 
-		VegaLogger.logger.fine("parameters()");
+		log.debug("parameters()");
 
 		return(this.parameters);
 	}
 
 	public String lookupRandom() throws Exception {
 
-		VegaLogger.logger.fine("lookupRandom()");
+		log.debug("lookupRandom()");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 
@@ -494,7 +497,7 @@ public class VegaImpl implements Vega {
 
 	public String[] lookupNeighbors(String num) throws Exception {
 
-		VegaLogger.logger.fine("lookupNeighbors(" + num + ")");
+		log.debug("lookupNeighbors(" + num + ")");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 
@@ -506,22 +509,23 @@ public class VegaImpl implements Vega {
 
 	public void send(String nodeId, String ray, String content, String flags, String extension) throws Exception {
 
-		VegaLogger.logger.fine("send(" + nodeId + "," + ray + "," + content + "," + flags + "," + extension + ")");
+		log.debug("send(" + nodeId + "," + ray + "," + content + "," + flags + "," + extension + ")");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 		if (! "1".equals(this.orion.loggedin())) throw new RuntimeException("Not signed in.");
 
 		Id id = this.pastryIdFactory.buildIdFromToString(nodeId);
-		String signature = this.orion.sign(id.toStringFull() + ray + content);
+		String nonce = new Nonce().toString();
+		String signature = this.orion.sign(id.toStringFull() + " " + ray + " " + nonce + " " + content);
 		String hashcash = new HashCash(new Date(), id.toStringFull()).toString();
-		Message msg = new VegaMessage(ray, this.orion.iname(), this.orion.inumber(), content, signature, hashcash, flags, extension);
+		Message msg = new VegaMessage(ray, this.orion.iname(), this.orion.inumber(), nonce, content, signature, hashcash, flags, extension);
 
 		this.endpoint.route(id, msg, null);
 	}
 
 	public synchronized void subscribeTopic(String client, String topic) throws Exception {
 
-		VegaLogger.logger.fine("subscribeTopic(" + client + "," + topic + ")");
+		log.debug("subscribeTopic(" + client + "," + topic + ")");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 
@@ -560,7 +564,7 @@ public class VegaImpl implements Vega {
 
 	public synchronized void unsubscribeTopic(String client, String topic) throws Exception {
 
-		VegaLogger.logger.fine("unsubscribeTopic(" + client + "," + topic + ")");
+		log.debug("unsubscribeTopic(" + client + "," + topic + ")");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 
@@ -595,7 +599,7 @@ public class VegaImpl implements Vega {
 
 	public synchronized String[] topics(String client) throws Exception {
 
-		VegaLogger.logger.fine("topics(" + client + ")");
+		log.debug("topics(" + client + ")");
 
 		List<String> clientTopics = this.topics.get(client);
 		if (clientTopics == null) return new String[0];
@@ -604,42 +608,44 @@ public class VegaImpl implements Vega {
 
 	public synchronized void resetTopics(String client) throws Exception {
 
-		VegaLogger.logger.fine("resetTopics(" + client + ")");
-
-		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
+		log.debug("resetTopics(" + client + ")");
 
 		List<String> clientTopics = this.topics.get(client);
 		if (clientTopics == null) return;
 		this.topics.remove(client);
-		for (String clientTopic : clientTopics) {
 
-			// are we still subscribed?
+		if ("1".equals(this.connected())) {
 
-			boolean subscribed = false;
+			for (String clientTopic : clientTopics) {
 
-			for (List<String> topics : this.topics.values()) {
+				// are we still subscribed?
 
-				if (topics.contains(clientTopic)) {
+				boolean subscribed = false;
 
-					subscribed = true;
-					break;
+				for (List<String> topics : this.topics.values()) {
+
+					if (topics.contains(clientTopic)) {
+
+						subscribed = true;
+						break;
+					}
 				}
-			}
 
-			// if no one subscribed anymore, unsubscribe
+				// if no one subscribed anymore, unsubscribe
 
-			if (! subscribed) {
+				if (! subscribed) {
 
-				Topic t = new Topic(this.pastryIdFactory, clientTopic);
+					Topic t = new Topic(this.pastryIdFactory, clientTopic);
 
-				this.scribe.unsubscribe(t, this);
+					this.scribe.unsubscribe(t, this);
+				}
 			}
 		}
 	}
 
 	public void multicast(String topic, String ray, String content, String flags, String extension) throws Exception {
 
-		VegaLogger.logger.fine("multicast(" + topic + "," + ray + "," + content + "," + flags + "," + extension + ")");
+		log.debug("multicast(" + topic + "," + ray + "," + content + "," + flags + "," + extension + ")");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 		if (! "1".equals(this.orion.loggedin())) throw new RuntimeException("Not signed in.");
@@ -650,16 +656,17 @@ public class VegaImpl implements Vega {
 				(! topic.equals(this.orion.inumber()))) throw new RuntimeException("Cannot send to private topic.");
 
 		Topic t = new Topic(this.pastryIdFactory, topic);
-		String signature = this.orion.sign(t.getId().toStringFull() + ray + content);
+		String nonce = new Nonce().toString();
+		String signature = this.orion.sign(t.getId().toStringFull() + " " + ray + " " + nonce + " " + content);
 		String hashcash = new HashCash(new Date(), t.getId().toStringFull()).toString();
-		ScribeContent scribeContent = new VegaScribeContent(topic, ray, this.orion.iname(), this.orion.inumber(), content, signature, hashcash, flags, extension);
+		ScribeContent scribeContent = new VegaScribeContent(topic, ray, this.orion.iname(), this.orion.inumber(), nonce, content, signature, hashcash, flags, extension);
 
 		this.scribe.publish(t, scribeContent);
 	}
 
 	public void anycast(String topic, String ray, String content, String flags, String extension) throws Exception {
 
-		VegaLogger.logger.fine("anycast(" + topic + "," + ray + "," + content + "," + flags + "," + extension + ")");
+		log.debug("anycast(" + topic + "," + ray + "," + content + "," + flags + "," + extension + ")");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 		if (! "1".equals(this.orion.loggedin())) throw new RuntimeException("Not signed in.");
@@ -670,16 +677,17 @@ public class VegaImpl implements Vega {
 				(! topic.equals(this.orion.inumber()))) throw new RuntimeException("Cannot send to private topic.");
 
 		Topic t = new Topic(this.pastryIdFactory, topic);
-		String signature = this.orion.sign(t.getId().toStringFull() + ray + content);
+		String nonce = new Nonce().toString();
+		String signature = this.orion.sign(t.getId().toStringFull() + " " + ray + " " + nonce + " " + content);
 		String hashcash = new HashCash(new Date(), t.getId().toStringFull()).toString();
-		ScribeContent scribeContent = new VegaScribeContent(topic, ray, this.orion.iname(), this.orion.inumber(), content, signature, hashcash, flags, extension);
+		ScribeContent scribeContent = new VegaScribeContent(topic, ray, this.orion.iname(), this.orion.inumber(), nonce, content, signature, hashcash, flags, extension);
 
 		this.scribe.anycast(t, scribeContent);
 	}
 
 	public String get(String key) throws Exception {
 
-		VegaLogger.logger.fine("get(" + key + ")");
+		log.debug("get(" + key + ")");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 
@@ -691,7 +699,7 @@ public class VegaImpl implements Vega {
 
 	public void put(String key, String value) throws Exception {
 
-		VegaLogger.logger.fine("put(" + key + "," + value + ")");
+		log.debug("put(" + key + "," + value + ")");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 		if (! "1".equals(this.orion.loggedin())) throw new RuntimeException("Not signed in.");
@@ -701,7 +709,7 @@ public class VegaImpl implements Vega {
 
 	public void multiPut(String key, String value) throws Exception {
 
-		VegaLogger.logger.fine("multiPut(" + key + "," + value + ")");
+		log.debug("multiPut(" + key + "," + value + ")");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 		if (! "1".equals(this.orion.loggedin())) throw new RuntimeException("Not signed in.");
@@ -711,7 +719,7 @@ public class VegaImpl implements Vega {
 
 	public String[] multiGet(String key) throws Exception {
 
-		VegaLogger.logger.fine("multiGet(" + key + ")");
+		log.debug("multiGet(" + key + ")");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 
@@ -720,7 +728,7 @@ public class VegaImpl implements Vega {
 
 	public String multiGetIndex(String key, String index) throws Exception {
 
-		VegaLogger.logger.fine("multiGetIndex(" + key + "," + index + ")");
+		log.debug("multiGetIndex(" + key + "," + index + ")");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 
@@ -729,7 +737,7 @@ public class VegaImpl implements Vega {
 
 	public String multiGetCount(String key) throws Exception {
 
-		VegaLogger.logger.fine("multiGetCount(" + key + ")");
+		log.debug("multiGetCount(" + key + ")");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 
@@ -738,7 +746,7 @@ public class VegaImpl implements Vega {
 
 	public String multiGetRandom(String key) throws Exception {
 
-		VegaLogger.logger.fine("multiGetRandom(" + key + ")");
+		log.debug("multiGetRandom(" + key + ")");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 
@@ -747,7 +755,7 @@ public class VegaImpl implements Vega {
 
 	public void multiDelete(String key, String value) throws Exception {
 
-		VegaLogger.logger.fine("multiDelete(" + key + "," + value + ")");
+		log.debug("multiDelete(" + key + "," + value + ")");
 
 		if (! "1".equals(this.connected())) throw new RuntimeException("Not connected.");
 		if (! "1".equals(this.orion.loggedin())) throw new RuntimeException("Not signed in.");
@@ -757,7 +765,7 @@ public class VegaImpl implements Vega {
 
 	public synchronized void subscribeRay(String client, String ray) throws Exception {
 
-		VegaLogger.logger.fine("subscribeRay(" + client + "," + ray + ")");
+		log.debug("subscribeRay(" + client + "," + ray + ")");
 
 		List<String> clientRays = this.rays.get(client);
 		if (clientRays == null) {
@@ -770,7 +778,7 @@ public class VegaImpl implements Vega {
 
 	public synchronized void unsubscribeRay(String client, String ray) throws Exception {
 
-		VegaLogger.logger.fine("unsubscribeRay(" + client + "," + ray + ")");
+		log.debug("unsubscribeRay(" + client + "," + ray + ")");
 
 		List<String> clientRays = this.rays.get(client);
 		if (clientRays == null) return;
@@ -779,7 +787,7 @@ public class VegaImpl implements Vega {
 
 	public synchronized String[] rays(String client) throws Exception {
 
-		VegaLogger.logger.fine("rays(" + client + ")");
+		log.debug("rays(" + client + ")");
 
 		List<String> clientRays = this.rays.get(client);
 		if (clientRays == null) return new String[0];
@@ -788,7 +796,7 @@ public class VegaImpl implements Vega {
 
 	public synchronized void resetRays(String client) throws Exception {
 
-		VegaLogger.logger.fine("resetRays(" + client + ")");
+		log.debug("resetRays(" + client + ")");
 
 		this.rays.remove(client);
 		this.packets.remove(client);
@@ -796,7 +804,7 @@ public class VegaImpl implements Vega {
 
 	public synchronized String hasPackets(String client) throws Exception {
 
-		VegaLogger.logger.fine("hasPackets(" + client + ")");
+		log.debug("hasPackets(" + client + ")");
 
 		Queue<String> packets = this.packets.get(client);
 		if (packets == null) return null;
@@ -812,7 +820,7 @@ public class VegaImpl implements Vega {
 
 	public synchronized String fetchPacket(String client) throws Exception {
 
-		VegaLogger.logger.fine("fetchPacket(" + client + ")");
+		log.debug("fetchPacket(" + client + ")");
 
 		Queue<String> packets = this.packets.get(client);
 		if (packets == null) return null;
@@ -830,6 +838,8 @@ public class VegaImpl implements Vega {
 	 */
 
 	private Boolean[] internalPut(final String key, final String value) throws Exception {
+
+		log.debug("internalPut(" + key + "," + value + ")");
 
 		Id id = this.pastryIdFactory.buildId(key);
 		Long version = Long.valueOf(System.currentTimeMillis());
@@ -856,6 +866,8 @@ public class VegaImpl implements Vega {
 
 	private String internalGet(final String key) throws Exception {
 
+		log.debug("internalGet(" + key + ")");
+
 		Id id = this.pastryIdFactory.buildId(key);
 
 		BlockingContinuation<PastContent, Exception> continuation = new BlockingContinuation<PastContent, Exception> ();
@@ -880,6 +892,8 @@ public class VegaImpl implements Vega {
 
 	private void internalMultiPut(final String key, final String value) throws Exception {
 
+		log.debug("internalMultiPut(" + key + "," + value + ")");
+
 		String newindex = hash(value);
 
 		this.internalPut(key + "___", "+" + newindex);
@@ -888,6 +902,8 @@ public class VegaImpl implements Vega {
 	}
 
 	private String[] internalMultiGet(final String key) throws Exception {
+
+		log.debug("internalMultiGet(" + key + ")");
 
 		String indexlist;
 
@@ -917,6 +933,8 @@ public class VegaImpl implements Vega {
 
 	private String internalMultiGetIndex(final String key, final String index) throws Exception {
 
+		log.debug("internalMultiGetIndex(" + key + "," + index + ")");
+
 		String indexlist;
 
 		try {
@@ -935,6 +953,8 @@ public class VegaImpl implements Vega {
 
 	private String internalMultiGetCount(final String key) throws Exception {
 
+		log.debug("internalMultiGetCount(" + key + ")");
+
 		String indexlist;
 
 		try {
@@ -952,6 +972,8 @@ public class VegaImpl implements Vega {
 	}
 
 	private String internalMultiGetRandom(final String key) throws Exception {
+
+		log.debug("internalMultiGetRandom(" + key + ")");
 
 		String indexlist;
 
@@ -976,6 +998,8 @@ public class VegaImpl implements Vega {
 
 	private void internalMultiDelete(final String key, final String value) throws Exception {
 
+		log.debug("internalMultiDelete(" + key + "," + value + ")");
+
 		if (value == null) {
 
 			this.internalPut(key + "___", "");
@@ -993,40 +1017,40 @@ public class VegaImpl implements Vega {
 
 	public void update(NodeHandle handle, boolean joined) {
 
-		VegaLogger.logger.fine("--> update(" + handle.getId().toStringFull() + "," + joined + ")");
+		log.debug("--> update(" + handle.getId().toStringFull() + "," + joined + ")");
 	}
 
 	public boolean forward(RouteMessage message) {
 
-		VegaLogger.logger.fine("--> forward(" + message + ")");
+		log.debug("--> forward(" + message + ")");
 
 		return(true);
 	}
 
 	public void childAdded(Topic topic, NodeHandle child) {
 
-		VegaLogger.logger.fine("--> childAdded(" + topic.getId().toStringFull() + "," + child.getId().toStringFull() + ")");
+		log.debug("--> childAdded(" + topic.getId().toStringFull() + "," + child.getId().toStringFull() + ")");
 	}
 
 	public void childRemoved(Topic topic, NodeHandle child) {
 
-		VegaLogger.logger.fine("--> childRemoved(" + topic.getId().toStringFull() + "," + child.getId().toStringFull() + ")");
+		log.debug("--> childRemoved(" + topic.getId().toStringFull() + "," + child.getId().toStringFull() + ")");
 	}
 
 	public void subscribeSuccess(Collection<Topic> topics) {
 
-		for (Topic topic : topics) VegaLogger.logger.fine("--> subscribeSuccess(" + topic.getId().toStringFull() + ")");
+		for (Topic topic : topics) log.debug("--> subscribeSuccess(" + topic.getId().toStringFull() + ")");
 	}
 
 	public void subscribeFailed(Collection<Topic> topics) {
 
-		for (Topic topic : topics) VegaLogger.logger.fine("--> subscribeFailed(" + topic.getId().toStringFull() + ")");
+		for (Topic topic : topics) log.debug("--> subscribeFailed(" + topic.getId().toStringFull() + ")");
 	}
 
 	@Deprecated
 	public void subscribeFailed(Topic topic) {
 
-		VegaLogger.logger.fine("--> subscribeFailed(" + topic.getId().toStringFull() + ")");
+		log.debug("--> subscribeFailed(" + topic.getId().toStringFull() + ")");
 	}
 
 	public void deliver(Id id, Message message) {
@@ -1034,8 +1058,8 @@ public class VegaImpl implements Vega {
 		if (! (message instanceof VegaMessage)) return;
 		VegaMessage vegaMessage = (VegaMessage) message;
 
-		VegaLogger.logger.fine("--> deliver(" + id.toStringFull() + "," + message + ")");
-		VegaLogger.logger.finer("--> deliver: ray=" + vegaMessage.getRay() + " iname=" + vegaMessage.getIname() + " inumber=" + vegaMessage.getInumber() + " content=" + vegaMessage.getContent() + " signature=" + vegaMessage.getSignature() + " hashcash=" + vegaMessage.getHashcash() + " flags=" + vegaMessage.getFlags() + " extension=" + vegaMessage.getExtension());
+		log.debug("--> deliver(" + id.toStringFull() + "," + message + ")");
+		log.debug("--> deliver: ray=" + vegaMessage.getRay() + " iname=" + vegaMessage.getIname() + " inumber=" + vegaMessage.getInumber() + " nonce=" + vegaMessage.getNonce() + " content=" + vegaMessage.getContent() + " signature=" + vegaMessage.getSignature() + " hashcash=" + vegaMessage.getHashcash() + " flags=" + vegaMessage.getFlags() + " extension=" + vegaMessage.getExtension());
 
 		try {
 
@@ -1045,16 +1069,19 @@ public class VegaImpl implements Vega {
 				vegaMessage.getRay() != null && 
 				vegaMessage.getIname() != null && 
 				vegaMessage.getInumber() != null && 
+				vegaMessage.getNonce() != null &&
 				vegaMessage.getSignature() != null && 
 				vegaMessage.getHashcash() != null;
 
-			boolean signatureOk = "1".equals(this.orion.verify(id.toStringFull() + vegaMessage.getRay() + vegaMessage.getContent(), vegaMessage.getSignature(), vegaMessage.getInumber()));
+			boolean nonceOk = NonceUtil.checkNonce(vegaMessage.getNonce());
+
+			boolean signatureOk = "1".equals(this.orion.verify(id.toStringFull() + " " + vegaMessage.getRay() + " " + vegaMessage.getNonce() + " " + vegaMessage.getContent(), vegaMessage.getSignature(), vegaMessage.getInumber()));
 
 			HashCash hashcash = HashCash.fromString(vegaMessage.getHashcash());
 			boolean hashcashOk = hashcash.getTo().equals(id.toStringFull()) && hashcash.isValid();
 
-			VegaLogger.logger.finer("--> deliver: dataOk=" + dataOk + " signatureOk=" + signatureOk + " hashcashOk=" + hashcashOk);
-			if (! dataOk || ! signatureOk || ! hashcashOk) return;
+			log.debug("--> deliver: dataOk=" + dataOk + " nonceOk=" + nonceOk + " signatureOk=" + signatureOk + " hashcashOk=" + hashcashOk);
+			if (! dataOk || ! nonceOk || ! signatureOk || ! hashcashOk) return;
 
 			// queue JSON packet
 
@@ -1067,6 +1094,7 @@ public class VegaImpl implements Vega {
 					" \"ray\":" + escapeJSON(vegaMessage.getRay()) + ",\n" +
 					" \"iname\":" + escapeJSON(vegaMessage.getIname()) + ",\n" +
 					" \"inumber\":" + escapeJSON(vegaMessage.getInumber()) + ",\n" +
+					" \"nonce\":" + escapeJSON(vegaMessage.getNonce()) + ",\n" +
 					" \"content\":" + escapeJSON(vegaMessage.getContent()) + ",\n" + 
 					" \"signature\":" + escapeJSON(vegaMessage.getSignature()) + ",\n" + 
 					" \"hashcash\":" + escapeJSON(vegaMessage.getHashcash()) + ",\n" + 
@@ -1075,6 +1103,7 @@ public class VegaImpl implements Vega {
 			"}");
 		} catch (Exception ex) {
 
+			log.error("--> deliver: " + ex.getMessage(), ex);
 			throw new RuntimeException(ex);
 		}
 	}
@@ -1084,8 +1113,8 @@ public class VegaImpl implements Vega {
 		if (! (scribeContent instanceof VegaScribeContent)) return;
 		VegaScribeContent vegaScribeContent = (VegaScribeContent) scribeContent;
 
-		VegaLogger.logger.fine("--> deliver(" + topic.getId().toStringFull() + "," + scribeContent + ")");
-		VegaLogger.logger.finer("--> deliver: topic=" + vegaScribeContent.getTopic() + " ray=" + vegaScribeContent.getRay() + " iname=" + vegaScribeContent.getIname() + " inumber=" + vegaScribeContent.getInumber() + " content=" + vegaScribeContent.getContent() + " signature=" + vegaScribeContent.getSignature() + " hashcash=" + vegaScribeContent.getHashcash() + " flags=" + vegaScribeContent.getFlags() + " extension=" + vegaScribeContent.getExtension());
+		log.debug("--> deliver(" + topic.getId().toStringFull() + "," + scribeContent + ")");
+		log.debug("--> deliver: topic=" + vegaScribeContent.getTopic() + " ray=" + vegaScribeContent.getRay() + " iname=" + vegaScribeContent.getIname() + " inumber=" + vegaScribeContent.getInumber() + " nonce=" + vegaScribeContent.getNonce() + " content=" + vegaScribeContent.getContent() + " signature=" + vegaScribeContent.getSignature() + " hashcash=" + vegaScribeContent.getHashcash() + " flags=" + vegaScribeContent.getFlags() + " extension=" + vegaScribeContent.getExtension());
 
 		try {
 
@@ -1096,8 +1125,11 @@ public class VegaImpl implements Vega {
 				vegaScribeContent.getRay() != null && 
 				vegaScribeContent.getIname() != null && 
 				vegaScribeContent.getInumber() != null && 
+				vegaScribeContent.getNonce() != null && 
 				vegaScribeContent.getSignature() != null && 
 				vegaScribeContent.getHashcash() != null;
+
+			boolean nonceOk = NonceUtil.checkNonce(vegaScribeContent.getNonce());
 
 			boolean topicOk = 
 				topic.getId().equals(this.pastryIdFactory.buildId(vegaScribeContent.getTopic()))
@@ -1111,13 +1143,13 @@ public class VegaImpl implements Vega {
 						vegaScribeContent.getTopic().equals(this.orion.inumber())
 				);
 
-			boolean signatureOk = "1".equals(this.orion.verify(topic.getId().toStringFull() + vegaScribeContent.getRay() + vegaScribeContent.getContent(), vegaScribeContent.getSignature(), vegaScribeContent.getInumber()));
+			boolean signatureOk = "1".equals(this.orion.verify(topic.getId().toStringFull() + " " + vegaScribeContent.getRay() + " " + vegaScribeContent.getNonce() + " " + vegaScribeContent.getContent(), vegaScribeContent.getSignature(), vegaScribeContent.getInumber()));
 
 			HashCash hashcash = HashCash.fromString(vegaScribeContent.getHashcash());
 			boolean hashcashOk = hashcash.getTo().equals(topic.getId().toStringFull()) && hashcash.isValid();
 
-			VegaLogger.logger.finer("--> deliver: dataOk=" + dataOk + " topicOk=" + topicOk + " signatureOk=" + signatureOk + " hashcashOk=" + hashcashOk);
-			if (! dataOk || ! topicOk || ! signatureOk || ! hashcashOk) return;
+			log.debug("--> deliver: dataOk=" + dataOk + " nonceOk=" + nonceOk + " topicOk=" + topicOk + " signatureOk=" + signatureOk + " hashcashOk=" + hashcashOk);
+			if (! dataOk || ! nonceOk || ! topicOk || ! signatureOk || ! hashcashOk) return;
 
 			// queue JSON packet
 
@@ -1130,6 +1162,7 @@ public class VegaImpl implements Vega {
 					" \"ray\":" + escapeJSON(vegaScribeContent.getRay()) + ",\n" +
 					" \"iname\":" + escapeJSON(vegaScribeContent.getIname()) + ",\n" +
 					" \"inumber\":" + escapeJSON(vegaScribeContent.getInumber()) + ",\n" +
+					" \"nonce\":" + escapeJSON(vegaScribeContent.getNonce()) + ",\n" + 
 					" \"content\":" + escapeJSON(vegaScribeContent.getContent()) + ",\n" + 
 					" \"signature\":" + escapeJSON(vegaScribeContent.getSignature()) + ",\n" + 
 					" \"hashcash\":" + escapeJSON(vegaScribeContent.getHashcash()) + ",\n" + 
@@ -1147,8 +1180,8 @@ public class VegaImpl implements Vega {
 		if (! (scribeContent instanceof VegaScribeContent)) return(false);
 		VegaScribeContent vegaScribeContent = (VegaScribeContent) scribeContent;
 
-		VegaLogger.logger.fine("--> anycast(" + topic.getId().toStringFull() + "," + scribeContent + ")");
-		VegaLogger.logger.finer("--> anycast: topic=" + vegaScribeContent.getTopic() + " ray=" + vegaScribeContent.getRay() + " iname=" + vegaScribeContent.getIname() + " inumber=" + vegaScribeContent.getInumber() + " content=" + vegaScribeContent.getContent() + " signature=" + vegaScribeContent.getSignature() + " hashcash=" + vegaScribeContent.getHashcash() + " flags=" + vegaScribeContent.getFlags() + " extension=" + vegaScribeContent.getExtension());
+		log.debug("--> anycast(" + topic.getId().toStringFull() + "," + scribeContent + ")");
+		log.debug("--> anycast: topic=" + vegaScribeContent.getTopic() + " ray=" + vegaScribeContent.getRay() + " iname=" + vegaScribeContent.getIname() + " inumber=" + vegaScribeContent.getInumber() + " nonce=" + vegaScribeContent.getNonce() + " content=" + vegaScribeContent.getContent() + " signature=" + vegaScribeContent.getSignature() + " hashcash=" + vegaScribeContent.getHashcash() + " flags=" + vegaScribeContent.getFlags() + " extension=" + vegaScribeContent.getExtension());
 
 		try {
 
@@ -1157,8 +1190,11 @@ public class VegaImpl implements Vega {
 				vegaScribeContent.getRay() != null && 
 				vegaScribeContent.getIname() != null && 
 				vegaScribeContent.getInumber() != null && 
+				vegaScribeContent.getNonce() != null && 
 				vegaScribeContent.getSignature() != null && 
 				vegaScribeContent.getHashcash() != null;
+
+			boolean nonceOk = NonceUtil.checkNonce(vegaScribeContent.getNonce());
 
 			boolean topicOk = 
 				topic.getId().equals(this.pastryIdFactory.buildId(vegaScribeContent.getTopic()))
@@ -1172,13 +1208,13 @@ public class VegaImpl implements Vega {
 						vegaScribeContent.getTopic().equals(this.orion.inumber())
 				);
 
-			boolean signatureOk = "1".equals(this.orion.verify(topic.getId().toStringFull() + vegaScribeContent.getRay() + vegaScribeContent.getContent(), vegaScribeContent.getSignature(), vegaScribeContent.getInumber()));
+			boolean signatureOk = "1".equals(this.orion.verify(topic.getId().toStringFull() + " " + vegaScribeContent.getRay() + " " + vegaScribeContent.getNonce() + " " + vegaScribeContent.getContent(), vegaScribeContent.getSignature(), vegaScribeContent.getInumber()));
 
 			HashCash hashcash = HashCash.fromString(vegaScribeContent.getHashcash());
 			boolean hashcashOk = hashcash.getTo().equals(topic.getId().toStringFull()) && hashcash.isValid();
 
-			VegaLogger.logger.finer("--> anycast: dataOk=" + dataOk + " topicOk=" + topicOk + " signatureOk=" + signatureOk + " hashcashOk=" + hashcashOk);
-			if (! dataOk || ! topicOk || ! signatureOk || ! hashcashOk) return(false);
+			log.debug("--> anycast: dataOk=" + dataOk + " nonceOk=" + nonceOk + " topicOk=" + topicOk + " signatureOk=" + signatureOk + " hashcashOk=" + hashcashOk);
+			if (! dataOk || ! nonceOk || ! topicOk || ! signatureOk || ! hashcashOk) return(false);
 
 			this.addPacket(
 					vegaScribeContent.getRay(),
@@ -1189,6 +1225,7 @@ public class VegaImpl implements Vega {
 					" \"ray\":" + escapeJSON(vegaScribeContent.getRay()) + ",\n" +
 					" \"iname\":" + escapeJSON(vegaScribeContent.getIname()) + ",\n" +
 					" \"inumber\":" + escapeJSON(vegaScribeContent.getInumber()) + ",\n" +
+					" \"nonce\":" + escapeJSON(vegaScribeContent.getNonce()) + ",\n" +
 					" \"content\":" + escapeJSON(vegaScribeContent.getContent()) + ",\n" + 
 					" \"signature\":" + escapeJSON(vegaScribeContent.getSignature()) + ",\n" + 
 					" \"hashcash\":" + escapeJSON(vegaScribeContent.getHashcash()) + ",\n" + 

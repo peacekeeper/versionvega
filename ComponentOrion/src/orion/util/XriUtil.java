@@ -14,6 +14,8 @@ import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.xml.security.keys.KeyInfo;
 import org.apache.xml.security.keys.keyresolver.KeyResolverException;
 import org.openxri.xml.CanonicalID;
@@ -21,11 +23,11 @@ import org.openxri.xml.Service;
 import org.openxri.xml.Status;
 import org.openxri.xml.XRD;
 
-import orion.OrionLogger;
-
 public class XriUtil {
 
 	private static final String PROXY = "http://xri.net/";
+
+	private static Log log = LogFactory.getLog(XriUtil.class);
 
 	private static CacheManager cacheManager;
 	private static Cache canonicalIdCache;
@@ -34,7 +36,7 @@ public class XriUtil {
 
 	static {
 
-		cacheManager = CacheManager.create(XriUtil.class.getResourceAsStream("ehcache.xml"));
+		cacheManager = CacheManager.create(ClassLoader.getSystemResource("ehcache.xml"));
 		canonicalIdCache = cacheManager.getCache("canonicalIdCache");
 		certificateCache = cacheManager.getCache("certificateCache");
 		xdiUrlCache = cacheManager.getCache("xdiUrlCache");
@@ -47,7 +49,7 @@ public class XriUtil {
 		// get it from cache?
 
 		Element element = canonicalIdCache.get(xri);
-		OrionLogger.logger.fine("discoverCanonicalId(" + xri + "): CACHE " + (element != null ? "HIT" : "MISS"));
+		log.debug("discoverCanonicalId(" + xri + "): CACHE " + (element != null ? "HIT" : "MISS"));
 		if (element != null) return (String) element.getValue();
 
 		// resolve it!
@@ -87,7 +89,7 @@ public class XriUtil {
 		// get it from cache?
 
 		Element element = certificateCache.get(xri);
-		OrionLogger.logger.fine("discoverCertificate(" + xri + "): CACHE " + (element != null ? "HIT" : "MISS"));
+		log.debug("discoverCertificate(" + xri + "): CACHE " + (element != null ? "HIT" : "MISS"));
 		if (element != null) return (Certificate) element.getValue();
 
 		// resolve it!
@@ -130,7 +132,7 @@ public class XriUtil {
 		// get it from cache?
 
 		Element element = xdiUrlCache.get(xri);
-		OrionLogger.logger.fine("discoverXdiUrl(" + xri + "): CACHE " + (element != null ? "HIT" : "MISS"));
+		log.debug("discoverXdiUrl(" + xri + "): CACHE " + (element != null ? "HIT" : "MISS"));
 		if (element != null) return (String) element.getValue();
 
 		// resolve it!

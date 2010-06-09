@@ -15,6 +15,8 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.higgins.xdi4j.Graph;
 import org.eclipse.higgins.xdi4j.addressing.Addressing;
 import org.eclipse.higgins.xdi4j.messaging.Message;
@@ -38,6 +40,8 @@ public class OrionImpl implements Orion {
 	private static final String SYMENCRYPTION_ALGORITHM = "AES";
 	private static final int SYMENCRYPTION_KEYSIZE = 128;
 
+	private static Log log = LogFactory.getLog(OrionImpl.class);
+
 	private static final SecureRandom random = new SecureRandom();
 
 	private String iname;
@@ -59,12 +63,10 @@ public class OrionImpl implements Orion {
 
 	public void init() {
 
-		OrionLogger.init();
 	}
 
 	public void shutdown() {
 
-		OrionLogger.shutdown();
 	}
 
 	/*
@@ -73,7 +75,7 @@ public class OrionImpl implements Orion {
 
 	public void login(String iname, String password) throws Exception {
 
-		OrionLogger.logger.fine("login(" + iname + "," + "xxxxx" + ")");
+		log.debug("login(" + iname + "," + "xxxxx" + ")");
 
 		try {
 
@@ -82,12 +84,12 @@ public class OrionImpl implements Orion {
 
 			this.inumber = XriUtil.discoverCanonicalId(this.iname);
 			if (this.inumber == null) throw new RuntimeException("No I-Number found for this I-Name.");
-			OrionLogger.logger.finer("login: inumber=" + this.inumber);
+			log.debug("login: inumber=" + this.inumber);
 
 			this.xdiUri = XriUtil.discoverXdiUri(this.iname);
 			if (this.xdiUri == null) throw new RuntimeException("No XDI endpoint found for this I-Name.");
 			if (! this.xdiUri.endsWith("/")) this.xdiUri += "/";
-			OrionLogger.logger.finer("login: xdiUri=" + this.xdiUri);
+			log.debug("login: xdiUri=" + this.xdiUri);
 
 			KeyFactory keyFactory = KeyFactory.getInstance(ENCRYPTION_ALGORITHM);
 
@@ -105,7 +107,7 @@ public class OrionImpl implements Orion {
 
 			MessageResult messageResult = new XDIHttpClient(this.xdiUri).send(messageEnvelope, null);
 			if (messageResult == null) throw new RuntimeException("No result");
-			OrionLogger.logger.finest(messageResult.getGraph().toString());
+			log.debug(messageResult.getGraph().toString());
 
 			if (messageResult instanceof ErrorMessageResult)
 				throw new RuntimeException(((ErrorMessageResult) messageResult).getErrorString());
@@ -123,13 +125,13 @@ public class OrionImpl implements Orion {
 
 			PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(Base64.decodeBase64(privateKeyStr));
 			this.privateKey = keyFactory.generatePrivate(privateKeySpec);
-			OrionLogger.logger.finer("login: private key retrieved.");
+			log.debug("login: private key retrieved.");
 
 			// get public key for xri
 
 			X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(Base64.decodeBase64(publicKeyStr));
 			this.publicKey = keyFactory.generatePublic(publicKeySpec);
-			OrionLogger.logger.finer("login: public key retrieved.");
+			log.debug("login: public key retrieved.");
 		} catch (Exception ex) {
 
 			this.logout();
@@ -140,7 +142,7 @@ public class OrionImpl implements Orion {
 
 	public void logout() throws Exception {
 
-		OrionLogger.logger.fine("logout()");
+		log.debug("logout()");
 
 		this.iname = null;
 		this.password = null;
@@ -152,7 +154,7 @@ public class OrionImpl implements Orion {
 
 	public String loggedin() throws Exception {
 
-		OrionLogger.logger.fine("loggedin()");
+		log.debug("loggedin()");
 
 		if (this.iname != null && this.inumber != null && this.privateKey != null && this.publicKey != null) {
 
@@ -165,35 +167,35 @@ public class OrionImpl implements Orion {
 
 	public String iname() throws Exception {
 
-		OrionLogger.logger.fine("iname() = " + this.iname);
+		log.debug("iname() = " + this.iname);
 
 		return(this.iname);
 	}
 
 	public String inumber() throws Exception {
 
-		OrionLogger.logger.fine("inumber() = " + this.inumber);
+		log.debug("inumber() = " + this.inumber);
 
 		return(this.inumber);
 	}
 
 	public String xdiUri() throws Exception {
 
-		OrionLogger.logger.fine("xdiUri() = " + this.xdiUri);
+		log.debug("xdiUri() = " + this.xdiUri);
 
 		return(this.xdiUri);
 	}
 
 	public String resolve(String iname) throws Exception {
 
-		OrionLogger.logger.fine("resolve(" + iname + ")");
+		log.debug("resolve(" + iname + ")");
 
 		return XriUtil.discoverCanonicalId(iname);
 	}
-	
+
 	public String sign(String str) throws Exception {
 
-		OrionLogger.logger.fine("sign(" + str + ")");
+		log.debug("sign(" + str + ")");
 
 		java.security.Signature s = java.security.Signature.getInstance(SIGNATURE_ALGORITHM);
 		s.initSign(this.privateKey, random);
@@ -203,7 +205,7 @@ public class OrionImpl implements Orion {
 
 	public String verify(String str, String signature, String xri) throws Exception {
 
-		OrionLogger.logger.fine("verify(" + str + "," + signature + "," + xri + ")");
+		log.debug("verify(" + str + "," + signature + "," + xri + ")");
 
 		Certificate certificate = XriUtil.discoverCertificate(xri);
 		PublicKey publicKey = certificate.getPublicKey();
@@ -222,7 +224,7 @@ public class OrionImpl implements Orion {
 
 	public String encrypt(String str, String xri) throws Exception {
 
-		OrionLogger.logger.fine("encrypt(" + str + "," + xri + ")");
+		log.debug("encrypt(" + str + "," + xri + ")");
 
 		Certificate certificate = XriUtil.discoverCertificate(xri);
 		PublicKey publicKey = certificate.getPublicKey();
@@ -234,7 +236,7 @@ public class OrionImpl implements Orion {
 
 	public String decrypt(String str) throws Exception {
 
-		OrionLogger.logger.fine("decrypt(" + str + ")");
+		log.debug("decrypt(" + str + ")");
 
 		Cipher cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);
 		cipher.init(Cipher.DECRYPT_MODE, this.privateKey, random);
@@ -244,7 +246,7 @@ public class OrionImpl implements Orion {
 
 	public String symGenerateKey() throws Exception {
 
-		OrionLogger.logger.fine("symGenerateKey()");
+		log.debug("symGenerateKey()");
 
 		KeyGenerator keyGenerator = KeyGenerator.getInstance(SYMENCRYPTION_ALGORITHM);
 		keyGenerator.init(SYMENCRYPTION_KEYSIZE, random);
@@ -254,7 +256,7 @@ public class OrionImpl implements Orion {
 
 	public String symEncrypt(String str, String key) throws Exception {
 
-		OrionLogger.logger.fine("symEncrypt(" + str + "," + key + ")");
+		log.debug("symEncrypt(" + str + "," + key + ")");
 
 		SecretKeySpec secretKeySpec = new SecretKeySpec(Base64.decodeBase64(key), SYMENCRYPTION_ALGORITHM);
 		Cipher cipher = Cipher.getInstance(SYMENCRYPTION_ALGORITHM);
@@ -265,7 +267,7 @@ public class OrionImpl implements Orion {
 
 	public String symDecrypt(String str, String key) throws Exception {
 
-		OrionLogger.logger.fine("symDecrypt(" + str + "," + key + ")");
+		log.debug("symDecrypt(" + str + "," + key + ")");
 
 		SecretKeySpec secretKeySpec = new SecretKeySpec(Base64.decodeBase64(key), SYMENCRYPTION_ALGORITHM);
 		Cipher cipher = Cipher.getInstance(SYMENCRYPTION_ALGORITHM);
@@ -276,7 +278,7 @@ public class OrionImpl implements Orion {
 
 	public String guid() throws Exception {
 
-		OrionLogger.logger.fine("guid()");
+		log.debug("guid()");
 
 		return(UUID.randomUUID().toString());
 	}
@@ -341,7 +343,7 @@ public class OrionImpl implements Orion {
 
 		MessageResult messageResult = new XDIHttpClient(this.xdiUri).send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		OrionLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		if (messageResult instanceof ErrorMessageResult)
 			throw new RuntimeException(((ErrorMessageResult) messageResult).getErrorString());
@@ -378,7 +380,7 @@ public class OrionImpl implements Orion {
 
 		MessageResult messageResult = new XDIHttpClient(this.xdiUri).send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		OrionLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		if (messageResult instanceof ErrorMessageResult)
 			throw new RuntimeException(((ErrorMessageResult) messageResult).getErrorString());

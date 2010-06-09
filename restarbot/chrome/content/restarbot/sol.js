@@ -227,10 +227,7 @@ function sol(window, document) {
 		try {
 		
 			vega.subscribeRay("restarbot", xri);
-		} catch (ex) {
-			
-			Components.utils.reportError(ex);
-		}
+		} catch (ex) { }
 		
 		// done
 
@@ -259,7 +256,8 @@ function sol(window, document) {
 		// remove the ray
 		
 		sol.rays.splice(sol.rayindex, 1);
-//		sol.rays[sol.rayindex].close();
+		sol.rays[sol.rayindex];
+		sol.rays[sol.rayindex].close();
 
 		if (sol.rayindex >= sol.rays.length) sol.rayindex--;
 		if (sol.rayindex < 0) sol.rayindex = 0;
@@ -402,22 +400,6 @@ function sol(window, document) {
 		}
 	};
 
-	this.checkRunlevel =
-	function() {
-		
-		if (this.runlevel() != 3) {
-			
-			var message = "Your node runlevel is currently " + this.runlevel() + ". This means that you are not yet fully connected and identified. Click OK to fix this.";
-			var title = "Node Runlevel";
-			var buttons = ["OK.", "Cancel."];
-
-			if (debug.messageString(message, title, buttons) == 0) {
-				
-				this.openRunlevelRay(true, true);
-			}
-		}
-	};
-
 	this.setAutoFountainColor =
 	function() {
 
@@ -433,6 +415,7 @@ function sol(window, document) {
 		var data = { };
 		data.line = line;
 	
+		if (! ray.browser) return;
 		var event = ray.browser.contentWindow.document.createEvent("MessageEvent");
 		event.initMessageEvent("beforerun", false, false, JSON.stringify(data), null, null, null);
 		ray.browser.contentWindow.dispatchEvent(event);
@@ -444,6 +427,7 @@ function sol(window, document) {
 		var data = { };
 		data.script = script;
 
+		if (! ray.browser) return;
 		var event = ray.browser.contentWindow.document.createEvent("MessageEvent");
 		event.initMessageEvent("run", false, false, JSON.stringify(data), null, null, null);
 		ray.browser.contentWindow.dispatchEvent(event);
@@ -455,6 +439,7 @@ function sol(window, document) {
 		var data = { };
 		data.line = line;
 	
+		if (! ray.browser) return;
 		var event = ray.browser.contentWindow.document.createEvent("MessageEvent");
 		event.initMessageEvent("afterrun", false, false, JSON.stringify(data), null, null, null);
 		ray.browser.contentWindow.dispatchEvent(event);
@@ -462,15 +447,16 @@ function sol(window, document) {
 	
 	this.dispatchPacket =
 	function(packet) {
+		
+		var data = { };
+		data.packet = packet;
 	
 		for (index in sol.rays) {
 	
 			var ray = sol.rays[index];
 			if (ray.xri != packet.ray) continue;
-		
-			var data = { };
-			data.packet = packet;
-	
+
+			if (! ray.browser) continue;
 			var event = ray.browser.contentWindow.document.createEvent("MessageEvent");
 			event.initMessageEvent("packet", false, false, JSON.stringify(data), null, null, null);
 			ray.browser.contentWindow.dispatchEvent(event);
@@ -480,16 +466,35 @@ function sol(window, document) {
 	this.dispatchPacketAsRun =
 	function(packet) {
 
+		var data = { };
+		data.script = packet.content;
+
 		for (index in sol.rays) {
 
 			var ray = sol.rays[index];
 			if (ray.xri != packet.ray) continue;
 
-			var data = { };
-			data.script = packet.content;
-
+			if (! ray.browser) continue;
 			var event = ray.browser.contentWindow.document.createEvent("MessageEvent");
 			event.initMessageEvent("run", false, false, JSON.stringify(data), null, null, null);
+			ray.browser.contentWindow.dispatchEvent(event);
+		}
+	};
+	
+	this.dispatchRunlevelChanged =
+	function(oldrunlevel, currentrunlevel) {
+
+		var data = { };
+		data.oldrunlevel = oldrunlevel;
+		data.currentrunlevel = currentrunlevel;
+
+		for (index in sol.rays) {
+
+			var ray = sol.rays[index];
+
+			if (! ray.browser) continue;
+			var event = ray.browser.contentWindow.document.createEvent("MessageEvent");
+			event.initMessageEvent("runlevelchanged", false, false, JSON.stringify(data), null, null, null);
 			ray.browser.contentWindow.dispatchEvent(event);
 		}
 	};

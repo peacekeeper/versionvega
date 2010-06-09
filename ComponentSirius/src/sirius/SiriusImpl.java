@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.higgins.xdi4j.Graph;
 import org.eclipse.higgins.xdi4j.GraphComponent;
 import org.eclipse.higgins.xdi4j.Literal;
@@ -23,6 +25,8 @@ import vega.Vega;
 
 public class SiriusImpl implements Sirius {
 
+	private static Log log = LogFactory.getLog(SiriusImpl.class);
+
 	private Vega vega;
 	private XDILocalClient client;
 
@@ -34,12 +38,10 @@ public class SiriusImpl implements Sirius {
 
 	public void init() {
 
-		SiriusLogger.init();
 	}
 
 	public void shutdown() {
 
-		SiriusLogger.shutdown();
 	}
 
 	/*
@@ -48,7 +50,7 @@ public class SiriusImpl implements Sirius {
 
 	public String get(String data, String format) throws Exception {
 
-		SiriusLogger.logger.fine("get(" + data + "," + format + ")");
+		log.debug("get(" + data + "," + format + ")");
 
 		if (! "1".equals(this.vega.connected())) throw new RuntimeException("Not connected.");
 
@@ -69,7 +71,7 @@ public class SiriusImpl implements Sirius {
 
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		SiriusLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		if (format == null) format = "X3J";
 
@@ -78,7 +80,7 @@ public class SiriusImpl implements Sirius {
 
 	public String add(String data, String format) throws Exception {
 
-		SiriusLogger.logger.fine("add(" + data + "," + format + ")");
+		log.debug("add(" + data + "," + format + ")");
 
 		if (! "1".equals(this.vega.connected())) throw new RuntimeException("Not connected.");
 
@@ -99,7 +101,7 @@ public class SiriusImpl implements Sirius {
 
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		SiriusLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		if (format == null) format = "X3J";
 
@@ -108,7 +110,7 @@ public class SiriusImpl implements Sirius {
 
 	public String mod(String data, String format) throws Exception {
 
-		SiriusLogger.logger.fine("mod(" + data + "," + format + ")");
+		log.debug("mod(" + data + "," + format + ")");
 
 		if (! "1".equals(this.vega.connected())) throw new RuntimeException("Not connected.");
 
@@ -129,7 +131,7 @@ public class SiriusImpl implements Sirius {
 
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		SiriusLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		if (format == null) format = "X3J";
 
@@ -138,7 +140,7 @@ public class SiriusImpl implements Sirius {
 
 	public String set(String data, String format) throws Exception {
 
-		SiriusLogger.logger.fine("set(" + data + "," + format + ")");
+		log.debug("set(" + data + "," + format + ")");
 
 		if (! "1".equals(this.vega.connected())) throw new RuntimeException("Not connected.");
 
@@ -159,7 +161,7 @@ public class SiriusImpl implements Sirius {
 
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		SiriusLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		if (format == null) format = "X3J";
 
@@ -168,7 +170,7 @@ public class SiriusImpl implements Sirius {
 
 	public String del(String data, String format) throws Exception {
 
-		SiriusLogger.logger.fine("del(" + data + "," + format + ")");
+		log.debug("del(" + data + "," + format + ")");
 
 		if (! "1".equals(this.vega.connected())) throw new RuntimeException("Not connected.");
 
@@ -189,7 +191,7 @@ public class SiriusImpl implements Sirius {
 
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		SiriusLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		if (format == null) format = "X3J";
 
@@ -198,7 +200,7 @@ public class SiriusImpl implements Sirius {
 
 	public String[] getLiterals(String data) throws Exception {
 
-		SiriusLogger.logger.fine("getLiterals(" + data + ")");
+		log.debug("getLiterals(" + data + ")");
 
 		if (! "1".equals(this.vega.connected())) throw new RuntimeException("Not connected.");
 
@@ -219,7 +221,7 @@ public class SiriusImpl implements Sirius {
 
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		SiriusLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		List<String> literals = new Vector<String> ();
 		for (Iterator<GraphComponent> i = messageResult.getGraph().getGraphComponents(true, Literal.class); i.hasNext(); ) literals.add(((Literal) i.next()).getData());
@@ -229,7 +231,7 @@ public class SiriusImpl implements Sirius {
 
 	public String getLiteral(String xri) throws Exception {
 
-		SiriusLogger.logger.fine("getLiteral(" + xri + ")");
+		log.debug("getLiteral(" + xri + ")");
 
 		String[] literals = this.getLiterals(xri);
 		if (literals == null || literals.length < 1) return(null);
@@ -239,7 +241,7 @@ public class SiriusImpl implements Sirius {
 
 	public String[] getReferences(String data) throws Exception {
 
-		SiriusLogger.logger.fine("getReferences(" + data + ")");
+		log.debug("getReferences(" + data + ")");
 
 		if (! "1".equals(this.vega.connected())) throw new RuntimeException("Not connected.");
 
@@ -260,7 +262,7 @@ public class SiriusImpl implements Sirius {
 
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		SiriusLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		List<String> references = new Vector<String> ();
 		for (Iterator<GraphComponent> i = messageResult.getGraph().getGraphComponents(true, Reference.class); i.hasNext(); ) references.add(((Reference) i.next()).getReferenceXri().toString());
@@ -270,7 +272,7 @@ public class SiriusImpl implements Sirius {
 
 	public String getReference(String xri) throws Exception {
 
-		SiriusLogger.logger.fine("getReference(" + xri + ")");
+		log.debug("getReference(" + xri + ")");
 
 		String[] references = this.getReferences(xri);
 		if (references == null) return(null);
@@ -280,7 +282,7 @@ public class SiriusImpl implements Sirius {
 
 	public String execute(String message, String format) throws Exception {
 
-		SiriusLogger.logger.fine("execute(" + message + "," + format + ")");
+		log.debug("execute(" + message + "," + format + ")");
 
 		Graph graph = MemoryGraphFactory.getInstance().openGraph();
 		XDIReaderRegistry.getAuto().read(graph, new StringReader(message), null);
@@ -289,7 +291,7 @@ public class SiriusImpl implements Sirius {
 
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		SiriusLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		if (format == null) format = "X3J";
 

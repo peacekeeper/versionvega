@@ -4,9 +4,13 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.logging.Level;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 class IpRunnerTcp extends Thread {
+
+	private static Log log = LogFactory.getLog(IpRunnerTcp.class);
 
 	private int ipPort;
 	
@@ -18,7 +22,7 @@ class IpRunnerTcp extends Thread {
 	@Override
 	public void run() {
 
-		VersionVegaLogger.logger.log(Level.INFO, "IP Runner " + Thread.currentThread().getId() + " starting.");
+		log.info("IP Runner " + Thread.currentThread().getId() + " starting.");
 
 		try {
 
@@ -29,7 +33,7 @@ class IpRunnerTcp extends Thread {
 
 				Socket socket = serverSocket.accept();
 				PrintWriter writer = new java.io.PrintWriter(socket.getOutputStream(),true);
-				VersionVegaLogger.logger.log(Level.INFO, "IP Runner got connection from " + socket.getInetAddress().getHostAddress() + ".");
+				log.info("IP Runner got connection from " + socket.getInetAddress().getHostAddress() + ".");
 
 				writer.println(socket.getInetAddress().getHostAddress());
 				writer.flush();
@@ -40,9 +44,9 @@ class IpRunnerTcp extends Thread {
 			serverSocket.close();
 		} catch (Throwable ex) {
 
-			VersionVegaLogger.logger.log(Level.INFO, "IP Runner " + Thread.currentThread().getId() + " had exception: " + ex.getMessage(), ex);
+			log.error("IP Runner " + Thread.currentThread().getId() + " had exception: " + ex.getMessage(), ex);
 		}
 
-		VersionVegaLogger.logger.log(Level.INFO, "IP Runner " + Thread.currentThread().getId() + " stopped.");
+		log.info("IP Runner " + Thread.currentThread().getId() + " stopped.");
 	}
 }

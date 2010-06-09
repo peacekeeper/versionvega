@@ -15,6 +15,9 @@ var topicsmenulist;
 var topicsmenupopup;
 var edit;
 
+var oldrunlevel;
+var checkpacketstimer;
+
 function addMenuitem(topic) {
 
 	var menuitem = this.document.createElement("menuitem");
@@ -25,7 +28,7 @@ function addMenuitem(topic) {
 
 function removeMenuitem(topic) {
 	
-	for (i in topicsmenupopup.childNodes) {
+	for (var i=0; i<topicsmenupopup.childNodes.length; i++) {
 		
 		var menuitem = topicsmenupopup.childNodes[i];
 		if (menuitem.topic == topic) {
@@ -36,26 +39,12 @@ function removeMenuitem(topic) {
 	}
 }
 
-function refresh() {
+function removeAllMenuitems() {
+	
+	while (topicsmenupopup.childNodes.length > 0) {
 
-	try {
-
-		vega.resetRays("restarbot");
-		if (vega.connected()) vega.resetTopics("restarbot");
-		vega.subscribeRay("restarbot", "@vega");
-		vega.subscribeRay("restarbot", "@vega*chat");
-
-		var topics = polaris.getReferences(orion.inumber() + "/@vega*chat+topics", { });
-
-		for (i in topics) {
-
-			if (topics[i].charAt(0) == "+") addMenuitem(topics[i]);
-
-			vega.subscribeTopic("restarbot", topics[i]);
-		}
-	} catch (ex) {
-
-		Components.utils.reportError(ex);
+		var menuitem = topicsmenupopup.childNodes[0];
+		topicsmenupopup.removeChild(menuitem);
 	}
 }
 
@@ -77,17 +66,20 @@ function onWindowLoad() {
 	initNet();
 	initCode();
 
-	display("broadcast");
-	refresh();
-	sol.checkRunlevel();
-	edit.focus();
-	setTimeout(checkPackets, 0);
+	display("random");
+	setTimeout(function() { checkRunlevel(true); }, 0);
+	setTimeout(function() { edit.focus(); }, 0);
 }
 
 function onWindowUnload() {
 
-	if (vega.connected()) vega.resetTopics("restarbot");
-	vega.resetRays("restarbot");
+	sol.closeRays(true);
+
+	try {
+
+		vega.resetRays("restarbot");
+		vega.resetTopics("restarbot");
+	} catch (ex) { }
 }
 
 function display(newmode) {
@@ -105,25 +97,33 @@ function display(newmode) {
 	
 	if (newmode == "broadcast") {
 
+		mode.mode = "broadcast";
+		
 		mode.label = "Broadcast!";
 		broadcast.hidden = false;
 		user.hidden = true;
 		topicsmenulist.hidden = true;
 	} else if (newmode == "user") {
 		
+		mode.mode = "user";
+
 		mode.label = "Send to user!";
 		broadcast.hidden = true;
 		user.hidden = false;
 		topicsmenulist.hidden = true;
 	} else if (newmode == "topic") {
 		
+		mode.mode = "topic";
+
 		mode.label = "Send to topic!";
 		broadcast.hidden = true;
 		user.hidden = true;
 		topicsmenulist.hidden = false;
 	} else if (newmode == "random") {
 		
-		mode.label = "Send to a random node!";
+		mode.mode = "random";
+
+		mode.label = "Say something to the network!";
 		broadcast.hidden = true;
 		user.hidden = true;
 		topicsmenulist.hidden = true;
@@ -134,16 +134,16 @@ function display(newmode) {
 
 function onMode() {
 
-	if (mode.label == "Broadcast!") {
+	if (mode.mode == "broadcast") {
 
 		display("user");
-	} else if (mode.label == "Send to user!") {
+	} else if (mode.mode == "user") {
 		
 		display("topic");
-	} else if (mode.label == "Send to topic!") {
+	} else if (mode.mode == "topic") {
 		
 		display("random");
-	} else if (mode.label == "Send to a random node!") {
+	} else if (mode.mode == "random") {
 		
 		display("broadcast");
 	}
@@ -158,13 +158,13 @@ function onSend() {
 
 	if (edit.value == "") return;
 	
-	try {
-
-		if (mode.label == "Broadcast!") {
+	var working = 
+	function() {
+	
+		if (mode.mode == "broadcast") {
 	
 			vega.multicast(orion.iname() + "@vega*chat", "@vega*chat", edit.value, null, null);
-			edit.value = "";
-		} else if (mode.label == "Send to user!") {
+		} else if (mode.mode == "user") {
 			
 			var inumber;
 			var nodeid;
@@ -185,22 +185,24 @@ function onSend() {
 			if (! nodeid) throw "Unknown destination: " + user.value;
 	
 			vega.send(nodeid, "@vega*chat", edit.value, null, null);
-			edit.value = "";
-		} else if (mode.label == "Send to topic!") {
+		} else if (mode.mode == "topic") {
 			
 			vega.multicast(topicsmenulist.label + "@vega*chat", "@vega*chat", edit.value, null, null);
-			edit.value = "";
-		} else if (mode.label == "Send to a random node!") {
+		} else if (mode.mode == "random") {
 
 			var nodeid = vega.lookupRandom();
 			
 			vega.send(nodeid, "@vega*chat", edit.value, null, null);
-			edit.value = "";
 		}
-	} catch (ex) {
+	};
 	
-		debug.messageString(ex);
-	}
+	var main = 
+	function() {
+	
+		edit.value = "";
+	};
+	
+	sol.runThread(working, main);
 }
 
 function cmdDebugConsole() {
@@ -293,8 +295,93 @@ function cmdModeRandom() {
 	window.extensions.mook.minimizetotray.restore();
 }
 
-function checkPackets() {
+function checkRunlevel(init) {
+	
+	dump("checkRunlevel(" + init + ")\n");
+	
+	var currentrunlevel = sol.runlevel();
+	
+	// runlevel changed?
+	
+	if (currentrunlevel != oldrunlevel) {
 
+		// not in runlevel 3?
+	
+		if (init && (currentrunlevel != 3)) {
+			
+			// init dialog
+			
+			var message = "Your node runlevel is currently " + currentrunlevel + ". This means that you are not yet fully connected and identified. Click OK to fix this.";
+			var title = "Node Runlevel";
+			var buttons = ["OK.", "Cancel."];
+	
+			if (debug.messageString(message, title, buttons) == 0) {
+				
+				sol.openRunlevelRay(true, true);
+			}
+		}
+		
+		// left runlevel 3?
+		
+		if (currentrunlevel != 3) {
+			
+			// reset rays and topics, and cancel polling packets
+
+			try {
+
+				vega.resetRays("restarbot");
+				vega.resetTopics("restarbot");
+			} catch (ex) { }
+
+			removeAllMenuitems();
+			
+			if (checkpacketstimer) clearTimeout(checkpacketstimer);
+		}
+		
+		// entered runlevel 3?
+		
+		if (currentrunlevel == 3) {
+		
+			// set up rays and topics, and start polling packets
+			
+			try {
+		
+				vega.subscribeRay("restarbot", "@vega");
+				vega.subscribeRay("restarbot", "@vega*chat");
+		
+				var topics = polaris.getReferences(orion.inumber() + "/@vega*chat+topics", { });
+		
+				for (i in topics) {
+		
+					if (topics[i].charAt(0) == "+") addMenuitem(topics[i]);
+		
+					vega.subscribeTopic("restarbot", topics[i]);
+				}
+			} catch (ex) {
+		
+				Components.utils.reportError(ex);
+			}
+		
+			checkpacketstimer = setTimeout(function() { checkPackets(); }, 0);
+		}
+
+		// dispatch event with changed runlevel
+		
+		sol.dispatchRunlevelChanged(oldrunlevel, currentrunlevel);
+		oldrunlevel = currentrunlevel;
+	}
+	
+	// keep checking
+	
+	setTimeout(function() { checkRunlevel(false); }, 2000);
+}
+
+function checkPackets() {
+	
+	dump("checkPackets()\n");
+	
+	// listen to user clicks on notification
+	
 	var listener = {
 
 		observe: function(subject, topic, data) {
@@ -322,6 +409,8 @@ function checkPackets() {
 		}
 	}
 
+	// fetch packets
+	
 	try {
 
 		while (vega.hasPackets("restarbot")) {
@@ -360,11 +449,12 @@ function checkPackets() {
 					listener, // nsIObserver alertListener, 
 					null); //name
 		}
-
-		setTimeout(checkPackets, prefs.getIntPref("timer.interval"));
 	} catch (ex) {
 
 		Components.utils.reportError(ex);
-		return;
 	}
+
+	// keep checking
+	
+	checkpacketstimer = setTimeout(function() { checkPackets(); }, prefs.getIntPref("timer.interval"));
 }

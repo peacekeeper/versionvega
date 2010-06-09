@@ -2,9 +2,13 @@ package versionvega;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.util.logging.Level;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 class IpRunner extends Thread {
+
+	private static Log log = LogFactory.getLog(IpRunner.class);
 
 	private int ipPort;
 
@@ -16,7 +20,7 @@ class IpRunner extends Thread {
 	@Override
 	public void run() {
 
-		VersionVegaLogger.logger.log(Level.INFO, "IP Runner " + Thread.currentThread().getId() + " starting.");
+		log.info("IP Runner " + Thread.currentThread().getId() + " starting.");
 
 		try {
 
@@ -36,13 +40,13 @@ class IpRunner extends Thread {
 
 				if (! receiveString.equals(":)")) {
 
-					VersionVegaLogger.logger.log(Level.INFO, "IP Runner " + Thread.currentThread().getId() + " got unexpected UDP data: " + receiveString);
+					log.info("IP Runner " + Thread.currentThread().getId() + " got unexpected UDP data: " + receiveString);
 					continue;
 				}
 
 				sendString = receivePacket.getAddress().getHostAddress() + " " + Integer.toString(receivePacket.getPort());
 				sendBuffer = sendString.getBytes();
-				VersionVegaLogger.logger.log(Level.INFO, "IP Runner " + Thread.currentThread().getId() + " sending response: " + sendString);
+				log.info("IP Runner " + Thread.currentThread().getId() + " sending response: " + sendString);
 
 				DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, receivePacket.getAddress(), receivePacket.getPort());
 				serverSocket.send(sendPacket);
@@ -51,9 +55,9 @@ class IpRunner extends Thread {
 			serverSocket.close();
 		} catch (Throwable ex) {
 
-			VersionVegaLogger.logger.log(Level.INFO, "IP Runner " + Thread.currentThread().getId() + " had exception: " + ex.getMessage(), ex);
+			log.error("IP Runner " + Thread.currentThread().getId() + " had exception: " + ex.getMessage(), ex);
 		}
 
-		VersionVegaLogger.logger.log(Level.INFO, "IP Runner " + Thread.currentThread().getId() + " stopped.");
+		log.info("IP Runner " + Thread.currentThread().getId() + " stopped.");
 	}
 }

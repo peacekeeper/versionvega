@@ -12,6 +12,9 @@ var fountain;
 var pulses;
 var pulsepopup;
 
+var oldrunlevel;
+var checkpacketstimer;
+
 function run(line) {
 
 	var ray = sol.currentRay();
@@ -70,22 +73,6 @@ function run(line) {
 	sol.dispatchAfterRun(line, ray);
 }
 
-function refresh() {
-
-	try {
-
-		vega.resetRays("crossinglight");
-		if (vega.connected()) vega.resetTopics("crossinglight");
-
-		for (i in sol.rays) vega.subscribeRay("crossinglight", sol.rays[i].xri);
-	} catch (ex) {
-		
-		Components.utils.reportError(ex);
-	}
-	
-	sol.setAutoFountainColor();
-}
-
 function onWindowLoad() {
 
 	versionVega.provisionThread(Components.classes["@mozilla.org/thread-manager;1"].getService().mainThread);
@@ -108,17 +95,20 @@ function onWindowLoad() {
 	document.getElementById("solsuccess").style.display = null;
 	document.getElementById("solerror").style.display = "none";
 
-	refresh();
 	sol.openDefaultRay(true);
-	sol.checkRunlevel();
-	setTimeout(checkPackets, 0);
+	setTimeout(function() { checkRunlevel(true); }, 0);
+	setTimeout(function() { input.focus(); }, 0);
 }
 
 function onWindowUnload() {
 
 	sol.closeRays(true);
-	if (vega.connected()) vega.resetTopics("crossinglight");
-	vega.resetRays("crossinglight");
+
+	try {
+
+		vega.resetRays("crossinglight");
+		vega.resetTopics("crossinglight");
+	} catch (ex) { }
 }
 
 function onWindowKeyPress(event) {
@@ -296,7 +286,86 @@ function cmdToggleFullScreen() {
 	this.fullScreen = ! this.fullScreen;
 }
 
+function checkRunlevel(init) {
+	
+	dump("checkRunlevel(" + init + ")\n");
+	
+	var currentrunlevel = sol.runlevel();
+	
+	// runlevel changed?
+	
+	if (currentrunlevel != oldrunlevel) {
+		
+		// not in runlevel 3?
+	
+		if (init && (currentrunlevel != 3)) {
+			
+			// init dialog
+			
+			var message = "Your node runlevel is currently " + currentrunlevel + ". This means that you are not yet fully connected and identified. Click OK to fix this.";
+			var title = "Node Runlevel";
+			var buttons = ["OK.", "Cancel."];
+	
+			if (debug.messageString(message, title, buttons) == 0) {
+				
+				sol.openRunlevelRay(true, true);
+			}
+		}
+		
+		// left runlevel 3?
+		
+		if (currentrunlevel != 3) {
+			
+			// reset rays and topics, and cancel polling packets
+
+			try {
+
+				vega.resetRays("crossinglight");
+				vega.resetTopics("crossinglight");
+			} catch (ex) { }
+			
+			if (checkpacketstimer) clearTimeout(checkpacketstimer);
+		}
+		
+		// entered runlevel 3?
+		
+		if (currentrunlevel == 3) {
+		
+			// set up rays and topics, and start polling packets
+			
+			try {
+		
+				vega.resetRays("crossinglight");
+				vega.resetTopics("crossinglight");
+				for (i in sol.rays) vega.subscribeRay("crossinglight", sol.rays[i].xri);
+			} catch (ex) {
+		
+				Components.utils.reportError(ex);
+			}
+		
+			checkpacketstimer = setTimeout(function() { checkPackets(); }, 0);
+		}
+
+		// update fountain
+
+		sol.setAutoFountainColor();
+		
+		// dispatch event with changed runlevel
+		
+		sol.dispatchRunlevelChanged(oldrunlevel, currentrunlevel);
+		oldrunlevel = currentrunlevel;
+	}
+	
+	// keep checking
+	
+	setTimeout(function() { checkRunlevel(false); }, 2000);
+}
+
 function checkPackets() {
+	
+	dump("checkPackets()\n");
+
+	// fetch packets
 
 	try {
 
@@ -316,11 +385,12 @@ function checkPackets() {
 				sol.dispatchPacket(packet);
 			}
 		}
-
-		setTimeout(checkPackets, prefs.getIntPref("timer.interval"));
 	} catch (ex) {
 
 		Components.utils.reportError(ex);
-		return;
 	}
+
+	// keep checking
+	
+	checkpacketstimer = setTimeout(function() { checkPackets(); }, prefs.getIntPref("timer.interval"));
 }

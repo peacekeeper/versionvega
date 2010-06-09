@@ -102,6 +102,8 @@ function refresh() {
 
 function onLoad() {
 
+	this.addEventListener("runlevelchanged", onRunlevelChanged, false);
+
 	runlevelDescription = this.document.getElementById("runlevelDescription");
 	runlevelBox0 = this.document.getElementById("runlevelBox0");
 	runlevelBox1 = this.document.getElementById("runlevelBox1");
@@ -121,12 +123,12 @@ function onUnload() {
 
 }
 
-function onRefresh() {
-	
+function onRunlevelChanged(event) {
+
 	refresh();
 }
 
-function onNothing() {
+function onRefresh() {
 	
 	refresh();
 }
@@ -148,13 +150,7 @@ function onGoOffline() {
 		vega.disconnect();
 	};
 	
-	var main =
-	function() {
-
-		refresh();
-	};
-
-	sol.runThread(working, main);
+	sol.runThread(working);
 }
 
 function onGoOnline1() {
@@ -167,13 +163,7 @@ function onGoOnline1() {
 		vega.connect(null, offlineConnectTo.value, null, null);
 	};
 
-	var main =
-	function() {
-	
-		refresh();
-	};
-	
-	sol.runThread(working, main);
+	sol.runThread(working);
 }
 
 function onOfflineKeyPress(event) {
@@ -189,13 +179,7 @@ function onGoOnline2() {
 		vega.connect(null, null, null, null);
 	};
 
-	var main =
-	function() {
-	
-		refresh();
-	};
-	
-	sol.runThread(working, main);
+	sol.runThread(working);
 }
 
 function onLogout() {
@@ -210,14 +194,8 @@ function onLogout() {
 
 		orion.logout();
 	};
-	
-	var main =
-	function() {
 
-		refresh();
-	};
-
-	sol.runThread(working, main);
+	sol.runThread(working);
 }
 
 function onLogin() {
@@ -235,13 +213,7 @@ function onLogin() {
 			sirius.set(orion.inumber() + "/$nodeid/'" + vega.nodeId() + "'", null);
 	};
 
-	var main =
-	function() {
-
-		refresh();
-	};
-
-	sol.runThread(working, main);
+	sol.runThread(working);
 }
 
 function onLoggedoutKeyPress(event) {

@@ -134,16 +134,13 @@ public class HashCash {
 		HashCash other = (HashCash) object;
 
 		if (this.date == null && other.date != null) return(false);
-		if (this.date != null && other.date == null) return(false);
-		if (this.date != null && other.date != null && ! this.date.equals(other.date)) return(false);
+		if (this.date != null && ! this.date.equals(other.date)) return(false);
 
 		if (this.to == null && other.to != null) return(false);
-		if (this.to != null && other.to == null) return(false);
-		if (this.to != null && other.to != null && ! this.to.equals(other.to)) return(false);
+		if (this.to != null && ! this.to.equals(other.to)) return(false);
 
 		if (this.code == null && other.code != null) return(false);
-		if (this.code != null && other.code == null) return(false);
-		if (this.code != null && other.code != null && ! this.code.equals(other.code)) return(false);
+		if (this.code != null && ! this.code.equals(other.code)) return(false);
 
 		return(true);
 	}

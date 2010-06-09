@@ -5,13 +5,17 @@ import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
-import java.util.logging.Level;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import versionvega.util.IOUtil;
 import versionvega.util.InvocationUtil;
 
 
 class BoxRunner extends Thread {
+
+	private static Log log = LogFactory.getLog(BoxRunner.class);
 
 	private Socket socket;
 	private BufferedReader reader;
@@ -27,12 +31,12 @@ class BoxRunner extends Thread {
 	@Override
 	public void run() {
 
-		VersionVegaLogger.logger.log(Level.INFO, "BOX Runner " + Thread.currentThread().getId() + " starting.");
+		log.info("BOX Runner " + Thread.currentThread().getId() + " starting.");
 
 		String line;
 		
 		line = "OK";
-		VersionVegaLogger.logger.log(Level.INFO, "> " + line);
+		log.info("> " + line);
 		this.writer.println(line);
 		this.writer.flush();
 
@@ -42,7 +46,7 @@ class BoxRunner extends Thread {
 
 				line = this.reader.readLine();
 				if (line == null) break;
-				VersionVegaLogger.logger.log(Level.INFO, "< " + line);
+				log.info("< " + line);
 
 				String objectString = line.split(" ")[0];
 				String methodString = line.split(" ")[1];
@@ -53,7 +57,7 @@ class BoxRunner extends Thread {
 
 					line = this.reader.readLine();
 					if (line == null) break;
-					VersionVegaLogger.logger.log(Level.INFO, "< " + line);
+					log.info("< " + line);
 
 					argsStrings[i] = line;
 				}
@@ -90,9 +94,9 @@ class BoxRunner extends Thread {
 					if (exception == null) exception = targetException.getClass().getSimpleName();
 					line = IOUtil.writeException(exception);
 
-					VersionVegaLogger.logger.log(Level.WARNING, exception, targetException);
+					log.warn(exception, targetException);
 
-					VersionVegaLogger.logger.log(Level.INFO, "> " + line);
+					log.info("> " + line);
 					this.writer.println(line);
 					this.writer.flush();
 
@@ -100,13 +104,13 @@ class BoxRunner extends Thread {
 				}
 
 				line = IOUtil.writeRet(ret);
-				VersionVegaLogger.logger.log(Level.INFO, "> " + line);
+				log.info("> " + line);
 				this.writer.println(line);
 				this.writer.flush();
 			}
 		} catch (Throwable ex) {
 
-			VersionVegaLogger.logger.log(Level.INFO, "BOX Runner " + Thread.currentThread().getId() + " had exception: " + ex.getMessage(), ex);
+			log.error("BOX Runner " + Thread.currentThread().getId() + " had exception: " + ex.getMessage(), ex);
 		} finally {
 
 			try {
@@ -117,6 +121,6 @@ class BoxRunner extends Thread {
 			} catch (Throwable ex) { }
 		}
 
-		VersionVegaLogger.logger.log(Level.INFO, "BOX Runner " + Thread.currentThread().getId() + " stopped.");
+		log.info("BOX Runner " + Thread.currentThread().getId() + " stopped.");
 	}
 }

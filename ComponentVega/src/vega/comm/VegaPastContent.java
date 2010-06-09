@@ -9,6 +9,8 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import rice.p2p.commonapi.Id;
 import rice.p2p.past.ContentHashPastContentHandle;
@@ -19,12 +21,13 @@ import rice.p2p.past.PastException;
 import rice.p2p.past.gc.GCPast;
 import rice.p2p.past.gc.GCPastContentHandle;
 import vega.VegaFactory;
-import vega.VegaLogger;
 import vega.util.HashCash;
 
 public class VegaPastContent implements PastContent {  
 
 	private static final long serialVersionUID = 2539958341171708499L;
+
+	private static Log log = LogFactory.getLog(VegaPastContent.class);
 
 	/*
 	 * Here is a list of patterns that define what keys are allowed in the DHT.
@@ -106,8 +109,8 @@ public class VegaPastContent implements PastContent {
 
 	public PastContent checkInsert(Id id, PastContent existingContent) throws PastException {
 
-		VegaLogger.logger.fine("--> checkInsert(" + id.toStringFull() + "," + existingContent + ")");
-		VegaLogger.logger.finer("--> checkInsert: id=" + this.id.toStringFull() + " iname=" + this.iname + " inumber=" + this.inumber + " key=" + this.key + " value=" + this.value + " signature=" + this.signature + " hashcash=" + this.hashcash);
+		log.debug("--> checkInsert(" + id.toStringFull() + "," + existingContent + ")");
+		log.debug("--> checkInsert: id=" + this.id.toStringFull() + " iname=" + this.iname + " inumber=" + this.inumber + " key=" + this.key + " value=" + this.value + " signature=" + this.signature + " hashcash=" + this.hashcash);
 
 		try {
 
@@ -120,7 +123,7 @@ public class VegaPastContent implements PastContent {
 			HashCash hashcash = HashCash.fromString(this.hashcash);
 			boolean hashcashOk = hashcash.getTo().equals(this.key) && hashcash.isValid();
 
-			VegaLogger.logger.finer("--> checkInsert: dataOk=" + dataOk + " signatureOk=" + signatureOk + " hashcashOk=" + hashcashOk);
+			log.debug("--> checkInsert: dataOk=" + dataOk + " signatureOk=" + signatureOk + " hashcashOk=" + hashcashOk);
 			if (! dataOk || ! signatureOk || ! hashcashOk) return null;
 
 			// check for alien value; we need this for the permission patterns
@@ -145,7 +148,7 @@ public class VegaPastContent implements PastContent {
 				else
 					this.value = this.value.substring(1);
 
-				VegaLogger.logger.finer("--> checkInsert: +adjusting value to " + this.value);
+				log.debug("--> checkInsert: +adjusting value to " + this.value);
 			}
 
 			if (this.key.endsWith("___") && this.value.startsWith("-")) {
@@ -155,7 +158,7 @@ public class VegaPastContent implements PastContent {
 				else
 					this.value = "";
 
-				VegaLogger.logger.finer("--> checkInsert: -adjusting value to " + this.value);
+				log.debug("--> checkInsert: -adjusting value to " + this.value);
 			}
 
 			// check WORLD_PUBLIC patterns
@@ -171,7 +174,7 @@ public class VegaPastContent implements PastContent {
 			}
 			if (worldPublicMatches) {
 
-				VegaLogger.logger.finer("--> checkInsert: OK: WORLD_PUBLIC");
+				log.debug("--> checkInsert: OK: WORLD_PUBLIC");
 				return this;
 			}
 
@@ -188,7 +191,7 @@ public class VegaPastContent implements PastContent {
 			}
 			if (alienPublicMatches) {
 
-				VegaLogger.logger.finer("--> checkInsert: OK: ALIEN_PUBLIC");
+				log.debug("--> checkInsert: OK: ALIEN_PUBLIC");
 				return this;
 			}
 
@@ -205,7 +208,7 @@ public class VegaPastContent implements PastContent {
 			}
 			if (alienPublicWithAlienValueMatches) {
 
-				VegaLogger.logger.finer("--> checkInsert: OK: ALIEN_PUBLIC_WITH_ALIEN_VALUE");
+				log.debug("--> checkInsert: OK: ALIEN_PUBLIC_WITH_ALIEN_VALUE");
 				return this;
 			}
 
@@ -222,7 +225,7 @@ public class VegaPastContent implements PastContent {
 			}
 			if (selfPublicMatches) {
 
-				VegaLogger.logger.finer("--> checkInsert: OK: SELF_PUBLIC");
+				log.debug("--> checkInsert: OK: SELF_PUBLIC");
 				return this;
 			}
 		} catch (Exception ex) {
@@ -230,7 +233,7 @@ public class VegaPastContent implements PastContent {
 			throw new RuntimeException(ex);
 		}
 
-		VegaLogger.logger.finer("--> checkInsert: NOT OK");
+		log.debug("--> checkInsert: NOT OK");
 		return null;
 	}
 
@@ -310,7 +313,7 @@ public class VegaPastContent implements PastContent {
 		for (String replacedPattern : replacedPatterns) {
 
 			boolean matches = Pattern.matches(replacedPattern, this.key);
-			VegaLogger.logger.finer("--> checkKey: replacedPattern=" + replacedPattern + " matches=" + Boolean.toString(matches));
+			log.debug("--> checkKey: replacedPattern=" + replacedPattern + " matches=" + Boolean.toString(matches));
 
 			if (matches) return true;
 		}

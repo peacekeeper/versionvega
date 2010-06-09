@@ -1,1 +1,1 @@
-sol.openRay("@vega*runlevel", true, true, null);
+println("Runlevel: " + sol.runlevel());

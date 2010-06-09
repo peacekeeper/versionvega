@@ -31,8 +31,6 @@
 		<description multiline="true" class="plain">For &app.title; to work, the
 		@versionvega access service must be activated.</description>
 
-		<hbox style="margin-top: 5px"><button class="plain" label="Try again." oncommand="onNothing();" /></hbox>
-
 	</vbox>
 
 	<vbox id="onlinePanel" class="plain border2">

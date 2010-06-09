@@ -23,6 +23,7 @@ function onLoad() {
 	this.addEventListener("run", onRun, false);
 	this.addEventListener("afterrun", onAfterRun, false);
 	this.addEventListener("packet", onPacket, false);
+	this.addEventListener("runlevelchanged", onRunlevelChanged, false);
 
 	main = this.document.getElementById("main");
 	content = main.contentDocument.getElementById("content");
@@ -66,6 +67,13 @@ function onPacket(event) {
 
 		println(data.packet.iname + "> " + data.packet.content);
 	}
+}
+
+function onRunlevelChanged(event) {
+
+	var data = JSON.parse(event.data);
+
+	println("Runlevel changed from " + data.oldrunlevel + " to " + data.currentrunlevel + ".");
 }
 
 // Runlevel

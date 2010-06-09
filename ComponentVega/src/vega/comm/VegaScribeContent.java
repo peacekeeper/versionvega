@@ -10,18 +10,20 @@ public class VegaScribeContent implements ScribeContent {
 	private String ray;
 	private String iname;
 	private String inumber;
+	private String nonce;
 	private String content;
 	private String signature;
 	private String hashcash;
 	private String flags;
 	private String extension;
 
-	public VegaScribeContent(String topic, String ray, String iname, String inumber, String content, String signature, String hashcash, String flags, String extension) {
+	public VegaScribeContent(String topic, String ray, String iname, String inumber, String nonce, String content, String signature, String hashcash, String flags, String extension) {
 
 		this.topic = topic;
 		this.ray = ray;
 		this.iname = iname;
 		this.inumber = inumber;
+		this.nonce = nonce;
 		this.content = content;
 		this.signature = signature;
 		this.hashcash = hashcash;
@@ -47,6 +49,11 @@ public class VegaScribeContent implements ScribeContent {
 	public String getInumber() {
 
 		return(this.inumber);
+	}
+
+	public String getNonce() {
+
+		return(this.nonce);
 	}
 
 	public String getContent() {
@@ -94,6 +101,9 @@ public class VegaScribeContent implements ScribeContent {
 		if (this.inumber == null && other.inumber != null) return(false);
 		if (this.inumber != null && ! this.inumber.equals(other.inumber)) return(false);
 
+		if (this.nonce == null && other.nonce != null) return(false);
+		if (this.nonce != null && ! this.nonce.equals(other.nonce)) return(false);
+
 		if (this.content == null && other.content != null) return(false);
 		if (this.content != null && ! this.content.equals(other.content)) return(false);
 
@@ -121,6 +131,7 @@ public class VegaScribeContent implements ScribeContent {
 		hashCode = (hashCode * 31) + (this.ray == null ? 0 : this.ray.hashCode());
 		hashCode = (hashCode * 31) + (this.iname == null ? 0 : this.iname.hashCode());
 		hashCode = (hashCode * 31) + (this.inumber == null ? 0 : this.inumber.hashCode());
+		hashCode = (hashCode * 31) + (this.nonce == null ? 0 : this.nonce.hashCode());
 		hashCode = (hashCode * 31) + (this.content == null ? 0 : this.content.hashCode());
 		hashCode = (hashCode * 31) + (this.signature == null ? 0 : this.signature.hashCode());
 		hashCode = (hashCode * 31) + (this.hashcash == null ? 0 : this.hashcash.hashCode());

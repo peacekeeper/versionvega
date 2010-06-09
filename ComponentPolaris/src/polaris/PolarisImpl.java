@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.higgins.xdi4j.Graph;
 import org.eclipse.higgins.xdi4j.GraphComponent;
 import org.eclipse.higgins.xdi4j.Literal;
@@ -24,6 +26,8 @@ import orion.Orion;
 
 public class PolarisImpl implements Polaris {
 
+	private static Log log = LogFactory.getLog(PolarisImpl.class);
+
 	private Orion orion;
 	private XDIHttpClient client;
 
@@ -35,12 +39,10 @@ public class PolarisImpl implements Polaris {
 
 	public void init() {
 
-		PolarisLogger.init();
 	}
 
 	public void shutdown() {
 
-		PolarisLogger.shutdown();
 	}
 
 	/*
@@ -49,7 +51,7 @@ public class PolarisImpl implements Polaris {
 
 	public String get(String data, String format) throws Exception {
 
-		PolarisLogger.logger.fine("get(" + data + "," + format + ")");
+		log.debug("get(" + data + "," + format + ")");
 
 		if (! "1".equals(this.orion.loggedin())) throw new RuntimeException("Not signed in.");
 
@@ -72,7 +74,7 @@ public class PolarisImpl implements Polaris {
 		this.client.setUrl(new URL(this.orion.xdiUri()));
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		PolarisLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		if (format == null) format = "X3J";
 
@@ -81,7 +83,7 @@ public class PolarisImpl implements Polaris {
 
 	public String add(String data, String format) throws Exception {
 
-		PolarisLogger.logger.fine("add(" + data + "," + format + ")");
+		log.debug("add(" + data + "," + format + ")");
 
 		if (! "1".equals(this.orion.loggedin())) throw new RuntimeException("Not signed in.");
 
@@ -104,7 +106,7 @@ public class PolarisImpl implements Polaris {
 		this.client.setUrl(new URL(this.orion.xdiUri()));
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		PolarisLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		if (format == null) format = "X3J";
 
@@ -113,7 +115,7 @@ public class PolarisImpl implements Polaris {
 
 	public String mod(String data, String format) throws Exception {
 
-		PolarisLogger.logger.fine("mod(" + data + "," + format + ")");
+		log.debug("mod(" + data + "," + format + ")");
 
 		if (! "1".equals(this.orion.loggedin())) throw new RuntimeException("Not signed in.");
 
@@ -136,7 +138,7 @@ public class PolarisImpl implements Polaris {
 		this.client.setUrl(new URL(this.orion.xdiUri()));
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		PolarisLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		if (format == null) format = "X3J";
 
@@ -145,7 +147,7 @@ public class PolarisImpl implements Polaris {
 
 	public String set(String data, String format) throws Exception {
 
-		PolarisLogger.logger.fine("set(" + data + "," + format + ")");
+		log.debug("set(" + data + "," + format + ")");
 
 		if (! "1".equals(this.orion.loggedin())) throw new RuntimeException("Not signed in.");
 
@@ -168,7 +170,7 @@ public class PolarisImpl implements Polaris {
 		this.client.setUrl(new URL(this.orion.xdiUri()));
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		PolarisLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		if (format == null) format = "X3J";
 
@@ -177,7 +179,7 @@ public class PolarisImpl implements Polaris {
 
 	public String del(String data, String format) throws Exception {
 
-		PolarisLogger.logger.fine("del(" + data + "," + format + ")");
+		log.debug("del(" + data + "," + format + ")");
 
 		if (! "1".equals(this.orion.loggedin())) throw new RuntimeException("Not signed in.");
 
@@ -200,7 +202,7 @@ public class PolarisImpl implements Polaris {
 		this.client.setUrl(new URL(this.orion.xdiUri()));
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		PolarisLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		if (format == null) format = "X3J";
 
@@ -209,7 +211,7 @@ public class PolarisImpl implements Polaris {
 
 	public String[] getLiterals(String data) throws Exception {
 
-		PolarisLogger.logger.fine("getLiterals(" + data + ")");
+		log.debug("getLiterals(" + data + ")");
 
 		if (! "1".equals(this.orion.loggedin())) throw new RuntimeException("Not signed in.");
 
@@ -232,7 +234,7 @@ public class PolarisImpl implements Polaris {
 		this.client.setUrl(new URL(this.orion.xdiUri()));
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		PolarisLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		List<String> literals = new Vector<String> ();
 		for (Iterator<GraphComponent> i = messageResult.getGraph().getGraphComponents(true, Literal.class); i.hasNext(); ) literals.add(((Literal) i.next()).getData());
@@ -242,7 +244,7 @@ public class PolarisImpl implements Polaris {
 
 	public String getLiteral(String xri) throws Exception {
 
-		PolarisLogger.logger.fine("getLiteral(" + xri + ")");
+		log.debug("getLiteral(" + xri + ")");
 
 		String[] literals = this.getLiterals(xri);
 		if (literals == null || literals.length < 1) return(null);
@@ -252,7 +254,7 @@ public class PolarisImpl implements Polaris {
 
 	public String[] getReferences(String data) throws Exception {
 
-		PolarisLogger.logger.fine("getReferences(" + data + ")");
+		log.debug("getReferences(" + data + ")");
 
 		if (! "1".equals(this.orion.loggedin())) throw new RuntimeException("Not signed in.");
 
@@ -275,7 +277,7 @@ public class PolarisImpl implements Polaris {
 		this.client.setUrl(new URL(this.orion.xdiUri()));
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		PolarisLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		List<String> references = new Vector<String> ();
 		for (Iterator<GraphComponent> i = messageResult.getGraph().getGraphComponents(true, Reference.class); i.hasNext(); ) references.add(((Reference) i.next()).getReferenceXri().toString());
@@ -285,7 +287,7 @@ public class PolarisImpl implements Polaris {
 
 	public String getReference(String xri) throws Exception {
 
-		PolarisLogger.logger.fine("getReference(" + xri + ")");
+		log.debug("getReference(" + xri + ")");
 
 		String[] references = this.getReferences(xri);
 		if (references == null) return(null);
@@ -295,7 +297,7 @@ public class PolarisImpl implements Polaris {
 
 	public String execute(String message, String format) throws Exception {
 
-		PolarisLogger.logger.fine("execute(" + message + "," + format + ")");
+		log.debug("execute(" + message + "," + format + ")");
 
 		if (! "1".equals(this.orion.loggedin())) throw new RuntimeException("Not signed in.");
 
@@ -306,7 +308,7 @@ public class PolarisImpl implements Polaris {
 
 		messageResult = this.client.send(messageEnvelope, null);
 		if (messageResult == null) throw new RuntimeException("No result");
-		PolarisLogger.logger.finest(messageResult.getGraph().toString());
+		log.debug(messageResult.getGraph().toString());
 
 		if (format == null) format = "X3J";
 
