@@ -621,6 +621,30 @@
 	<spacer />
 
 	<vbox class="plain border2">
+		<hbox><button class="plain" label="xdiUri()" oncommand="onOrionXdiUri();" /></hbox>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
+		<hbox><button class="plain" label="resolve()" oncommand="onOrionResolve();" /></hbox>
+		<grid class="plain">
+			<columns>
+				<column style="padding-right: 20px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<description>iname:</description>
+					<textbox id="orionResolveParam1" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+
+	<spacer />
+
+	<vbox class="plain border2">
 		<hbox><button class="plain" label="sign()" oncommand="onOrionSign();" /></hbox>
 		<grid class="plain">
 			<columns>

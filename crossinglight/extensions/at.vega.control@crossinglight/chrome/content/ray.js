@@ -470,6 +470,32 @@ function onOrionInumber() {
 	debug.messageString(orion.inumber());
 }
 
+function onOrionXdiUri() {
+	
+	debug.messageString(orion.xdiUri());
+}
+
+function onOrionResolve() {
+	
+	var orionResolveParam1 = this.document.getElementById("orionResolveParam1").value == "" ? null : this.document.getElementById("orionResolveParam1").value; 
+
+	var result;
+	
+	var working =
+	function() {
+
+		result = orion.resolve(orionResolveParam1);
+	};
+	
+	var main =
+	function() {
+
+		debug.messageString(result);
+	};
+
+	sol.runThread(working, main);
+}
+
 function onOrionSign() {
 	
 	var orionSignParam1 = this.document.getElementById("orionSignParam1").value == "" ? null : this.document.getElementById("orionSignParam1").value; 
