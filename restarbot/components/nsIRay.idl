@@ -1,8 +1,0 @@
-#include "nsISupports.idl"
-#include "nsIDOM3Document.idl"
-#include "nsIDOM3Node.idl"
-[scriptable, uuid(8c141b6d-6bcb-410a-90b9-f56b9cba9dcc)]
-interface nsIRay : nsISupports
-{
-	void createRay(in nsIDOM3Document document, [retval] out nsIDOM3Node ret);
-};
