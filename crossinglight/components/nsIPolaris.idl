@@ -2,14 +2,14 @@
 [scriptable, uuid(270da42f-d57d-4cb7-a33b-6478efa5204f)]
 interface nsIPolaris : nsISupports
 {
-	void get(in string xri, in string format, [retval] out string ret);
-	void add(in string xri, in string format, [retval] out string ret);
-	void set(in string xri, in string format, [retval] out string ret);
-	void mod(in string xri, in string format, [retval] out string ret);
-	void del(in string xri, in string format, [retval] out string ret);
-	void getLiterals(in string xri, out PRUint32 retCount, [array, size_is(retCount), retval] out string ret);
-	void getLiteral(in string xri, [retval] out string ret);
-	void getReferences(in string xri, out PRUint32 retCount, [array, size_is(retCount), retval] out string ret);
-	void getReference(in string xri, [retval] out string ret);
+	void get(in string xdi, in string format, [retval] out string ret);
+	void add(in string xdi, in string format, [retval] out string ret);
+	void set(in string xdi, in string format, [retval] out string ret);
+	void mod(in string xdi, in string format, [retval] out string ret);
+	void del(in string xdi, in string format, [retval] out string ret);
+	void getLiterals(in string xdi, out PRUint32 retCount, [array, size_is(retCount), retval] out string ret);
+	void getLiteral(in string xdi, [retval] out string ret);
+	void getReferences(in string xdi, out PRUint32 retCount, [array, size_is(retCount), retval] out string ret);
+	void getReference(in string xdi, [retval] out string ret);
 	void execute(in string message, in string format, [retval] out string ret);
 };

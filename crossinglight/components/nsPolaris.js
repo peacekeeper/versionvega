@@ -13,66 +13,66 @@ const component = {
 	QueryInterface: XPCOMUtils.generateQI([Ci.nsIPolaris]),
 
 	add :
-	function(xri, format) {
+	function(xdi, format) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("polaris", "add", 2, [xri, format], { });
+		.invoke("polaris", "add", 2, [xdi, format], { });
 		if ((! ret) || (! ret[0])) return null;
 
 		return ret[0];
 	},
 
 	get :
-	function(xri, format) {
+	function(xdi, format) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("polaris", "get", 2, [xri, format], { });
+		.invoke("polaris", "get", 2, [xdi, format], { });
 		if ((! ret) || (! ret[0])) return null;
 
 		return ret[0];
 	},
 
 	mod :
-	function(xri, format) {
+	function(xdi, format) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("polaris", "mod", 2, [xri, format], { });
+		.invoke("polaris", "mod", 2, [xdi, format], { });
 		if ((! ret) || (! ret[0])) return null;
 
 		return ret[0];
 	},
 
 	set :
-	function(xri, format) {
+	function(xdi, format) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("polaris", "set", 2, [xri, format], { });
+		.invoke("polaris", "set", 2, [xdi, format], { });
 		if ((! ret) || (! ret[0])) return null;
 
 		return ret[0];
 	},
 
 	del :
-	function(xri, format) {
+	function(xdi, format) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("polaris", "del", 2, [xri, format], { });
+		.invoke("polaris", "del", 2, [xdi, format], { });
 		if ((! ret) || (! ret[0])) return null;
 
 		return ret[0];
 	},
 
 	getLiterals :
-	function(xri, retCount) {
+	function(xdi, retCount) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("polaris", "getLiterals", 1, [xri], { });
+		.invoke("polaris", "getLiterals", 1, [xdi], { });
 		if (! ret) return null;
 
 		retCount.value = ret.length;
@@ -80,22 +80,22 @@ const component = {
 	},
 
 	getLiteral :
-	function(xri) {
+	function(xdi) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("polaris", "getLiteral", 1, [xri], { });
+		.invoke("polaris", "getLiteral", 1, [xdi], { });
 		if ((! ret) || (! ret[0])) return null;
 
 		return ret[0];
 	},
 
 	getReferences :
-	function(xri, retCount) {
+	function(xdi, retCount) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("polaris", "getReferences", 1, [xri], { });
+		.invoke("polaris", "getReferences", 1, [xdi], { });
 		if (! ret) return null;
 
 		retCount.value = ret.length;
@@ -103,11 +103,11 @@ const component = {
 	},
 
 	getReference :
-	function(xri) {
+	function(xdi) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("polaris", "getReference", 1, [xri], { });
+		.invoke("polaris", "getReference", 1, [xdi], { });
 		if ((! ret) || (! ret[0])) return null;
 
 		return ret[0];

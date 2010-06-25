@@ -679,7 +679,7 @@
 					<textbox id="orionVerifyParam2" />
 				</row>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="orionVerifyParam3" />
 				</row>
 			</rows>
@@ -701,7 +701,7 @@
 					<textbox id="orionEncryptParam1" />
 				</row>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="orionEncryptParam2" />
 				</row>
 			</rows>
@@ -873,7 +873,7 @@
 					<textbox id="orionVerifyTimeTokenParam2" />
 				</row>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="orionVerifyTimeTokenParam3" />
 				</row>
 			</rows>
@@ -900,7 +900,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="siriusGetParam1" />
 				</row>
 				<row>
@@ -922,7 +922,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="siriusAddParam1" />
 				</row>
 				<row>
@@ -944,7 +944,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="siriusSetParam1" />
 				</row>
 				<row>
@@ -966,7 +966,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="siriusModParam1" />
 				</row>
 				<row>
@@ -988,7 +988,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="siriusDelParam1" />
 				</row>
 				<row>
@@ -1010,7 +1010,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="siriusGetLiteralsParam1" />
 				</row>
 			</rows>
@@ -1028,7 +1028,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="siriusGetLiteralParam1" />
 				</row>
 			</rows>
@@ -1046,7 +1046,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="siriusGetReferencesParam1" />
 				</row>
 			</rows>
@@ -1064,7 +1064,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="siriusGetReferenceParam1" />
 				</row>
 			</rows>
@@ -1082,7 +1082,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="siriusExecuteParam1" />
 				</row>
 				<row>
@@ -1113,7 +1113,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="polarisGetParam1" />
 				</row>
 				<row>
@@ -1135,7 +1135,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="polarisAddParam1" />
 				</row>
 				<row>
@@ -1157,7 +1157,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="polarisSetParam1" />
 				</row>
 				<row>
@@ -1179,7 +1179,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="polarisModParam1" />
 				</row>
 				<row>
@@ -1201,7 +1201,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="polarisDelParam1" />
 				</row>
 				<row>
@@ -1223,7 +1223,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="polarisGetLiteralsParam1" />
 				</row>
 			</rows>
@@ -1241,7 +1241,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="polarisGetLiteralParam1" />
 				</row>
 			</rows>
@@ -1259,7 +1259,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="polarisGetReferencesParam1" />
 				</row>
 			</rows>
@@ -1277,7 +1277,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>xdi:</description>
 					<textbox id="polarisGetReferenceParam1" />
 				</row>
 			</rows>
@@ -1295,7 +1295,7 @@
 			</columns>
 			<rows>
 				<row>
-					<description>xri:</description>
+					<description>message:</description>
 					<textbox id="polarisExecuteParam1" />
 				</row>
 				<row>

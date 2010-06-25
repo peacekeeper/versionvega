@@ -48,19 +48,19 @@ public class SiriusImpl implements Sirius {
 	 * Actions
 	 */
 
-	public String get(String data, String format) throws Exception {
+	public String get(String xdi, String format) throws Exception {
 
-		log.debug("get(" + data + "," + format + ")");
+		log.debug("get(" + xdi + "," + format + ")");
 
 		if (! "1".equals(this.vega.connected())) throw new RuntimeException("Not connected.");
 
 		XDIReader reader = XDIReaderRegistry.getAuto();
 		Graph graph = null;
 
-		if (data != null) {
+		if (xdi != null) {
 
 			graph = MemoryGraphFactory.getInstance().openGraph();
-			reader.read(graph, data, null);
+			reader.read(graph, xdi, null);
 		}
 
 		MessageEnvelope messageEnvelope = MessageEnvelope.newInstance();
@@ -78,19 +78,19 @@ public class SiriusImpl implements Sirius {
 		return(messageResult.getGraph().toString(format, null));
 	}
 
-	public String add(String data, String format) throws Exception {
+	public String add(String xdi, String format) throws Exception {
 
-		log.debug("add(" + data + "," + format + ")");
+		log.debug("add(" + xdi + "," + format + ")");
 
 		if (! "1".equals(this.vega.connected())) throw new RuntimeException("Not connected.");
 
 		XDIReader reader = XDIReaderRegistry.getAuto();
 		Graph graph = null;
 
-		if (data != null) {
+		if (xdi != null) {
 
 			graph = MemoryGraphFactory.getInstance().openGraph();
-			reader.read(graph, data, null);
+			reader.read(graph, xdi, null);
 		}
 
 		MessageEnvelope messageEnvelope = MessageEnvelope.newInstance();
@@ -108,19 +108,19 @@ public class SiriusImpl implements Sirius {
 		return(messageResult.getGraph().toString(format, null));
 	}
 
-	public String mod(String data, String format) throws Exception {
+	public String mod(String xdi, String format) throws Exception {
 
-		log.debug("mod(" + data + "," + format + ")");
+		log.debug("mod(" + xdi + "," + format + ")");
 
 		if (! "1".equals(this.vega.connected())) throw new RuntimeException("Not connected.");
 
 		XDIReader reader = XDIReaderRegistry.getAuto();
 		Graph graph = null;
 
-		if (data != null) {
+		if (xdi != null) {
 
 			graph = MemoryGraphFactory.getInstance().openGraph();
-			reader.read(graph, data, null);
+			reader.read(graph, xdi, null);
 		}
 
 		MessageEnvelope messageEnvelope = MessageEnvelope.newInstance();
@@ -138,19 +138,19 @@ public class SiriusImpl implements Sirius {
 		return(messageResult.getGraph().toString(format, null));
 	}
 
-	public String set(String data, String format) throws Exception {
+	public String set(String xdi, String format) throws Exception {
 
-		log.debug("set(" + data + "," + format + ")");
+		log.debug("set(" + xdi + "," + format + ")");
 
 		if (! "1".equals(this.vega.connected())) throw new RuntimeException("Not connected.");
 
 		XDIReader reader = XDIReaderRegistry.getAuto();
 		Graph graph = null;
 
-		if (data != null) {
+		if (xdi != null) {
 
 			graph = MemoryGraphFactory.getInstance().openGraph();
-			reader.read(graph, data, null);
+			reader.read(graph, xdi, null);
 		}
 
 		MessageEnvelope messageEnvelope = MessageEnvelope.newInstance();
@@ -168,19 +168,19 @@ public class SiriusImpl implements Sirius {
 		return(messageResult.getGraph().toString(format, null));
 	}
 
-	public String del(String data, String format) throws Exception {
+	public String del(String xdi, String format) throws Exception {
 
-		log.debug("del(" + data + "," + format + ")");
+		log.debug("del(" + xdi + "," + format + ")");
 
 		if (! "1".equals(this.vega.connected())) throw new RuntimeException("Not connected.");
 
 		XDIReader reader = XDIReaderRegistry.getAuto();
 		Graph graph = null;
 
-		if (data != null) {
+		if (xdi != null) {
 
 			graph = MemoryGraphFactory.getInstance().openGraph();
-			reader.read(graph, data, null);
+			reader.read(graph, xdi, null);
 		}
 
 		MessageEnvelope messageEnvelope = MessageEnvelope.newInstance();
@@ -198,19 +198,19 @@ public class SiriusImpl implements Sirius {
 		return(messageResult.getGraph().toString(format, null));
 	}
 
-	public String[] getLiterals(String data) throws Exception {
+	public String[] getLiterals(String xdi) throws Exception {
 
-		log.debug("getLiterals(" + data + ")");
+		log.debug("getLiterals(" + xdi + ")");
 
 		if (! "1".equals(this.vega.connected())) throw new RuntimeException("Not connected.");
 
 		XDIReader reader = XDIReaderRegistry.getAuto();
 		Graph graph = null;
 
-		if (data != null) {
+		if (xdi != null) {
 
 			graph = MemoryGraphFactory.getInstance().openGraph();
-			reader.read(graph, data, null);
+			reader.read(graph, xdi, null);
 		}
 
 		MessageEnvelope messageEnvelope = MessageEnvelope.newInstance();
@@ -239,19 +239,19 @@ public class SiriusImpl implements Sirius {
 		return(literals[0]);
 	}
 
-	public String[] getReferences(String data) throws Exception {
+	public String[] getReferences(String xdi) throws Exception {
 
-		log.debug("getReferences(" + data + ")");
+		log.debug("getReferences(" + xdi + ")");
 
 		if (! "1".equals(this.vega.connected())) throw new RuntimeException("Not connected.");
 
 		XDIReader reader = XDIReaderRegistry.getAuto();
 		Graph graph = null;
 
-		if (data != null) {
+		if (xdi != null) {
 
 			graph = MemoryGraphFactory.getInstance().openGraph();
-			reader.read(graph, data, null);
+			reader.read(graph, xdi, null);
 		}
 
 		MessageEnvelope messageEnvelope = MessageEnvelope.newInstance();

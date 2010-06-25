@@ -13,66 +13,66 @@ const component = {
 	QueryInterface: XPCOMUtils.generateQI([Ci.nsISirius]),
 
 	add :
-	function(xri, format) {
+	function(xdi, format) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("sirius", "add", 2, [xri, format], { });
+		.invoke("sirius", "add", 2, [xdi, format], { });
 		if ((! ret) || (! ret[0])) return null;
 
 		return ret[0];
 	},
 
 	get :
-	function(xri, format) {
+	function(xdi, format) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("sirius", "get", 2, [xri, format], { });
+		.invoke("sirius", "get", 2, [xdi, format], { });
 		if ((! ret) || (! ret[0])) return null;
 
 		return ret[0];
 	},
 
 	mod :
-	function(xri, format) {
+	function(xdi, format) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("sirius", "mod", 2, [xri, format], { });
+		.invoke("sirius", "mod", 2, [xdi, format], { });
 		if ((! ret) || (! ret[0])) return null;
 
 		return ret[0];
 	},
 
 	set :
-	function(xri, format) {
+	function(xdi, format) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("sirius", "set", 2, [xri, format], { });
+		.invoke("sirius", "set", 2, [xdi, format], { });
 		if ((! ret) || (! ret[0])) return null;
 
 		return ret[0];
 	},
 
 	del :
-	function(xri, format) {
+	function(xdi, format) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("sirius", "del", 2, [xri, format], { });
+		.invoke("sirius", "del", 2, [xdi, format], { });
 		if ((! ret) || (! ret[0])) return null;
 
 		return ret[0];
 	},
 
 	getLiterals :
-	function(xri, retCount) {
+	function(xdi, retCount) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("sirius", "getLiterals", 1, [xri], { });
+		.invoke("sirius", "getLiterals", 1, [xdi], { });
 		if (! ret) return null;
 
 		retCount.value = ret.length;
@@ -80,22 +80,22 @@ const component = {
 	},
 
 	getLiteral :
-	function(xri) {
+	function(xdi) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("sirius", "getLiteral", 1, [xri], { });
+		.invoke("sirius", "getLiteral", 1, [xdi], { });
 		if ((! ret) || (! ret[0])) return null;
 
 		return ret[0];
 	},
 
 	getReferences :
-	function(xri, retCount) {
+	function(xdi, retCount) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("sirius", "getReferences", 1, [xri], { });
+		.invoke("sirius", "getReferences", 1, [xdi], { });
 		if (! ret) return null;
 
 		retCount.value = ret.length;
@@ -103,11 +103,11 @@ const component = {
 	},
 
 	getReference :
-	function(xri) {
+	function(xdi) {
 
 		var ret =
 		Cc["@crossinglight/versionvega;1"].getService(Ci.nsIVersionVega)
-		.invoke("sirius", "getReference", 1, [xri], { });
+		.invoke("sirius", "getReference", 1, [xdi], { });
 		if ((! ret) || (! ret[0])) return null;
 
 		return ret[0];
