@@ -16,7 +16,7 @@ public class NonceUtil {
 
 	static {
 
-		cacheManager = CacheManager.create(ClassLoader.getSystemResource("ehcache.xml"));
+		cacheManager = CacheManager.create(ClassLoader.getSystemResource("vv-ehcache.xml"));
 		nonceCache = cacheManager.getCache("nonceCache");
 	}
 
