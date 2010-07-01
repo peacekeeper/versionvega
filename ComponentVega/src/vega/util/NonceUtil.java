@@ -1,5 +1,7 @@
 package vega.util;
 
+import java.net.URL;
+
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
@@ -16,7 +18,8 @@ public class NonceUtil {
 
 	static {
 
-		cacheManager = CacheManager.create(ClassLoader.getSystemResource("vv-ehcache.xml"));
+		URL configurationFileURL = NonceUtil.class.getClassLoader().getResource("vv-ehcache.xml");
+		cacheManager = CacheManager.create(configurationFileURL);
 		nonceCache = cacheManager.getCache("nonceCache");
 	}
 

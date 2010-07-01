@@ -36,7 +36,8 @@ public class XriUtil {
 
 	static {
 
-		cacheManager = CacheManager.create(ClassLoader.getSystemResource("vv-ehcache.xml"));
+		URL configurationFileURL = XriUtil.class.getClassLoader().getResource("vv-ehcache.xml");
+		cacheManager = CacheManager.create(configurationFileURL);
 		canonicalIdCache = cacheManager.getCache("canonicalIdCache");
 		certificateCache = cacheManager.getCache("certificateCache");
 		xdiUrlCache = cacheManager.getCache("xdiUrlCache");
