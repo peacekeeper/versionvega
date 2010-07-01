@@ -679,7 +679,7 @@
 					<textbox id="orionVerifyParam2" />
 				</row>
 				<row>
-					<description>xdi:</description>
+					<description>xri:</description>
 					<textbox id="orionVerifyParam3" />
 				</row>
 			</rows>
@@ -701,7 +701,7 @@
 					<textbox id="orionEncryptParam1" />
 				</row>
 				<row>
-					<description>xdi:</description>
+					<description>xri:</description>
 					<textbox id="orionEncryptParam2" />
 				</row>
 			</rows>
@@ -873,7 +873,7 @@
 					<textbox id="orionVerifyTimeTokenParam2" />
 				</row>
 				<row>
-					<description>xdi:</description>
+					<description>xri:</description>
 					<textbox id="orionVerifyTimeTokenParam3" />
 				</row>
 			</rows>
