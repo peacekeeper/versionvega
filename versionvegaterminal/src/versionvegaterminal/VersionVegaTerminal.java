@@ -67,7 +67,7 @@ public class VersionVegaTerminal {
 			if (parts.length < 2) {
 
 				System.out.println("Syntax: <object> <method> <arg1> <arg2> ...");
-				System.out.println("with <object> being one of orion, vega, sirius.");
+				System.out.println("with <object> being one of orion, vega, sirius, polaris.");
 				System.out.println("with <method> being the command to be invoked, e.g. connect.");
 				System.out.println("with <argX> being the arguments to the command (must match the expected number)");
 				continue;
